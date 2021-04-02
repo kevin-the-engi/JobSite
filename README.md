@@ -1,1 +1,1 @@
-# clinet-side-frontend
+# client-side-frontend
