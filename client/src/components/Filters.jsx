@@ -32,6 +32,7 @@ class Filters extends React.Component {
 
   render() {
     const { show } = this.state;
+    const { setFilters } = this.props;
 
     return (
       <div>
@@ -39,7 +40,7 @@ class Filters extends React.Component {
         {show
           ? (
             <ModalBackground onMouseDown={this.toggleModal}>
-              <FiltersModal />
+              <FiltersModal setFilters={setFilters} />
             </ModalBackground>
           ) : null}
       </div>

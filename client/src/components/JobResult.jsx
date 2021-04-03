@@ -1,4 +1,5 @@
 import React from 'react';
+import ListingDetail from './ListingDetail.jsx';
 import styled from 'styled-components';
 
 const JobTile = styled.div`

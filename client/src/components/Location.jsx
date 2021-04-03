@@ -23,14 +23,16 @@ class Location extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    
+    this.props.setLocation(this.state.location);
   }
 
   render() {
     const { location } = this.state;
 
     return (
-      <form id="location" onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} type="text" name="location" value={location} placeholder="Enter location..." />
+      <form id="locationBar" onSubmit={this.handleSubmit}>
+        <input id="location" onChange={this.handleChange} type="text" name="location" value={location} placeholder="Enter location..." />
         <input type="submit" value="Submit" />
       </form>
     );

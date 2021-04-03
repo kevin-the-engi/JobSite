@@ -44,14 +44,12 @@ class JobPortal extends React.Component {
     this.state = {
       search: '',
       location: '',
-      filters: {
-
-      },
+      filters: {},
       jobResults: [],
     };
-
     this.setSearch = this.setSearch.bind(this);
     this.setLocation = this.setLocation.bind(this);
+    this.setFilters = this.setFilters.bind(this);
   }
 
   componentDidMount() {
@@ -59,11 +57,21 @@ class JobPortal extends React.Component {
   }
 
   setSearch(term) {
-
+    this.setState = {
+      search: term
+    }
   }
 
   setLocation(term) {
+    this.setState = {
+      location: term
+    }
+  }
 
+  setFilters(filters) {
+    this.setState = {
+      filters: filters
+    }
   }
 
   render() {
@@ -72,9 +80,9 @@ class JobPortal extends React.Component {
     return (
       <PageWrapper>
         <SearchWrapper>
-          <SearchBar />
-          <Location />
-          <Filters />
+          <SearchBar setSearch={this.setSearch} />
+          <Location setLocation={this.setLocation} />
+          <Filters setFilters={this.setFilters} />
         </SearchWrapper>
         <JobResultsPortalWrapper>
           <ListJobResults jobResults={jobResults} />

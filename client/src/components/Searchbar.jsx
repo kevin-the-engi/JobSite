@@ -23,14 +23,17 @@ class SearchBar extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
+    this.props.setSearch(this.state.search);
   }
 
   render() {
     const { search } = this.state;
 
     return (
-      <form id="search" onSubmit={this.handleSubmit}>
+      <form id="searchbar" onSubmit={this.handleSubmit}>
         <input
+          id="search"
           onChange={this.handleChange}
           type="text"
           name="search"

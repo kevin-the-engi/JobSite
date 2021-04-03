@@ -32,6 +32,7 @@ class FiltersModal extends React.Component {
         min: 0,
         max: 120000,
       },
+      locationType: 'both',
       salary: 0,
       datePosted: 'anytime',
       locationRange: 'anywhere'
@@ -52,16 +53,21 @@ class FiltersModal extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
+    let filters = Object.assign(this.state);
+    delete filters.range;
+
+    this.props.setFilters(filters);
   }
 
   render() {
-    const { range: { min, max }, salary, datePosted, locationRange } = this.state;
+    const { range: { min, max }, locationType, salary, datePosted, locationRange } = this.state;
 
     return ReactDOM.createPortal(
-      <Wrapper>
-        <Options onMouseDown={(event) => event.stopPropagation()}>
+      <Wrapper onMouseDown={(event) => event.stopPropagation()}>
+        <Options>
           <form onSubmit={this.handleSubmit}>
-            <fieldset onChange={this.handleChange}>
+            <fieldset id="employment" onChange={this.handleChange}>
               <legend>Type of Employment</legend>
               <label htmlFor="employment">
                 <input type="radio" name="employment" value="fulltime" />
@@ -85,7 +91,7 @@ class FiltersModal extends React.Component {
               </label>
             </fieldset>
 
-            <fieldset onChange={this.handleChange}>
+            <fieldset id="experience" onChange={this.handleChange}>
               <legend>Experience Level</legend>
               <label htmlFor="experience">
                 <input type="radio" name="experience" value="entry" />
@@ -105,8 +111,12 @@ class FiltersModal extends React.Component {
               </label>
             </fieldset>
 
-            <fieldset onChange={this.handleChange}>
+            <fieldset id="locationType" onChange={this.handleChange}>
               <legend>Remote or Onsite</legend>
+              <label htmlFor="locationType">
+                <input type="radio" name="locationType" value="both" checked={locationType === 'both'} />
+                Both
+              </label>
               <label htmlFor="locationType">
                 <input type="radio" name="locationType" value="remote" />
                 Remote
@@ -115,22 +125,18 @@ class FiltersModal extends React.Component {
                 <input type="radio" name="locationType" value="onsite" />
                 Onsite
               </label>
-              <label htmlFor="locationType">
-                <input type="radio" name="locationType" value="mixed" />
-                Mixed
-              </label>
             </fieldset>
 
             <fieldset>
               <legend>Salary</legend>
               <label htmlFor="salary">
                 $0
-                <input name="salary" type="range" min={min} max={max} value={salary} step="10000" onChange={this.handleChange} />
+                <input id="salary" name="salary" type="range" min={min} max={max} value={salary} step="10000" onChange={this.handleChange} />
                 $120k+
               </label>
             </fieldset>
 
-            <fieldset onChange={this.handleChange}>
+            <fieldset id="datePosted" onChange={this.handleChange}>
               <legend>Date Posted</legend>
               <label htmlFor="datePosted">
                 <input type="radio" name="datePosted" value="anytime" checked={datePosted === 'anytime'} />
@@ -158,7 +164,7 @@ class FiltersModal extends React.Component {
               </label>
             </fieldset>
 
-            <fieldset onChange={this.handleChange}>
+            <fieldset id="locationRange" onChange={this.handleChange}>
               <legend>Date Posted</legend>
               <label htmlFor="locationRange">
                 <input type="radio" name="locationRange" value="anywhere" checked={locationRange === 'anywhere'} />
@@ -185,7 +191,7 @@ class FiltersModal extends React.Component {
                 100 Miles
               </label>
             </fieldset>
-              <input type="submit" value="Submit"></input>
+          <input type="submit" value="Filter Results" />
           </form>
         </Options>
       </Wrapper>,
