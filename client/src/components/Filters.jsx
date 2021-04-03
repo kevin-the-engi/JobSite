@@ -21,17 +21,8 @@ class Filters extends React.Component {
       show: false,
     };
 
-    // this.showModal = this.showModal.bind(this);
-    // this.closeModal = this.closeModal.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-
   }
-
-  // showModal() {
-  //   this.setState({
-  //     show: true,
-  //   });
-  // }
 
   toggleModal() {
     this.setState((prevState) => ({
@@ -39,22 +30,18 @@ class Filters extends React.Component {
     }));
   }
 
-  // closeModal() {
-  //   this.setState({
-  //     show: false,
-  //   });
-  // }
-
   render() {
     const { show } = this.state;
 
     return (
       <div>
         <button onClick={this.toggleModal}>Filters</button>
-        {show ?
-          <ModalBackground onMouseDown={this.toggleModal}>
-            <FiltersModal />
-          </ModalBackground> : null}
+        {show
+          ? (
+            <ModalBackground onMouseDown={this.toggleModal}>
+              <FiltersModal />
+            </ModalBackground>
+          ) : null}
       </div>
     );
   }
