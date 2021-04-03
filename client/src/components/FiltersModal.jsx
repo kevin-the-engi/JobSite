@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
@@ -63,196 +64,41 @@ const Radio = styled.input`
 `;
 
 const Range = styled.input`
-  // -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  // width: 100%; /* Specific width is required for Firefox. */
-  // background: transparent; /* Otherwise white in Chrome */
-  // ::-webkit-slider-thumb {
-  //   -webkit-appearance: none;
-  // }
-  // &:focus { outline: none; }
-  // ::-ms-track {
-  //   width: 100%;
-  //   cursor: pointer;
-  //   /* Hides the slider so custom styles can be added */
-  //   background: transparent;
-  //   border-color: transparent;
-  //   color: transparent;
-  // }
-  // ::-webkit-slider-thumb {
-  //   -webkit-appearance: none;
-  //   border: 1px solid #424242;
-  //   height: 20px;
-  //   width: 20px;
-  //   border-radius: 50%;
-  //   background: #5fa317;
-  //   cursor: pointer;
-  //   background-clip: content-box;
-  //   padding: 1px;
-  //   margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
-  //   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
-  // }
+/*Chrome*/
+  -webkit-appearance: none;
+  overflow-x: hidden;
+  width: 90%;
+  background-color: #e0e0e0;
 
-  // /* All the same stuff for Firefox */
-  // ::-moz-range-thumb {
-  //   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  //   border: 1px solid #424242;
-  //   height: 20px;
-  //   width: 20px;
-  //   border-radius: 50%;
-  //   background: #5fa317;
-  //   background-clip: content-box;
-  //   padding: 1px;
-  //   cursor: pointer;
-  // }
-
-  // /* All the same stuff for IE */
-  // ::-ms-thumb {
-  //   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  //   border: 1px solid #424242;
-  //   height: 20px;
-  //   width: 20px;
-  //   border-radius: 50%;
-  //   background-clip: content-box;
-  //   padding: 1px;
-  //   background: #5fa317;
-  //   cursor: pointer;
-  // }
-
-  // ///////////////////
-
-  // ::-webkit-slider-runnable-track {
-  //   width: 80%;
-  //   height: 10px;
-  //   cursor: pointer;
-  //   // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  //   background: #e0e0e0;
-  //   border-radius: 3px;
-  // }
-
-  // :focus::-webkit-slider-runnable-track {
-  //   background: #e0e0e0;
-  // }
-
-  // ::-moz-range-track {
-  //   width: 80%;
-  //   height: 10px;
-  //   cursor: pointer;
-  //   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  //   background: #5fa317;
-  //   border-radius: 1.3px;
-  //   border: 0.2px solid #010101;
-  // }
-
-  // ::-ms-track {
-  //   width: 80%;
-  //   height: 10px;
-  //   cursor: pointer;
-  //   background: transparent;
-  //   border-color: transparent;
-  //   border-width: 16px 0;
-  //   color: transparent;
-  // }
-  // ::-ms-fill-lower {
-  //   background: #2a6495;
-  //   border: 0.2px solid #010101;
-  //   border-radius: 2.6px;
-  //   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  // }
-  // :focus::-ms-fill-lower {
-  //   background: #3071a9;
-  // }
-  // ::-ms-fill-upper {
-  //   background: #3071a9;
-  //   border: 0.2px solid #010101;
-  //   border-radius: 2.6px;
-  //   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  // }
-  // :focus::-ms-fill-upper {
-  //   background: #367ebd;
-  // }
-
-    -webkit-appearance: none;
-    margin: 18px 0;
-    width: 100%;
-
-  &:focus { outline: none; }
   ::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 8.4px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: #3071a9;
-    border-radius: 1.3px;
-    border: 0.2px solid #010101;
+    -webkit-appearance: none;
+    height: 10px;
+    color: #5fa317;
+    margin-top: -1px;
   }
   ::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 3px;
-    background: #ffffff;
-    cursor: pointer;
+    width: 10px;
     -webkit-appearance: none;
-    margin-top: -14px;
+    height: 20px;
+    // cursor: ew-resize;
+    background: #424242;
+    box-shadow: -600px 0 0 600px #5fa317;
   }
-  &:focus::-webkit-slider-runnable-track {
-    background: #367ebd;
+/** FF*/
+  ::-moz-range-progress {
+    background-color: #424242;
   }
   ::-moz-range-track {
-    width: 100%;
-    height: 8.4px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: #3071a9;
-    border-radius: 1.3px;
-    border: 0.2px solid #010101;
+    background-color: #e0e0e0;
   }
-  ::-moz-range-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 3px;
-    background: #ffffff;
-    cursor: pointer;
-  }
-  ::-ms-track {
-    width: 100%;
-    height: 8.4px;
-    cursor: pointer;
-    background: transparent;
-    border-color: transparent;
-    border-width: 16px 0;
-    color: transparent;
-  }
+/* IE*/
   ::-ms-fill-lower {
-    background: #2a6495;
-    border: 0.2px solid #010101;
-    border-radius: 2.6px;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background-color: #e0e0e0;
   }
   ::-ms-fill-upper {
-    background: #3071a9;
-    border: 0.2px solid #010101;
-    border-radius: 2.6px;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background-color: #5fa317;
   }
-  ::-ms-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 3px;
-    background: #ffffff;
-    cursor: pointer;
-  }
-  &:focus::-ms-fill-lower {
-    background: #3071a9;
-  }
-  &:focus::-ms-fill-upper {
-    background: #367ebd;
-  }
+}
 `;
 
 class FiltersModal extends React.Component {
@@ -284,11 +130,12 @@ class FiltersModal extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.toggleModal();
-    alert('submitted');
   }
 
   render() {
-    const { range: { min, max }, yearsExperience, educationLevel, desiredSalary } = this.state;
+    const {
+      range: { min, max }, yearsExperience, educationLevel, desiredSalary,
+    } = this.state;
 
     return ReactDOM.createPortal(
       <Wrapper onMouseDown={(event) => event.stopPropagation()}>
