@@ -21,10 +21,14 @@ const SearchWrapper = styled.div`
   width: 95%;
   height: 10vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   border: 2px solid green;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const SeekerResultsPortalWrapper = styled.div`

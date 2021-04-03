@@ -7,22 +7,38 @@ const Wrapper = styled.div`
   position: fixed;
   display: table;
   background: #fff;
-  padding: 2vh 2vw;
+  padding: 2vh 2vw 1vh 2vw;
   border-radius: 10px;
-  top: 50%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  max-width: 70vw;
+  max-width: 90vw;
   max-height: 95vh;
   overflow: hidden;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+  @media (min-width: 768px) {
+    width: 50vw;
+  }
 `;
 
 const Options = styled.div`
-  display: block;
   max-height: 95vh;
-  width: 60vw;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 95vh;
+`;
+
+const RangeLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;
 
 const Legend = styled.legend`
@@ -30,7 +46,30 @@ const Legend = styled.legend`
 `;
 
 const FieldSet = styled.fieldset`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
   border-radius: 5px;
+  margin: 1vh 0;
+  width: 95%;
+
+  @media (min-width: 768px) {
+    flex-wrap: none;
+    justify-content: space-between;
+  }
+`;
+
+const Figures = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const Figure = styled.div`
+  flex-basis: 1;
+  text-align: center;
+  width: 2.5vw;
 `;
 
 const Radio = styled.input`
@@ -66,8 +105,8 @@ const Radio = styled.input`
 const Range = styled.input`
 /*Chrome*/
   -webkit-appearance: none;
-  overflow-x: hidden;
-  width: 90%;
+  overflow: hidden;
+  width: 100%;
   background-color: #e0e0e0;
 
   ::-webkit-slider-runnable-track {
@@ -80,7 +119,7 @@ const Range = styled.input`
     width: 10px;
     -webkit-appearance: none;
     height: 20px;
-    // cursor: ew-resize;
+    cursor: ew-resize;
     background: #424242;
     box-shadow: -600px 0 0 600px #5fa317;
   }
@@ -99,6 +138,19 @@ const Range = styled.input`
     background-color: #5fa317;
   }
 }
+`;
+
+const Button = styled.button`
+  width: max(10vw, 150px);
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 5vh;
+  padding: 0 1.25vw;
+  background: none;
+  border: 1px solid #424242;
+  border-radius: 5px;
+  color: #424242;
 `;
 
 class FiltersModal extends React.Component {
@@ -140,7 +192,7 @@ class FiltersModal extends React.Component {
     return ReactDOM.createPortal(
       <Wrapper onMouseDown={(event) => event.stopPropagation()}>
         <Options>
-          <form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
             <FieldSet onChange={this.handleChange}>
               <Legend>Years of Experience</Legend>
               <label htmlFor="yearsExperience">
@@ -163,8 +215,8 @@ class FiltersModal extends React.Component {
             <FieldSet onChange={this.handleChange}>
               <Legend>Level of Education</Legend>
               <label htmlFor="educationLevel">
-                <Radio type="radio" name="educationLevel" id="highSchoolDiploma" />
-                High School Diploma
+                <Radio type="radio" name="educationLevel" id="diploma" />
+                Diploma
               </label>
               <label htmlFor="educationLevel">
                 <Radio type="radio" name="educationLevel" id="associates" />
@@ -189,14 +241,13 @@ class FiltersModal extends React.Component {
             </FieldSet>
             <FieldSet>
               <Legend>Desired Salary</Legend>
-              <label htmlFor="desiredSalary">
-                $0
+              <RangeLabel htmlFor="desiredSalary">
+                <Figures><Figure>0k</Figure><Figure>10</Figure><Figure>20</Figure><Figure>30</Figure><Figure>40</Figure><Figure>50</Figure><Figure>60</Figure><Figure>70</Figure><Figure>80</Figure><Figure>90</Figure><Figure>100</Figure><Figure>110</Figure><Figure>120k+</Figure></Figures>
                 <Range id="desiredSalary" type="range" min={min} max={max} value={desiredSalary} step="10000" onChange={this.handleChange} />
-                $120k+
-              </label>
+              </RangeLabel>
             </FieldSet>
-            <input type="submit" value="Filter Results" />
-          </form>
+            <Button type="submit" value="Filter Results">Filter Results</Button>
+          </Form>
         </Options>
       </Wrapper>,
       document.getElementById('modal-root') || document.createElement('div'), // for testing purposes

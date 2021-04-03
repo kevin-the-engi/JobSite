@@ -11,8 +11,8 @@ const ListDetailWrapper = styled.div`
   border: 2px solid orange;
 `;
 
-const ListingDetail = (props) => (
+const ListingDetailDiv = (props) => (
   <ListDetailWrapper>here there be a seeker&apos;s resume </ListDetailWrapper>
 );
 
-export default ListingDetail;
+export default ListingDetailDiv;
