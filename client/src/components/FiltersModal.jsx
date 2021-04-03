@@ -26,46 +26,61 @@ class FiltersModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      min: 0,
-      max: 120000,
-      value: 0,
+      employment: '',
+      experience: '',
+      range: {
+        min: 0,
+        max: 120000,
+      },
+      salary: 0,
+      datePosted: 'anytime',
+      locationRange: 'anywhere'
     };
     this.expanded = React.createRef();
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    console.log(this.expanded);
-    console.log(event.target);
+    let field = event.target.name;
+    let value = event.target.value;
+
+    this.setState({
+      [field]: value,
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
   }
 
   render() {
-    const { min, max, value } = this.state;
+    const { range: { min, max }, salary, datePosted, locationRange } = this.state;
 
     return ReactDOM.createPortal(
       <Wrapper>
         <Options onMouseDown={(event) => event.stopPropagation()}>
-          <form ref={this.expanded}>
-            <fieldset onChange={this.handleChange} ref={this.expanded}>
+          <form onSubmit={this.handleSubmit}>
+            <fieldset onChange={this.handleChange}>
               <legend>Type of Employment</legend>
               <label htmlFor="employment">
-                <input type="radio" name="employment" id="fulltime" />
+                <input type="radio" name="employment" value="fulltime" />
                 Full time
               </label>
               <label htmlFor="employment">
-                <input type="radio" name="employment" id="parttime" />
+                <input type="radio" name="employment" value="parttime" />
                 Part time
               </label>
               <label htmlFor="employment">
-                <input type="radio" name="employment" id="contract" />
+                <input type="radio" name="employment" value="contract" />
                 Contract
               </label>
               <label htmlFor="employment">
-                <input type="radio" name="employment" id="temporary" />
+                <input type="radio" name="employment" value="temporary" />
                 Temporary
               </label>
               <label htmlFor="employment">
-                <input type="radio" name="employment" id="internship" />
+                <input type="radio" name="employment" value="internship" />
                 Internship
               </label>
             </fieldset>
@@ -73,19 +88,19 @@ class FiltersModal extends React.Component {
             <fieldset onChange={this.handleChange}>
               <legend>Experience Level</legend>
               <label htmlFor="experience">
-                <input type="radio" name="experience" id="entry" />
+                <input type="radio" name="experience" value="entry" />
                 Entry Level
               </label>
               <label htmlFor="experience">
-                <input type="radio" name="experience" id="mid" />
+                <input type="radio" name="experience" value="mid" />
                 Mid Level
               </label>
               <label htmlFor="experience">
-                <input type="radio" name="experience" id="senior" />
+                <input type="radio" name="experience" value="senior" />
                 Senior Level
               </label>
               <label htmlFor="experience">
-                <input type="radio" name="experience" id="executive" />
+                <input type="radio" name="experience" value="executive" />
                 Executive Level
               </label>
             </fieldset>
@@ -93,24 +108,84 @@ class FiltersModal extends React.Component {
             <fieldset onChange={this.handleChange}>
               <legend>Remote or Onsite</legend>
               <label htmlFor="locationType">
-                <input type="radio" name="locationType" id="Remote" />
+                <input type="radio" name="locationType" value="remote" />
                 Remote
               </label>
               <label htmlFor="locationType">
-                <input type="radio" name="locationType" id="Onsite" />
+                <input type="radio" name="locationType" value="onsite" />
                 Onsite
               </label>
               <label htmlFor="locationType">
-                <input type="radio" name="locationType" id="Mixed" />
+                <input type="radio" name="locationType" value="mixed" />
                 Mixed
               </label>
             </fieldset>
 
-            <label htmlFor="salary">
-              $0
-              <input type="range" min={min} max={max} defaultValue={value} onMouseUp={this.handleChange} />
-              $120k+
-            </label>
+            <fieldset>
+              <legend>Salary</legend>
+              <label htmlFor="salary">
+                $0
+                <input name="salary" type="range" min={min} max={max} value={salary} step="10000" onChange={this.handleChange} />
+                $120k+
+              </label>
+            </fieldset>
+
+            <fieldset onChange={this.handleChange}>
+              <legend>Date Posted</legend>
+              <label htmlFor="datePosted">
+                <input type="radio" name="datePosted" value="anytime" checked={datePosted === 'anytime'} />
+                Anytime
+              </label>
+              <label htmlFor="datePosted">
+                <input type="radio" name="datePosted" value="past1D" />
+                Past 24 Hours
+              </label>
+              <label htmlFor="datePosted">
+                <input type="radio" name="datePosted" value="past3D" />
+                Past 3 Days
+              </label>
+              <label htmlFor="datePosted">
+                <input type="radio" name="datePosted" value="past7D" />
+                Past 7 Days
+              </label>
+              <label htmlFor="datePosted">
+                <input type="radio" name="datePosted" value="past14D" />
+                Past 14 Days
+              </label>
+              <label htmlFor="datePosted">
+                <input type="radio" name="datePosted" value="past30D" />
+                Past 30 Days
+              </label>
+            </fieldset>
+
+            <fieldset onChange={this.handleChange}>
+              <legend>Date Posted</legend>
+              <label htmlFor="locationRange">
+                <input type="radio" name="locationRange" value="anywhere" checked={locationRange === 'anywhere'} />
+                Anywhere
+              </label>
+              <label htmlFor="locationRange">
+                <input type="radio" name="locationRange" value="5miles" />
+                5 Miles
+              </label>
+              <label htmlFor="locationRange">
+                <input type="radio" name="locationRange" value="10miles" />
+                10 Miles
+              </label>
+              <label htmlFor="locationRange">
+                <input type="radio" name="locationRange" value="20miles" />
+                20 Miles
+              </label>
+              <label htmlFor="locationRange">
+                <input type="radio" name="locationRange" value="50miles" />
+                50 Miles
+              </label>
+              <label htmlFor="locationRange">
+                <input type="radio" name="locationRange" value="100miles" />
+                100 Miles
+              </label>
+            </fieldset>
+              <input type="submit" value="Submit"></input>
           </form>
         </Options>
       </Wrapper>,
