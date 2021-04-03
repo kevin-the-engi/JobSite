@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import NavBar from './NavBar.jsx';
 import JobPortal from './JobPortal.jsx';
 
 const AppWrapper = styled.div`
-  margin: auto;
+  margin: 0 auto;
 `;
 
-const App = () => {
-  return (
-    <AppWrapper>
-      <JobPortal />
-      {/* <h1>Yo it rendered!</h1> */}
-    </AppWrapper>
-  )
-}
+const App = () => (
+  <AppWrapper>
+    <NavBar />
+    <JobPortal />
+  </AppWrapper>
+);
 
 export default App;
