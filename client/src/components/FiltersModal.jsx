@@ -76,8 +76,9 @@ const Radio = styled.input`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
+  top: 2px;
   border-radius: 50%;
   background-color: #fff;
 
@@ -87,10 +88,11 @@ const Radio = styled.input`
   visibility: visible;
   border: 1px solid #424242;
   &:checked {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     position: relative;
+    top: 2px;
     background-color: #5fa317;
     background-clip: content-box;
     padding: 1px;

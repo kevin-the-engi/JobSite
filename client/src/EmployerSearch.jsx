@@ -6,6 +6,10 @@ import FindJobSeekersPortal from './components/FindJobSeekersPortal.jsx';
 
 const EmployerSearchWrapper = styled.div`
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 `;
 
 const EmployerSearch = () => (

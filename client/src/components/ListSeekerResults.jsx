@@ -1,16 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SeekerResult from './SeekerResult.jsx';
+import SeekerTile from './SeekerTile.jsx';
 
 const ResultsWrapper = styled.div`
-  width: 35%;
-  height: 100%;
+  width: 95%;
+  height: 97%;
+  background-color: whitesmoke;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
+  @media (min-width: 768px) {
+    width: 35%;
+  }
 `;
 
 const Header = styled.div`
   width: 100%;
   height: 5%;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 2.5rem;
 `;
 
 const ListWrapper = styled.div`
@@ -19,7 +30,7 @@ const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid red;
+  // border: 2px solid red;
   overflow-y: scroll;
 
   /* Hide scrollbar for Chrome, Safari and Opera */
@@ -38,15 +49,15 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid green;
+  // border: 2px solid green;
 `;
 
-const ListSeekerResults = ({ jobSeekers }) => (
+const ListSeekerResults = (props) => (
   <ResultsWrapper>
     <Header>Jobs Seekers Found: 35</Header>
     <ListWrapper>
       <List>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(() => <SeekerResult />)}
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((seeker) => <SeekerTile toggleModal={props.toggleModal} />)}
       </List>
     </ListWrapper>
   </ResultsWrapper>
