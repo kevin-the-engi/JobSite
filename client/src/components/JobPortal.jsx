@@ -59,19 +59,19 @@ class JobPortal extends React.Component {
   setSearch(term) {
     this.setState = {
       search: term
-    }
+    };
   }
 
   setLocation(term) {
     this.setState = {
       location: term
-    }
+    };
   }
 
   setFilters(filters) {
     this.setState = {
       filters: filters
-    }
+    };
   }
 
   render() {

@@ -1,49 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
+const SearchBar = (props) => {
+  const [search, setSearch] = useState('');
 
-    this.state = {
-      search: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    const field = event.target.name;
+  const handleChange = (event) => {
     const { value } = event.target;
 
-    this.setState({
-      [field]: value,
-    });
-  }
+    setSearch(value);
+  };
 
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
+    props.setSearch(search);
+  };
 
-    this.props.setSearch(this.state.search);
-  }
+  return (
+    <form id="searchbar" onSubmit={handleSubmit}>
+      <input
+        id="search"
+        onChange={handleChange}
+        type="text"
+        name="search"
+        value={search}
+        placeholder="Enter search term..."
+      />
+      <input type="submit" value="Submit" />
+    </form>
+  );
+};
+// class SearchBar extends React.Component {
+//   constructor(props) {
+//     super(props);
 
-  render() {
-    const { search } = this.state;
+//     this.state = {
+//       search: '',
+//     };
 
-    return (
-      <form id="searchbar" onSubmit={this.handleSubmit}>
-        <input
-          id="search"
-          onChange={this.handleChange}
-          type="text"
-          name="search"
-          value={search}
-          placeholder="Enter search term..."
-        />
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
-}
+//     this.handleChange = this.handleChange.bind(this);
+//     this.handleSubmit = this.handleSubmit.bind(this);
+//   }
+
+//   handleChange(event) {
+//     const field = event.target.name;
+//     const { value } = event.target;
+
+//     this.setState({
+//       [field]: value,
+//     });
+//   }
+
+//   handleSubmit(event) {
+//     event.preventDefault();
+
+//     this.props.setSearch(this.state.search);
+//   }
+
+//   render() {
+//     const { search } = this.state;
+
+//     return (
+//       <form id="searchbar" onSubmit={this.handleSubmit}>
+//         <input
+//           id="search"
+//           onChange={this.handleChange}
+//           type="text"
+//           name="search"
+//           value={search}
+//           placeholder="Enter search term..."
+//         />
+//         <input type="submit" value="Submit" />
+//       </form>
+//     );
+//   }
+// }
+
 
 export default SearchBar;

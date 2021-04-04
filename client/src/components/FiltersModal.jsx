@@ -191,7 +191,7 @@ class FiltersModal extends React.Component {
                 100 Miles
               </label>
             </fieldset>
-          <input type="submit" value="Filter Results" />
+            <input type="submit" value="Filter Results" />
           </form>
         </Options>
       </Wrapper>,
