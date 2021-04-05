@@ -6,17 +6,16 @@ import AppliedJobs from './AppliedJobs.jsx';
 import Notes from './Notes.jsx';
 
 const Tabs = () => {
-  const [toggleState, setToggleState] = useState('reminders');
+  const [tab, setTab] = useState('reminders');
 
   const toggleTab = (id) => {
-    setToggleState(id);
+    setTab(id);
   }
 
   const handleClick = (event) => {
+    const id = event.target.id;
+
     event.preventDefault();
-
-    let id = event.target.id;
-
     toggleTab(id);
   }
 
@@ -25,22 +24,22 @@ const Tabs = () => {
       <div className="tabs">
         <div id="reminders" onClick={handleClick}>
           Reminders
-          {toggleState === 'reminders' ? <Reminders />: null}
+          {tab === 'reminders' ? <Reminders />: null}
         </div>
 
         <div id="savedJobs" onClick={handleClick}>
           Jobs Saved
-          {toggleState === 'savedJobs' ? <SavedJobs />: null}
+          {tab === 'savedJobs' ? <SavedJobs />: null}
         </div>
 
         <div id="appliedJobs" onClick={handleClick}>
           Jobs Applied
-          {toggleState === 'appliedJobs' ? <AppliedJobs />: null}
+          {tab === 'appliedJobs' ? <AppliedJobs />: null}
         </div>
 
         <div id="notes" onClick={handleClick}>
           Notes
-          {toggleState === 'notes' ? <Notes />: null}
+          {tab === 'notes' ? <Notes />: null}
         </div>
       </div>
     </div>
