@@ -30,7 +30,6 @@ const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // border: 2px solid red;
   overflow-y: scroll;
 
   /* Hide scrollbar for Chrome, Safari and Opera */
@@ -49,7 +48,6 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // border: 2px solid green;
 `;
 
 const ListSeekerResults = (props) => (

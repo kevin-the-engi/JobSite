@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 
   @media (min-width: 768px) {
-    width: 50vw;
+    max-width: 35vw;
   }
 `;
 
@@ -34,12 +34,12 @@ const Form = styled.form`
   max-height: 95vh;
 `;
 
-const RangeLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;
+// const RangeLabel = styled.label`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 100%;
+// `;
 
 const Legend = styled.legend`
   color: #424242;
@@ -54,23 +54,22 @@ const FieldSet = styled.fieldset`
   margin: 1vh 0;
   width: 95%;
 
-  @media (min-width: 768px) {
-    flex-wrap: none;
-    justify-content: space-between;
-  }
+  // @media (min-width: 768px) {
+  //   justify-content: space-between;
+  // }
 `;
 
-const Figures = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
+// const Figures = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   width: 100%;
+// `;
 
-const Figure = styled.div`
-  flex-basis: 1;
-  text-align: center;
-  width: 2.5vw;
-`;
+// const Figure = styled.div`
+//   flex-basis: 1;
+//   text-align: center;
+//   width: 2.5vw;
+// `;
 
 const Radio = styled.input`
   -webkit-appearance: none;
@@ -104,43 +103,43 @@ const Radio = styled.input`
   &:focus { outline: none; }
 `;
 
-const Range = styled.input`
-/*Chrome*/
-  -webkit-appearance: none;
-  overflow: hidden;
-  width: 100%;
-  background-color: #e0e0e0;
+// const Range = styled.input`
+// /*Chrome*/
+//   -webkit-appearance: none;
+//   overflow: hidden;
+//   width: 100%;
+//   background-color: #e0e0e0;
 
-  ::-webkit-slider-runnable-track {
-    -webkit-appearance: none;
-    height: 10px;
-    color: #5fa317;
-    margin-top: -1px;
-  }
-  ::-webkit-slider-thumb {
-    width: 10px;
-    -webkit-appearance: none;
-    height: 20px;
-    cursor: ew-resize;
-    background: #424242;
-    box-shadow: -600px 0 0 600px #5fa317;
-  }
-/** FF*/
-  ::-moz-range-progress {
-    background-color: #424242;
-  }
-  ::-moz-range-track {
-    background-color: #e0e0e0;
-  }
-/* IE*/
-  ::-ms-fill-lower {
-    background-color: #e0e0e0;
-  }
-  ::-ms-fill-upper {
-    background-color: #5fa317;
-  }
-}
-`;
+//   ::-webkit-slider-runnable-track {
+//     -webkit-appearance: none;
+//     height: 10px;
+//     color: #5fa317;
+//     margin-top: -1px;
+//   }
+//   ::-webkit-slider-thumb {
+//     width: 10px;
+//     -webkit-appearance: none;
+//     height: 20px;
+//     cursor: ew-resize;
+//     background: #424242;
+//     box-shadow: -600px 0 0 600px #5fa317;
+//   }
+// /** FF*/
+//   ::-moz-range-progress {
+//     background-color: #424242;
+//   }
+//   ::-moz-range-track {
+//     background-color: #e0e0e0;
+//   }
+// /* IE*/
+//   ::-ms-fill-lower {
+//     background-color: #e0e0e0;
+//   }
+//   ::-ms-fill-upper {
+//     background-color: #5fa317;
+//   }
+// }
+// `;
 
 const Button = styled.button`
   width: max(10vw, 150px);
@@ -160,12 +159,12 @@ class FiltersModal extends React.Component {
     super(props);
     this.state = {
       yearsExperience: '',
-      range: {
-        min: 0,
-        max: 120000,
-      },
+      // range: {
+      //   min: 0,
+      //   max: 120000,
+      // },
       educationLevel: '',
-      desiredSalary: 0,
+      // desiredSalary: 0,
     };
     this.expanded = React.createRef();
     this.handleChange = this.handleChange.bind(this);
@@ -187,9 +186,7 @@ class FiltersModal extends React.Component {
   }
 
   render() {
-    const {
-      range: { min, max }, yearsExperience, educationLevel, desiredSalary,
-    } = this.state;
+    const { yearsExperience, educationLevel } = this.state;
 
     return ReactDOM.createPortal(
       <Wrapper onMouseDown={(event) => event.stopPropagation()}>
@@ -241,13 +238,13 @@ class FiltersModal extends React.Component {
                 other
               </label>
             </FieldSet>
-            <FieldSet>
+            {/* <FieldSet>
               <Legend>Desired Salary</Legend>
               <RangeLabel htmlFor="desiredSalary">
                 <Figures><Figure>0k</Figure><Figure>10</Figure><Figure>20</Figure><Figure>30</Figure><Figure>40</Figure><Figure>50</Figure><Figure>60</Figure><Figure>70</Figure><Figure>80</Figure><Figure>90</Figure><Figure>100</Figure><Figure>110</Figure><Figure>120k+</Figure></Figures>
                 <Range id="desiredSalary" type="range" min={min} max={max} value={desiredSalary} step="10000" onChange={this.handleChange} />
               </RangeLabel>
-            </FieldSet>
+            </FieldSet> */}
             <Button type="submit" value="Filter Results">Filter Results</Button>
           </Form>
         </Options>
