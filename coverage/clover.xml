@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1617485246477" clover="3.2.0">
-  <project timestamp="1617485246478" name="All files">
-    <metrics statements="17" coveredstatements="16" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="4" elements="24" coveredelements="22" complexity="0" loc="17" ncloc="17" packages="1" files="1" classes="1"/>
+<coverage generated="1617605051997" clover="3.2.0">
+  <project timestamp="1617605051998" name="All files">
+    <metrics statements="35" coveredstatements="30" conditionals="2" coveredconditionals="2" methods="11" coveredmethods="8" elements="48" coveredelements="40" complexity="0" loc="35" ncloc="35" packages="1" files="3" classes="3"/>
     <file name="FiltersModal.jsx" path="/home/kevin/HackReactor/BlueOcean/frontend-jobsite/client/src/components/FiltersModal.jsx">
       <metrics statements="17" coveredstatements="16" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="4"/>
       <line num="5" count="1" type="stmt"/>
@@ -21,6 +21,30 @@
       <line num="64" count="5" type="stmt"/>
       <line num="66" count="5" type="stmt"/>
       <line num="67" count="0" type="stmt"/>
+    </file>
+    <file name="Location.jsx" path="/home/kevin/HackReactor/BlueOcean/frontend-jobsite/client/src/components/Location.jsx">
+      <metrics statements="9" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="3" type="stmt"/>
+      <line num="6" count="3" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
+      <line num="9" count="2" type="stmt"/>
+      <line num="12" count="3" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="14" count="0" type="stmt"/>
+      <line num="17" count="3" type="stmt"/>
+    </file>
+    <file name="Searchbar.jsx" path="/home/kevin/HackReactor/BlueOcean/frontend-jobsite/client/src/components/Searchbar.jsx">
+      <metrics statements="9" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="3" type="stmt"/>
+      <line num="6" count="3" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
+      <line num="9" count="2" type="stmt"/>
+      <line num="12" count="3" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="14" count="0" type="stmt"/>
+      <line num="17" count="3" type="stmt"/>
     </file>
   </project>
 </coverage>
