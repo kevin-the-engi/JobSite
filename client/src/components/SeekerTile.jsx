@@ -41,11 +41,6 @@ const Work = styled.p`
   font-weight: lighter;
 `;
 
-const TileBody = styled.p`
-  margin: 0;
-  font-weight: lighter;
-`;
-
 const SeekerTile = ({ seeker, toggleModal, getResumeToDisplay }) => (
   <Tile onClick={() => { getResumeToDisplay(seeker); toggleModal(); }}>
     <Name>{`${seeker.firstName} ${seeker.lastName}`}</Name>

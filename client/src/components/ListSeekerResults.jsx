@@ -55,7 +55,14 @@ const ListSeekerResults = ({ toggleModal, jobSeekers, getResumeToDisplay }) => (
     <Header>{`Potential Hires Found: ${jobSeekers.length}`}</Header>
     <ListWrapper>
       <List>
-        {jobSeekers.map((seeker) => <SeekerTile seeker={seeker} toggleModal={toggleModal} getResumeToDisplay={getResumeToDisplay} />)}
+        {jobSeekers.map((seeker) => (
+          <SeekerTile
+            id={seeker.phone}
+            seeker={seeker}
+            toggleModal={toggleModal}
+            getResumeToDisplay={getResumeToDisplay}
+          />
+        ))}
       </List>
     </ListWrapper>
   </ResultsWrapper>

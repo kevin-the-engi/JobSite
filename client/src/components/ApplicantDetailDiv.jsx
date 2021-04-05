@@ -88,7 +88,9 @@ const ApplicantDetailDiv = ({ resumeToDisplay }) => (
           <Summary>Javascript | React | Node</Summary>
           <ContactInfo>
             <Link href={resumeToDisplay.email}>{resumeToDisplay.email}</Link>
-            {Object.entries(resumeToDisplay.links).map(([key, value]) => <Link href={value}>{value}</Link>)}
+            {Object.entries(resumeToDisplay.links).map(([value]) => (
+              <Link href={value}>{value}</Link>
+            ))}
           </ContactInfo>
         </Header>
         <Section>
@@ -97,13 +99,17 @@ const ApplicantDetailDiv = ({ resumeToDisplay }) => (
         </Section>
         <Section>
           <SectionTitle>Education</SectionTitle>
-          {resumeToDisplay.education.reverse().map((degree) => <Education degree={degree} />)}
+          {resumeToDisplay.education.reverse().map((degree) => (
+            <Education degree={degree} />
+          ))}
         </Section>
         {resumeToDisplay.certificates.length !== 0
         && (
         <Section>
           <SectionTitle>Certifications</SectionTitle>
-          {resumeToDisplay.certificates.map((certificate) => <Certification certificate={certificate} />)}
+          {resumeToDisplay.certificates.map((certificate) => (
+            <Certification certificate={certificate} />
+          ))}
         </Section>
         )}
       </ApplicantResume>

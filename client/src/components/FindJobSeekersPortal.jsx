@@ -85,23 +85,13 @@ class FindJobSeekersPortal extends React.Component {
   }
 
   componentDidMount() {
-    //send GET Reques for data and assign to seekerResults
+    // send GET Reques for data and assign to seekerResults
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateScreenSize);
-  }
-
-  updateScreenSize() {
-    this.setState({ isDesktop: window.innerWidth >= 768 });
-  }
-
-  toggleModal() {
-    this.setState((prevState) => ({
-      modalOpen: !prevState.modalOpen,
-    }));
   }
 
   getResumeToDisplay(seeker) {
@@ -116,8 +106,20 @@ class FindJobSeekersPortal extends React.Component {
 
   }
 
+  toggleModal() {
+    this.setState((prevState) => ({
+      modalOpen: !prevState.modalOpen,
+    }));
+  }
+
+  updateScreenSize() {
+    this.setState({ isDesktop: window.innerWidth >= 768 });
+  }
+
   render() {
-    const { jobSeekers, isDesktop, modalOpen, resumeToDisplay } = this.state;
+    const {
+      jobSeekers, isDesktop, modalOpen, resumeToDisplay,
+    } = this.state;
 
     return (
       <PageWrapper>
@@ -127,7 +129,11 @@ class FindJobSeekersPortal extends React.Component {
         </SearchWrapper>
         {jobSeekers && (
           <SeekerResultsPortalWrapper>
-            <ListSeekerResults toggleModal={this.toggleModal} jobSeekers={jobSeekers} getResumeToDisplay={this.getResumeToDisplay} />
+            <ListSeekerResults
+              toggleModal={this.toggleModal}
+              jobSeekers={jobSeekers}
+              getResumeToDisplay={this.getResumeToDisplay}
+            />
             { isDesktop && <ApplicantDetailDiv resumeToDisplay={resumeToDisplay} />}
             { !isDesktop && modalOpen && (
               <ModalBackground onMouseDown={this.toggleModal}>
