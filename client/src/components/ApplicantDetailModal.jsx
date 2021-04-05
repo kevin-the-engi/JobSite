@@ -45,24 +45,34 @@ const Summary = styled.p`
   font-style: italic;
 `;
 
+const Email = styled.p`
+  margin: 0;
+  font-weight: lighter;
+`;
+
+const Degree = styled.p`
+  margin: 0;
+  font-weight: lighter;
+`;
+
+const Work = styled.p`
+  margin: 0;
+  font-weight: lighter;
+`;
+
 const TileBody = styled.p`
   margin: 0;
   font-weight: lighter;
 `;
 
-const ApplicantDetailModal = (props) => (
+const ApplicantDetailModal = ({ resumeToDisplay }) => (
   <ApplicantDetailWrapper onMouseDown={(event) => event.stopPropagation()}>
     <ApplicantResume>
-      <Name>Bobby Grundle</Name>
+      <Name>{`${resumeToDisplay.firstName} ${resumeToDisplay.lastName}`}</Name>
       <Summary>Javascript | React | Node</Summary>
-      <TileBody>Degree: Bachelors, Computer Science</TileBody>
-      <TileBody>Last Position: Software Engineer @ Google</TileBody>
-      <TileBody>
-        Architected a dependency-light service using React and CSS styled-components to deliver a seamless UI/UX
-        Used conditional rendering for all image navigation components to keep interface clean and intuitive
-        Streamlined web server by using an in-memory cache and implemented a lazy-render of below-the-fold components to improve Time to Interactive and First Contentful Paint times to under 0.5 seconds
-        Led team of 3 developers using Git Feature Branch Workflow and Agile methodology, ensuring application complied fully with accessibility standards, best practices, and SEO.
-      </TileBody>
+      <Email>{resumeToDisplay.email}</Email>
+      <Degree>{`Degree: ${resumeToDisplay.education[resumeToDisplay.education.length - 1].degreeType}, ${resumeToDisplay.education[resumeToDisplay.education.length - 1].fieldOfStudy}`}</Degree>
+      <Work>{`Last Job: ${resumeToDisplay.workExperience[resumeToDisplay.workExperience.length - 1].title} @ ${resumeToDisplay.workExperience[resumeToDisplay.workExperience.length - 1].employer}`}</Work>
     </ApplicantResume>
   </ApplicantDetailWrapper>
 );

@@ -26,20 +26,34 @@ const Summary = styled.p`
   font-style: italic;
 `;
 
+const Email = styled.p`
+  margin: 0;
+  font-weight: lighter;
+`;
+
+const Degree = styled.p`
+  margin: 0;
+  font-weight: lighter;
+`;
+
+const Work = styled.p`
+  margin: 0;
+  font-weight: lighter;
+`;
+
 const TileBody = styled.p`
   margin: 0;
   font-weight: lighter;
 `;
 
-const SeekerTile = (props) => {
-  return (
-    <Tile onClick={() => props.toggleModal()}>
-      <Name>Bobby Grundle</Name>
-      <Summary>Javascript | React | Node</Summary>
-      <TileBody>Degree: Bachelors, Computer Science</TileBody>
-      <TileBody>Last Position: Software Engineer @ Google</TileBody>
-    </Tile>
-  );
-};
+const SeekerTile = ({ seeker, toggleModal, getResumeToDisplay }) => (
+  <Tile onClick={() => { getResumeToDisplay(seeker); toggleModal(); }}>
+    <Name>{`${seeker.firstName} ${seeker.lastName}`}</Name>
+    <Summary>Javascript | React | Node</Summary>
+    <Email>{seeker.email}</Email>
+    <Degree>{`Degree: ${seeker.education[seeker.education.length - 1].degreeType} in ${seeker.education[seeker.education.length - 1].fieldOfStudy}`}</Degree>
+    <Work>{`Last Job: ${seeker.workExperience[seeker.workExperience.length - 1].title} @ ${seeker.workExperience[seeker.workExperience.length - 1].employer}`}</Work>
+  </Tile>
+);
 
 export default SeekerTile;

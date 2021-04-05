@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import DummyData from '../../../DummyData.js';
+
 import SearchBar from './Searchbar.jsx';
 import Filters from './Filters.jsx';
 import ListSeekerResults from './ListSeekerResults.jsx';
@@ -72,15 +74,18 @@ class FindJobSeekersPortal extends React.Component {
       },
       isDesktop: false,
       modalOpen: false,
-      jobResults: [],
+      jobSeekers: DummyData.DummyData.data,
+      resumeToDisplay: null,
     };
     this.updateScreenSize = this.updateScreenSize.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.getResumeToDisplay = this.getResumeToDisplay.bind(this);
     this.setSearch = this.setSearch.bind(this);
     this.setLocation = this.setLocation.bind(this);
   }
 
   componentDidMount() {
+    //send GET Reques for data and assign to seekerResults
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
   }
@@ -99,6 +104,10 @@ class FindJobSeekersPortal extends React.Component {
     }));
   }
 
+  getResumeToDisplay(seeker) {
+    this.setState({ resumeToDisplay: seeker });
+  }
+
   setSearch(term) {
 
   }
@@ -108,7 +117,7 @@ class FindJobSeekersPortal extends React.Component {
   }
 
   render() {
-    const { jobSeekers, isDesktop, modalOpen } = this.state;
+    const { jobSeekers, isDesktop, modalOpen, resumeToDisplay } = this.state;
 
     return (
       <PageWrapper>
@@ -116,15 +125,17 @@ class FindJobSeekersPortal extends React.Component {
           <SearchBar />
           <Filters />
         </SearchWrapper>
-        <SeekerResultsPortalWrapper>
-          <ListSeekerResults toggleModal={this.toggleModal} jobSeekers={jobSeekers} />
-          { isDesktop && <ApplicantDetailDiv />}
-          { !isDesktop && modalOpen && (
-            <ModalBackground onMouseDown={this.toggleModal}>
-              <ApplicantDetailModal />
-            </ModalBackground>
-          )}
-        </SeekerResultsPortalWrapper>
+        {jobSeekers && (
+          <SeekerResultsPortalWrapper>
+            <ListSeekerResults toggleModal={this.toggleModal} jobSeekers={jobSeekers} getResumeToDisplay={this.getResumeToDisplay} />
+            { isDesktop && <ApplicantDetailDiv resumeToDisplay={resumeToDisplay} />}
+            { !isDesktop && modalOpen && (
+              <ModalBackground onMouseDown={this.toggleModal}>
+                <ApplicantDetailModal resumeToDisplay={resumeToDisplay} />
+              </ModalBackground>
+            )}
+          </SeekerResultsPortalWrapper>
+        )}
       </PageWrapper>
     );
   }

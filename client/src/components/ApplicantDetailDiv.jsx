@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Work from './Work.jsx';
+import Education from './Education.jsx';
+import Certification from './Certification.jsx';
+
 const ApplicantDetailWrapper = styled.div`
   width: 62%;
   height: 97%;
@@ -27,9 +31,17 @@ const ApplicantResume = styled.div`
   background: #fff;
 `;
 
+const Header = styled.div`
+  width: 100%;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Name = styled.h1`
   margin: .5vh 0 .25vh 0;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
 `;
 
@@ -39,25 +51,63 @@ const Summary = styled.p`
   font-style: italic;
 `;
 
-const TileBody = styled.p`
-  margin: 0;
-  font-weight: lighter;
+const ContactInfo = styled.div`
+  width: 95%;
+  margin-top: 1vh;
+  display: flex;
+  justify-content: space-evenly;
 `;
 
-const ApplicantDetailDiv = (props) => (
+const Link = styled.a`
+  margin: 0;
+  color: inherit;
+  font-size: 1rem;
+  text-decoration: none;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 1rem;
+  font-weight: bold;
+`;
+
+const Section = styled.div`
+  width: 95%;
+  margin-top: .5vh;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-evenly;
+`;
+
+const ApplicantDetailDiv = ({ resumeToDisplay }) => (
   <ApplicantDetailWrapper>
-    <ApplicantResume>
-      <Name>Bobby Grundle</Name>
-      <Summary>Javascript | React | Node</Summary>
-      <TileBody>Degree: Bachelors, Computer Science</TileBody>
-      <TileBody>Last Position: Software Engineer @ Google</TileBody>
-      <TileBody>
-        Architected a dependency-light service using React and CSS styled-components to deliver a seamless UI/UX
-        Used conditional rendering for all image navigation components to keep interface clean and intuitive
-        Streamlined web server by using an in-memory cache and implemented a lazy-render of below-the-fold components to improve Time to Interactive and First Contentful Paint times to under 0.5 seconds
-        Led team of 3 developers using Git Feature Branch Workflow and Agile methodology, ensuring application complied fully with accessibility standards, best practices, and SEO.
-      </TileBody>
-    </ApplicantResume>
+    {!resumeToDisplay && <div>Select an applicant to view their resume</div>}
+    {resumeToDisplay && (
+      <ApplicantResume>
+        <Header>
+          <Name>{`${resumeToDisplay.firstName} ${resumeToDisplay.lastName}`}</Name>
+          <Summary>Javascript | React | Node</Summary>
+          <ContactInfo>
+            <Link href={resumeToDisplay.email}>{resumeToDisplay.email}</Link>
+            {Object.entries(resumeToDisplay.links).map(([key, value]) => <Link href={value}>{value}</Link>)}
+          </ContactInfo>
+        </Header>
+        <Section>
+          <SectionTitle>Experience</SectionTitle>
+          {resumeToDisplay.workExperience.reverse().map((job) => <Work job={job} />)}
+        </Section>
+        <Section>
+          <SectionTitle>Education</SectionTitle>
+          {resumeToDisplay.education.reverse().map((degree) => <Education degree={degree} />)}
+        </Section>
+        {resumeToDisplay.certificates.length !== 0
+        && (
+        <Section>
+          <SectionTitle>Certifications</SectionTitle>
+          {resumeToDisplay.certificates.map((certificate) => <Certification certificate={certificate} />)}
+        </Section>
+        )}
+      </ApplicantResume>
+    )}
   </ApplicantDetailWrapper>
 );
 

@@ -50,12 +50,12 @@ const List = styled.div`
   align-items: center;
 `;
 
-const ListSeekerResults = (props) => (
+const ListSeekerResults = ({ toggleModal, jobSeekers, getResumeToDisplay }) => (
   <ResultsWrapper>
-    <Header>Jobs Seekers Found: 35</Header>
+    <Header>{`Potential Hires Found: ${jobSeekers.length}`}</Header>
     <ListWrapper>
       <List>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((seeker) => <SeekerTile toggleModal={props.toggleModal} />)}
+        {jobSeekers.map((seeker) => <SeekerTile seeker={seeker} toggleModal={toggleModal} getResumeToDisplay={getResumeToDisplay} />)}
       </List>
     </ListWrapper>
   </ResultsWrapper>
