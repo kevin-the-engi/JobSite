@@ -9,13 +9,13 @@ const NavBarWrapper = styled.div`
   width: 100vw;
   height: 6vh;
   background: #fff;
-  margin: -10px 0 1vh 0;
+  margin: -8px 0 1vh 0;
   border-bottom: 1px solid #e0e0e0;
   color: #000;
   font-family: Arial, sans-serif;
 
   @media (min-width: 768px) {
-    margin: -10px 0 3vh 0;
+    margin: -8px 0 3vh 0;
     justify-content: left;
   }
 `;
