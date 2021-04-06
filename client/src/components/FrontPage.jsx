@@ -134,30 +134,31 @@ const FrontPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios.get('/Employer');
     // TODO validate form data before post request
-    if (formType === 'Register') {
-      if (user === 'Seeker') {
-        axios.post(`${URL}/users`, {
-          firstName,
-          lastName,
-          email,
-          password,
-        });
-      } else {
-        axios.post(`${URL}/employers`, {
-          company,
-          firstName,
-          lastName,
-          email,
-          password,
-        });
-      }
-    } else {
-      axios.post(`${URL}/auth`, {
-        email,
-        password,
-      });
-    }
+    // if (formType === 'Register') {
+    //   if (user === 'Seeker') {
+    //     axios.post(`${URL}/users`, {
+    //       firstName,
+    //       lastName,
+    //       email,
+    //       password,
+    //     });
+    //   } else {
+    //     axios.post(`${URL}/employers`, {
+    //       company,
+    //       firstName,
+    //       lastName,
+    //       email,
+    //       password,
+    //     });
+    //   }
+    // } else {
+    //   axios.post(`${URL}/auth`, {
+    //     email,
+    //     password,
+    //   });
+    // }
   };
 
   const handleUserToggle = (e) => {

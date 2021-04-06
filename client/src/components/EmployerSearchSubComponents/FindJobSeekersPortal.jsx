@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import DummyData from '../../../DummyData.js';
+import DummyData from '../../../../DummyData.js';
 
 import SearchBar from './Searchbar.jsx';
 import Filters from './Filters.jsx';
