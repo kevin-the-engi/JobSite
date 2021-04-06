@@ -134,7 +134,7 @@ const FrontPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.get('/Employer');
+    window.location.href = `${window.location.origin}/#/employer`;
     // TODO validate form data before post request
     // if (formType === 'Register') {
     //   if (user === 'Seeker') {

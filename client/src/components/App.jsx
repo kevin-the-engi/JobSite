@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-  BrowserRouter,
+  HashRouter,
   Switch,
   Route,
-  Link
+  Link,
 } from 'react-router-dom';
 
 import FrontPage from './FrontPage.jsx';
@@ -11,7 +11,7 @@ import EmployerSearch from './EmployerSearch.jsx';
 
 const App = () => (
   // <Router>
-  <BrowserRouter>
+  <HashRouter>
     {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
     <Switch>
@@ -25,7 +25,7 @@ const App = () => (
         <FrontPage />
       </Route>
     </Switch>
-  </BrowserRouter>
+  </HashRouter>
   // </Router>
 );
 
