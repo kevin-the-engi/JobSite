@@ -17,8 +17,11 @@ class SeekerPortal extends React.Component {
     super(props);
 
     this.state = {
-
-    }
+      reminders: [],
+      savedJobs: [],
+      appliedJobs: [],
+      notes: []
+    };
   }
 
   render() {

@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 import RemindersCard from './RemindersCard.jsx';
 
+const RemindersWrapper = styled.div`
+`;
+
 const Reminders = (props) => {
   const reminders = [
     {date: '4th April', type: 'Follow-up', text: 'Reminder text'},
@@ -16,13 +19,13 @@ const Reminders = (props) => {
   ];
 
   return(
-    <div>
+    <RemindersWrapper>
       {reminders.map(reminder =>
         <RemindersCard
           reminder={reminder}
         />
       )}
-    </div>
+    </RemindersWrapper>
   )
 };
 

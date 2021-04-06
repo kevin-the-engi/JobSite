@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Reminders from './Reminders.jsx';
@@ -9,6 +9,8 @@ import Notes from './Notes.jsx';
 const PersonalContentWrapper = styled.div`
   width: 60%;
   height: 77vh;
+  display: flex;
+  flex-direction: column;
   border: 2px solid white;
 `;
 
@@ -21,8 +23,28 @@ const TabsWrapper = styled.div`
   border: 2px solid red;
 `;
 
+const Tab = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid purple;
+`;
+
 const ContentWrapper = styled.div`
+  width: 100%;
+  height: 100%;
   border: 2px solid brown;
+  overflow-y: scroll;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  ::-ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 `;
 
 const Tabs = (props) => {
@@ -30,42 +52,31 @@ const Tabs = (props) => {
 
   const toggleTab = (id) => {
     setTab(id);
-  }
+  };
 
   const handleClick = (event) => {
-    const id = event.target.id;
+    const { id } = event.target;
 
     event.preventDefault();
     toggleTab(id);
-  }
+  };
 
   return(
     <PersonalContentWrapper>
       <TabsWrapper className="tabs">
-        <div className="tab">
-          <div id="reminders" onClick={handleClick}>Reminders</div>
-        </div>
-
-        <div className="tab">
-          <div id="savedJobs" onClick={handleClick}>Jobs Saved</div>
-        </div>
-
-        <div className="tab">
-          <div id="appliedJobs" onClick={handleClick}>Jobs Applied</div>
-        </div>
-
-        <div className="tab">
-          <div id="notes" onClick={handleClick}>Notes</div>
-        </div>
+        <Tab id="reminders" onClick={handleClick}>Reminders</Tab>
+        <Tab id="savedJobs" onClick={handleClick}>Jobs Saved</Tab>
+        <Tab id="appliedJobs" onClick={handleClick}>Jobs Applied</Tab>
+        <Tab id="notes" onClick={handleClick}>Notes</Tab>
       </TabsWrapper>
       <ContentWrapper>
-        {tab === 'reminders' ? <Reminders />: null}
-        {tab === 'savedJobs' ? <SavedJobs />: null}
-        {tab === 'appliedJobs' ? <AppliedJobs />: null}
-        {tab === 'notes' ? <Notes />: null}
+        {tab === 'reminders' ? <Reminders /> : null}
+        {tab === 'savedJobs' ? <SavedJobs /> : null}
+        {tab === 'appliedJobs' ? <AppliedJobs /> : null}
+        {tab === 'notes' ? <Notes /> : null}
       </ContentWrapper>
     </PersonalContentWrapper>
-  )
-}
+  );
+};
 
 export default Tabs;

@@ -5,6 +5,7 @@ const RemindersCardWrapper = styled.div`
   width: 95%;
   height: 10vh;
   border: 2px solid yellow;
+  border-radius: 10px;
 `;
 
 const RemindersCard = (props) => {
