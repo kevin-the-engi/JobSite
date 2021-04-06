@@ -16,7 +16,7 @@ const NavButtonDiv = styled.div`
   width: 20vw;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 5vw;
   z-index: 1;
   display: flex;
   justify-content: space-between;
