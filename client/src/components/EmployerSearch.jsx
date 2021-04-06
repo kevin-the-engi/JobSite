@@ -14,7 +14,7 @@ const EmployerSearchWrapper = styled.div`
 
 const EmployerSearch = () => (
   <EmployerSearchWrapper>
-    <NavBar />
+    {/* <NavBar /> */}
     <FindJobSeekersPortal />
   </EmployerSearchWrapper>
 );
