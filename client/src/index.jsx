@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SeekerPortal from './SeekerPortal.jsx';
+import App from './components/App.jsx';
 
-ReactDOM.render(<SeekerPortal />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
