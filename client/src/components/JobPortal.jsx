@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SearchBar from './components/Searchbar.jsx';
-import Location from './components/Location.jsx';
-import Filters from './components/Filters.jsx';
-import ListJobResults from './components/ListJobResults.jsx';
-import ListingDetail from './components/ListingDetail.jsx';
-import NavBar from './components/NavBar.jsx';
+import SearchBar from './SeekerSearchSubComponents/Searchbar.jsx';
+import Location from './SeekerSearchSubComponents/Location.jsx';
+import Filters from './SeekerSearchSubComponents/Filters.jsx';
+import ListJobResults from './SeekerSearchSubComponents/ListJobResults.jsx';
+import ListingDetail from './SeekerSearchSubComponents/ListingDetail.jsx';
 
 const PageWrapper = styled.div`
   margin: auto;
@@ -17,6 +16,31 @@ const PageWrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   border: 2px solid pink;
+`;
+
+const NavButtonDiv = styled.div`
+  height: 6vh;
+  width: 20vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const NavButton = styled.a`
+  position: relative;
+  text-align: center;
+  height: 4vh;
+  line-height: 4vh;
+  width: 9vw;
+  border: 1px solid grey;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #424242;
+  background: rgba(255,255,255,0.4);
 `;
 
 const SearchWrapper = styled.div`
@@ -59,19 +83,19 @@ class JobPortal extends React.Component {
 
   setSearch(term) {
     this.setState = {
-      search: term
+      search: term,
     };
   }
 
   setLocation(term) {
     this.setState = {
-      location: term
+      location: term,
     };
   }
 
   setFilters(filters) {
     this.setState = {
-      filters: filters
+      filters,
     };
   }
 
@@ -80,7 +104,10 @@ class JobPortal extends React.Component {
 
     return (
       <PageWrapper>
-        <NavBar />
+        <NavButtonDiv>
+          <NavButton href={`${window.location.origin}/#/seeker`}>My Profile</NavButton>
+          <NavButton href={`${window.location.origin}/#/jobs`}>Find Jobs</NavButton>
+        </NavButtonDiv>
         <SearchWrapper>
           <SearchBar setSearch={this.setSearch} />
           <Location setLocation={this.setLocation} />

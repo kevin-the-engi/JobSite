@@ -8,19 +8,27 @@ import {
 
 import NavBar from './NavBar.jsx';
 import FrontPage from './FrontPage.jsx';
+import SeekerPortal from './SeekerPortal.jsx';
+import JobPortal from './JobPortal.jsx';
+import EmployerDashboard from './EmployerDashboard.jsx';
 import EmployerSearch from './EmployerSearch.jsx';
 
 const App = () => (
-  // <Router>
   <HashRouter>
     <NavBar />
     {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
     <Switch>
-      {/* <Route path="/about">
-          <About />
-        </Route> */}
+      <Route path="/seeker">
+        <SeekerPortal />
+      </Route>
+      <Route path="/jobs">
+        <JobPortal />
+      </Route>
       <Route path="/employer">
+        <EmployerDashboard />
+      </Route>
+      <Route path="/employerSearch">
         <EmployerSearch />
       </Route>
       <Route path="/">
@@ -28,7 +36,6 @@ const App = () => (
       </Route>
     </Switch>
   </HashRouter>
-  // </Router>
 );
 
 export default App;
