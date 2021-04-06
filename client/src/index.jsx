@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import JobPortal from './JobPortal.jsx';
+import App from './components/App.jsx';
 
-ReactDOM.render(<JobPortal />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
