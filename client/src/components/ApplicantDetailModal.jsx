@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Work from './Work.jsx';
+import Education from './Education.jsx';
+import Certification from './Certification.jsx';
+
 const ApplicantDetailWrapper = styled.div`
   z-index: 2;
   position: fixed;
@@ -33,9 +37,17 @@ const ApplicantResume = styled.div`
   background: #fff;
 `;
 
+const Header = styled.div`
+  width: 100%;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Name = styled.h1`
   margin: .5vh 0 .25vh 0;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
 `;
 
@@ -45,34 +57,68 @@ const Summary = styled.p`
   font-style: italic;
 `;
 
-const Email = styled.p`
-  margin: 0;
-  font-weight: lighter;
+const ContactInfo = styled.div`
+  width: 95%;
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const Degree = styled.p`
+const Link = styled.a`
   margin: 0;
-  font-weight: lighter;
+  color: inherit;
+  font-size: 1rem;
+  text-decoration: none;
 `;
 
-const Work = styled.p`
-  margin: 0;
-  font-weight: lighter;
+const SectionTitle = styled.h2`
+  font-size: 1rem;
+  font-weight: bold;
 `;
 
-const TileBody = styled.p`
-  margin: 0;
-  font-weight: lighter;
+const Section = styled.div`
+  width: 95%;
+  margin-top: .5vh;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-evenly;
 `;
 
 const ApplicantDetailModal = ({ resumeToDisplay }) => (
   <ApplicantDetailWrapper onMouseDown={(event) => event.stopPropagation()}>
     <ApplicantResume>
-      <Name>{`${resumeToDisplay.firstName} ${resumeToDisplay.lastName}`}</Name>
-      <Summary>Javascript | React | Node</Summary>
-      <Email>{resumeToDisplay.email}</Email>
-      <Degree>{`Degree: ${resumeToDisplay.education[resumeToDisplay.education.length - 1].degreeType}, ${resumeToDisplay.education[resumeToDisplay.education.length - 1].fieldOfStudy}`}</Degree>
-      <Work>{`Last Job: ${resumeToDisplay.workExperience[resumeToDisplay.workExperience.length - 1].title} @ ${resumeToDisplay.workExperience[resumeToDisplay.workExperience.length - 1].employer}`}</Work>
+      <Header>
+        <Name>{`${resumeToDisplay.firstName} ${resumeToDisplay.lastName}`}</Name>
+        <Summary>Javascript | React | Node</Summary>
+        <ContactInfo>
+          <Link href={resumeToDisplay.email}>{resumeToDisplay.email}</Link>
+          {Object.entries(resumeToDisplay.links).map(([key, value]) => (
+            <Link key={key} href={value}>{value}</Link>
+          ))}
+        </ContactInfo>
+      </Header>
+      <Section>
+        <SectionTitle>Experience</SectionTitle>
+        {resumeToDisplay.workExperience.reverse().map((job) => (
+          <Work key={job.startDate} job={job} />
+        ))}
+      </Section>
+      <Section>
+        <SectionTitle>Education</SectionTitle>
+        {resumeToDisplay.education.reverse().map((degree) => (
+          <Education key={degree.yearGraduated} degree={degree} />
+        ))}
+      </Section>
+      {resumeToDisplay.certificates.length !== 0
+        && (
+        <Section>
+          <SectionTitle>Certifications</SectionTitle>
+          {resumeToDisplay.certificates.map((certificate) => (
+            <Certification key={certificate.licenseNum} certificate={certificate} />
+          ))}
+        </Section>
+        )}
     </ApplicantResume>
   </ApplicantDetailWrapper>
 );

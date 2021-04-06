@@ -14,7 +14,7 @@ const RowDiv = styled.div`
 `;
 
 const SpacedRowDiv = styled.div`
-  margin: 0 4vw;
+  margin: 0 2vw 0 4vw;
   display: flex;
   justify-content: space-between;
 `;

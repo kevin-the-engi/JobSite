@@ -32,7 +32,11 @@ const Work = ({ job }) => (
       <Position>{`${job.title} @ ${job.employer}`}</Position>
       <Timeline>{`${job.startDate.slice(5, 7)}/${job.startDate.slice(0, 4)} – ${job.endDate.slice(5, 7)}/${job.endDate.slice(0, 4)}`}</Timeline>
     </PositionTime>
-    <Description>{job.description.split(/\r\n|\n|\r/).map((item) => <li>{item}</li>)}</Description>
+    <Description>
+      {job.description.split(/\r\n|\n|\r/).map((item) => (
+        <li key={item[1]}>{item}</li>
+      ))}
+    </Description>
   </Job>
 );
 
