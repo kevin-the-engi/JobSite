@@ -154,189 +154,172 @@ const Button = styled.button`
   color: #424242;
 `;
 
-class FiltersModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      employment: '',
-      experience: '',
-      range: {
-        min: 0,
-        max: 120000,
-      },
-      locationType: 'both',
-      salary: 0,
-      datePosted: 'anytime',
-      locationRange: 'anywhere'
-    };
-    this.expanded = React.createRef();
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const FiltersModal = (props) => {
+  const [filters, setFilters] = useState({
+    employment: '',
+    experience: '',
+    locationType: 'both',
+    salary: 0,
+    datePosted: 'anytime',
+    locationRange: 'anywhere',
+  });
+  const range = {
+    min: 0,
+    max: 120000,
+  };
 
-  handleChange(event) {
+  const handleChange = (event) => {
     const field = event.target.name;
     const { value } = event.target;
 
-    this.setState({
-      [field]: value,
-    });
-  }
+    setFilters({ ...filters, [field]: value });
+  };
 
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
+    props.setFilters(filters);
+  };
 
-    const filters = Object.assign(this.state);
-    delete filters.range;
+  return ReactDOM.createPortal(
+    <Wrapper onMouseDown={(event) => event.stopPropagation()}>
+      <Options>
+        <Form id="filters" onSubmit={handleSubmit}>
+          <FieldSet id="employment" onChange={handleChange}>
+            <Legend>Type of Employment</Legend>
+            <label htmlFor="employment">
+              <Radio type="radio" name="employment" value="fulltime" />
+              Full time
+            </label>
+            <label htmlFor="employment">
+              <Radio type="radio" name="employment" value="parttime" />
+              Part time
+            </label>
+            <label htmlFor="employment">
+              <Radio type="radio" name="employment" value="contract" />
+              Contract
+            </label>
+            <label htmlFor="employment">
+              <Radio type="radio" name="employment" value="temporary" />
+              Temporary
+            </label>
+            <label htmlFor="employment">
+              <Radio type="radio" name="employment" value="internship" />
+              Internship
+            </label>
+          </FieldSet>
 
-    this.props.setFilters(filters);
-  }
+          <FieldSet id="experience" onChange={handleChange}>
+            <Legend>Experience Level</Legend>
+            <label htmlFor="experience">
+              <Radio type="radio" name="experience" value="entry" />
+              Entry Level
+            </label>
+            <label htmlFor="experience">
+              <Radio type="radio" name="experience" value="mid" />
+              Mid Level
+            </label>
+            <label htmlFor="experience">
+              <Radio type="radio" name="experience" value="senior" />
+              Senior Level
+            </label>
+            <label htmlFor="experience">
+              <Radio type="radio" name="experience" value="executive" />
+              Executive Level
+            </label>
+          </FieldSet>
 
-  render() {
-    const {
-      range: { min, max }, locationType, salary, datePosted, locationRange,
-    } = this.state;
+          <FieldSet id="locationType" onChange={handleChange}>
+            <Legend>Remote or Onsite</Legend>
+            <label htmlFor="locationType">
+              <Radio type="radio" name="locationType" value="both" checked={filters.locationType === 'both'} />
+              Both
+            </label>
+            <label htmlFor="locationType">
+              <Radio type="radio" name="locationType" value="remote" />
+              Remote
+            </label>
+            <label htmlFor="locationType">
+              <Radio type="radio" name="locationType" value="onsite" />
+              Onsite
+            </label>
+          </FieldSet>
 
-    return ReactDOM.createPortal(
-      <Wrapper onMouseDown={(event) => event.stopPropagation()}>
-        <Options>
-          <Form id="filters" onSubmit={this.handleSubmit}>
-            <FieldSet id="employment" onChange={this.handleChange}>
-              <Legend>Type of Employment</Legend>
-              <label htmlFor="employment">
-                <Radio type="radio" name="employment" value="fulltime" />
-                Full time
-              </label>
-              <label htmlFor="employment">
-                <Radio type="radio" name="employment" value="parttime" />
-                Part time
-              </label>
-              <label htmlFor="employment">
-                <Radio type="radio" name="employment" value="contract" />
-                Contract
-              </label>
-              <label htmlFor="employment">
-                <Radio type="radio" name="employment" value="temporary" />
-                Temporary
-              </label>
-              <label htmlFor="employment">
-                <Radio type="radio" name="employment" value="internship" />
-                Internship
-              </label>
-            </FieldSet>
+          <FieldSet>
+            <Legend>Salary</Legend>
+            <RangeLabel htmlFor="salary">
+              <Figures>
+                <Figure>0k</Figure><Figure>10</Figure><Figure>20</Figure>
+                <Figure>30</Figure><Figure>40</Figure><Figure>50</Figure>
+                <Figure>60</Figure><Figure>70</Figure><Figure>80</Figure>
+                <Figure>90</Figure><Figure>100</Figure><Figure>110</Figure>
+                <Figure>120k+</Figure>
+              </Figures>
+              <Range id="salary" name="salary" type="range" min={range.min} max={range.max} value={filters.salary} step="10000" onChange={handleChange} />
+            </RangeLabel>
+          </FieldSet>
 
-            <FieldSet id="experience" onChange={this.handleChange}>
-              <Legend>Experience Level</Legend>
-              <label htmlFor="experience">
-                <Radio type="radio" name="experience" value="entry" />
-                Entry Level
-              </label>
-              <label htmlFor="experience">
-                <Radio type="radio" name="experience" value="mid" />
-                Mid Level
-              </label>
-              <label htmlFor="experience">
-                <Radio type="radio" name="experience" value="senior" />
-                Senior Level
-              </label>
-              <label htmlFor="experience">
-                <Radio type="radio" name="experience" value="executive" />
-                Executive Level
-              </label>
-            </FieldSet>
+          <FieldSet id="datePosted" onChange={handleChange}>
+            <Legend>Date Posted</Legend>
+            <label htmlFor="datePosted">
+              <Radio type="radio" name="datePosted" value="anytime" checked={filters.datePosted === 'anytime'} />
+              Anytime
+            </label>
+            <label htmlFor="datePosted">
+              <Radio type="radio" name="datePosted" value="past1D" />
+              Past 24 Hours
+            </label>
+            <label htmlFor="datePosted">
+              <Radio type="radio" name="datePosted" value="past3D" />
+              Past 3 Days
+            </label>
+            <label htmlFor="datePosted">
+              <Radio type="radio" name="datePosted" value="past7D" />
+              Past 7 Days
+            </label>
+            <label htmlFor="datePosted">
+              <Radio type="radio" name="datePosted" value="past14D" />
+              Past 14 Days
+            </label>
+            <label htmlFor="datePosted">
+              <Radio type="radio" name="datePosted" value="past30D" />
+              Past 30 Days
+            </label>
+          </FieldSet>
 
-            <FieldSet id="locationType" onChange={this.handleChange}>
-              <Legend>Remote or Onsite</Legend>
-              <label htmlFor="locationType">
-                <Radio type="radio" name="locationType" value="both" checked={locationType === 'both'} />
-                Both
-              </label>
-              <label htmlFor="locationType">
-                <Radio type="radio" name="locationType" value="remote" />
-                Remote
-              </label>
-              <label htmlFor="locationType">
-                <Radio type="radio" name="locationType" value="onsite" />
-                Onsite
-              </label>
-            </FieldSet>
+          <FieldSet id="locationRange" onChange={handleChange}>
+            <Legend>Date Posted</Legend>
+            <label htmlFor="locationRange">
+              <Radio type="radio" name="locationRange" value="anywhere" checked={filters.locationRange === 'anywhere'} />
+              Anywhere
+            </label>
+            <label htmlFor="locationRange">
+              <Radio type="radio" name="locationRange" value="5miles" />
+              5 Miles
+            </label>
+            <label htmlFor="locationRange">
+              <Radio type="radio" name="locationRange" value="10miles" />
+              10 Miles
+            </label>
+            <label htmlFor="locationRange">
+              <Radio type="radio" name="locationRange" value="20miles" />
+              20 Miles
+            </label>
+            <label htmlFor="locationRange">
+              <Radio type="radio" name="locationRange" value="50miles" />
+              50 Miles
+            </label>
+            <label htmlFor="locationRange">
+              <Radio type="radio" name="locationRange" value="100miles" />
+              100 Miles
+            </label>
+          </FieldSet>
+          <Button type="submit" value="Filter Results">Filter Results</Button>
+        </Form>
+      </Options>
+    </Wrapper>,
+    document.getElementById('modal-root') || document.createElement('div'), // for testing purposes
+  );
 
-            <FieldSet>
-              <Legend>Salary</Legend>
-              <RangeLabel htmlFor="salary">
-                <Figures>
-                  <Figure>0k</Figure><Figure>10</Figure><Figure>20</Figure>
-                  <Figure>30</Figure><Figure>40</Figure><Figure>50</Figure>
-                  <Figure>60</Figure><Figure>70</Figure><Figure>80</Figure>
-                  <Figure>90</Figure><Figure>100</Figure><Figure>110</Figure>
-                  <Figure>120k+</Figure>
-                </Figures>
-                <Range id="salary" name="salary" type="range" min={min} max={max} value={salary} step="10000" onChange={this.handleChange} />
-              </RangeLabel>
-            </FieldSet>
-
-            <FieldSet id="datePosted" onChange={this.handleChange}>
-              <Legend>Date Posted</Legend>
-              <label htmlFor="datePosted">
-                <Radio type="radio" name="datePosted" value="anytime" checked={datePosted === 'anytime'} />
-                Anytime
-              </label>
-              <label htmlFor="datePosted">
-                <Radio type="radio" name="datePosted" value="past1D" />
-                Past 24 Hours
-              </label>
-              <label htmlFor="datePosted">
-                <Radio type="radio" name="datePosted" value="past3D" />
-                Past 3 Days
-              </label>
-              <label htmlFor="datePosted">
-                <Radio type="radio" name="datePosted" value="past7D" />
-                Past 7 Days
-              </label>
-              <label htmlFor="datePosted">
-                <Radio type="radio" name="datePosted" value="past14D" />
-                Past 14 Days
-              </label>
-              <label htmlFor="datePosted">
-                <Radio type="radio" name="datePosted" value="past30D" />
-                Past 30 Days
-              </label>
-            </FieldSet>
-
-            <FieldSet id="locationRange" onChange={this.handleChange}>
-              <Legend>Date Posted</Legend>
-              <label htmlFor="locationRange">
-                <Radio type="radio" name="locationRange" value="anywhere" checked={locationRange === 'anywhere'} />
-                Anywhere
-              </label>
-              <label htmlFor="locationRange">
-                <Radio type="radio" name="locationRange" value="5miles" />
-                5 Miles
-              </label>
-              <label htmlFor="locationRange">
-                <Radio type="radio" name="locationRange" value="10miles" />
-                10 Miles
-              </label>
-              <label htmlFor="locationRange">
-                <Radio type="radio" name="locationRange" value="20miles" />
-                20 Miles
-              </label>
-              <label htmlFor="locationRange">
-                <Radio type="radio" name="locationRange" value="50miles" />
-                50 Miles
-              </label>
-              <label htmlFor="locationRange">
-                <Radio type="radio" name="locationRange" value="100miles" />
-                100 Miles
-              </label>
-            </FieldSet>
-            <Button type="submit" value="Filter Results">Filter Results</Button>
-          </Form>
-        </Options>
-      </Wrapper>,
-      document.getElementById('modal-root') || document.createElement('div'), // for testing purposes
-    );
-  }
 }
 
 export default FiltersModal;
