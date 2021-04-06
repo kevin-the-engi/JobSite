@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SearchBar from './Searchbar.jsx';
-import Location from './Location.jsx';
-import Filters from './Filters.jsx';
-import ListJobResults from './ListJobResults.jsx';
-import ListingDetail from './ListingDetail.jsx';
+import SearchBar from './components/Searchbar.jsx';
+import Location from './components/Location.jsx';
+import Filters from './components/Filters.jsx';
+import ListJobResults from './components/ListJobResults.jsx';
+import ListingDetail from './components/ListingDetail.jsx';
+import NavBar from './components/NavBar.jsx';
 
 const PageWrapper = styled.div`
   margin: auto;
@@ -79,6 +80,7 @@ class JobPortal extends React.Component {
 
     return (
       <PageWrapper>
+        <NavBar />
         <SearchWrapper>
           <SearchBar setSearch={this.setSearch} />
           <Location setLocation={this.setLocation} />
