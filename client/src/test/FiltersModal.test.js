@@ -36,7 +36,7 @@ describe('Filters', () => {
     const setFilters = jest.fn();
     const wrapper = shallow(<FiltersModal setFilters={setFilters} />);
 
-    wrapper.find('form').simulate('submit', { preventDefault: () => null });
+    wrapper.find('#filters').simulate('submit', { preventDefault: () => null });
     expect(setFilters.mock.calls.length).toBe(1);
 
   });

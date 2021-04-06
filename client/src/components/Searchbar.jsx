@@ -52,7 +52,7 @@ const SearchBar = (props) => {
   };
 
   return (
-    <Form id="searchbar" onSubmit={handleSubmit}>
+    <Form id="searchBar" onSubmit={handleSubmit}>
       <Input
         id="search"
         onChange={handleChange}

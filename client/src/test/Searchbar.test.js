@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Searchbar from '../components/Searchbar.jsx';
 
 describe('Searchbar', () => {
-  const wrapper = shallow(<Searchbar />);
+  let wrapper = shallow(<Searchbar />);
   const expected = {
     target: {
       name: 'search',
@@ -16,9 +16,14 @@ describe('Searchbar', () => {
   });
 
   it('should correctly update state with onChange value', () => {
-    wrapper.find('#search').simulate('change', expected);
+    const setSearch = jest.fn();
+    const useStateSpy = jest.spyOn(React, 'useState');
+    wrapper = shallow(<Searchbar setSearch={setSearch} />);
+    useStateSpy.mockImplementation((search) => [search, setSearch]);
 
-    expect(wrapper.state().search).toBe('engineer');
-    expect(wrapper.state().search.length).toEqual(8);
+    wrapper.find('#search').simulate('change', expected);
+    wrapper.find('#searchBar').simulate('submit', { preventDefault: () => null });
+
+    expect(setSearch).toHaveBeenCalledWith('engineer');
   });
 });

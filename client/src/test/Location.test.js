@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Location from '../components/Location.jsx';
 
 describe('Location', () => {
-  const wrapper = shallow(<Location />);
+  let wrapper = shallow(<Location />);
   const expected = {
     target: {
       name: 'location',
@@ -16,9 +16,14 @@ describe('Location', () => {
   });
 
   it('should correctly update state with onChange value', () => {
-    wrapper.find('#location').simulate('change', expected);
+    const setLocation = jest.fn();
+    const useStateSpy = jest.spyOn(React, 'useState');
+    wrapper = shallow(<Location setLocation={setLocation} />);
+    useStateSpy.mockImplementation((location) => [location, setLocation]);
 
-    expect(wrapper.state().location).toBe('San Francisco');
-    expect(wrapper.state().location.length).toEqual('San Francisco'.length);
+    wrapper.find('#location').simulate('change', expected);
+    wrapper.find('#locationBar').simulate('submit', { preventDefault: () => null });
+
+    expect(setLocation).toHaveBeenCalledWith('San Francisco');
   });
 });

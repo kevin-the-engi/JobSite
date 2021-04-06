@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
@@ -200,7 +200,7 @@ class FiltersModal extends React.Component {
     return ReactDOM.createPortal(
       <Wrapper onMouseDown={(event) => event.stopPropagation()}>
         <Options>
-          <Form onSubmit={this.handleSubmit}>
+          <Form id="filters" onSubmit={this.handleSubmit}>
             <FieldSet id="employment" onChange={this.handleChange}>
               <Legend>Type of Employment</Legend>
               <label htmlFor="employment">
