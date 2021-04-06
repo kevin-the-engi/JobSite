@@ -5,7 +5,7 @@ module.exports = {
   entry: './client/src/index.jsx',
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'client/dist')
+    path: path.join(__dirname, 'client/dist'),
   },
   watch: true,
   module: {
@@ -16,7 +16,7 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-        }
+        },
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
@@ -26,8 +26,8 @@ module.exports = {
             options: {
               name: 'images/[hash]-[name].[ext]',
             },
-          }
-        ]
+          },
+        ],
       },
       {
         test: /\.(css)$/,
@@ -35,12 +35,10 @@ module.exports = {
           'style-loader',
           {
             loader: 'css-loader',
-            options: { modules: true }
-          }
+            options: { modules: true },
+          },
         ],
-      }
-    ]
-  }
-}
-
-
+      },
+    ],
+  },
+};
