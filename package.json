@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "react-dev": "webpack",
+    "build": "webpack --watch",
     "test": "jest --coverage",
     "test-u": "npm run test -- -u"
   },
@@ -26,6 +27,7 @@
     "nodemon": "^2.0.7",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.3"
   },
   "devDependencies": {

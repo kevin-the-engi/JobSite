@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import EmployerSearch from './EmployerSearch.jsx';
+import App from './components/App.jsx';
 
-ReactDOM.render(<EmployerSearch />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
