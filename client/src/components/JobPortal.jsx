@@ -5,22 +5,22 @@ import SearchBar from './SeekerSearchSubComponents/Searchbar.jsx';
 import Location from './SeekerSearchSubComponents/Location.jsx';
 import Filters from './SeekerSearchSubComponents/Filters.jsx';
 import ListJobResults from './SeekerSearchSubComponents/ListJobResults.jsx';
-import ListingDetail from './SeekerSearchSubComponents/ListingDetail.jsx';
+import ListingDetailDiv from './SeekerSearchSubComponents/ListingDetailDiv.jsx';
+import ListingDetailModal from './SeekerSearchSubComponents/ListingDetailModal.jsx';
 
 const PageWrapper = styled.div`
-  margin: auto;
-  width: 95vw;
-  height: 88vh;
+  margin: 0;
+  width: 100vw;
+  height: 94vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  border: 2px solid pink;
+  justify-content: center;
 `;
 
 const NavButtonDiv = styled.div`
   height: 6vh;
-  width: 20vw;
+  width: auto;
   position: absolute;
   top: 0;
   right: 5vw;
@@ -34,9 +34,11 @@ const NavButton = styled.a`
   position: relative;
   text-align: center;
   height: 4vh;
+  margin: 0 1vw;
   line-height: 4vh;
+  letter-spacing: 1px;
   width: auto;
-  padding: .25vh 1vw;
+  padding: .25vh 1.5vw;
   text-decoration: none;
   background: #129490;
   border: none;
@@ -46,13 +48,18 @@ const NavButton = styled.a`
 `;
 
 const SearchWrapper = styled.div`
-  width: 95%;
-  height: 10vh;
+  width: 100%;
+  height: 16vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  border: 2px solid green;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    justify-content: space-around;
+    flex-direction: row;
+    height: 8vh;
+  }
 `;
 
 const JobResultsPortalWrapper = styled.div`
@@ -61,26 +68,54 @@ const JobResultsPortalWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  border: 2px solid blue;
+  justify-content: space-evenly;
+
+  @media (min-width: 768px) {
+    height: 80vh;
+  }
+`;
+
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background-color: #42424275;
 `;
 
 class JobPortal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isDesktop: false,
       search: '',
       location: '',
       filters: {},
       jobResults: [],
+      jobToDisplay: null,
     };
+    this.updateScreenSize = this.updateScreenSize.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.getJobToDisplay = this.getJobToDisplay.bind(this);
     this.setSearch = this.setSearch.bind(this);
     this.setLocation = this.setLocation.bind(this);
     this.setFilters = this.setFilters.bind(this);
   }
 
   componentDidMount() {
+    // send GET Reques for data and assign to jobResults
+    this.updateScreenSize();
+    window.addEventListener('resize', this.updateScreenSize);
+  }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateScreenSize);
+  }
+
+  getJobToDisplay(job) {
+    this.setState({ jobToDisplay: job });
   }
 
   setSearch(term) {
@@ -101,14 +136,26 @@ class JobPortal extends React.Component {
     };
   }
 
+  toggleModal() {
+    this.setState((prevState) => ({
+      modalOpen: !prevState.modalOpen,
+    }));
+  }
+
+  updateScreenSize() {
+    this.setState({ isDesktop: window.innerWidth >= 768 });
+  }
+
   render() {
-    const { jobResults } = this.state;
+    const {
+      isDesktop, modalOpen, jobResults, jobToDisplay,
+    } = this.state;
 
     return (
       <PageWrapper>
         <NavButtonDiv>
-          <NavButton href={`${window.location.origin}/#/seeker`}>My Profile</NavButton>
-          <NavButton href={`${window.location.origin}/#/jobs`}>Find Jobs</NavButton>
+          <NavButton href={`${window.location.origin}/#/seeker`}>MY PROFILE</NavButton>
+          <NavButton href={`${window.location.origin}/#/jobs`}>FIND JOBS</NavButton>
         </NavButtonDiv>
         <SearchWrapper>
           <SearchBar setSearch={this.setSearch} />
@@ -116,8 +163,17 @@ class JobPortal extends React.Component {
           <Filters setFilters={this.setFilters} />
         </SearchWrapper>
         <JobResultsPortalWrapper>
-          <ListJobResults jobResults={jobResults} />
-          <ListingDetail />
+          <ListJobResults
+            jobResults={jobResults}
+            toggleModal={this.toggleModal}
+            getJobToDisplay={this.getJobToDisplay}
+          />
+          { isDesktop && <ListingDetailDiv jobToDisplay={jobToDisplay} /> }
+          { !isDesktop && modalOpen && (
+            <ModalBackground onMouseDown={this.toggleModal}>
+              <ListingDetailModal jobToDisplay={jobToDisplay} />
+            </ModalBackground>
+          )}
         </JobResultsPortalWrapper>
       </PageWrapper>
     );

@@ -50,7 +50,7 @@ const ItalicText = styled.p`
 `;
 
 const SeekerTile = ({ seeker, toggleModal, getResumeToDisplay }) => (
-  <Tile onClick={() => { getResumeToDisplay(seeker); toggleModal(); }}>
+  <Tile onClick={(event) => { event.preventDefault(); getResumeToDisplay(seeker); toggleModal(); }}>
     <Name>{`${seeker.firstName} ${seeker.lastName}`}</Name>
     <Summary>Javascript | React | Node</Summary>
     <RowDiv>
