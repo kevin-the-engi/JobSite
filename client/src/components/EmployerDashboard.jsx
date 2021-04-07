@@ -6,7 +6,7 @@ const NavButtonDiv = styled.div`
   width: 20vw;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 5vw;
   z-index: 1;
   display: flex;
   justify-content: space-between;
@@ -18,12 +18,14 @@ const NavButton = styled.a`
   text-align: center;
   height: 4vh;
   line-height: 4vh;
-  width: 9vw;
-  border: 1px solid grey;
-  border-radius: 25px;
+  width: auto;
+  padding: .25vh 1vw;
   text-decoration: none;
-  color: #424242;
-  background: rgba(255,255,255,0.4);
+  background: #129490;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  color: #fff;
 `;
 
 class EmployerDashboard extends React.Component {
@@ -38,7 +40,7 @@ class EmployerDashboard extends React.Component {
     return (
       <div>
         <NavButtonDiv>
-          <NavButton href={`${window.location.origin}/#/employer`}>Employer Dashboard</NavButton>
+          <NavButton href={`${window.location.origin}/#/employer`}>Dashboard</NavButton>
           <NavButton href={`${window.location.origin}/#/employerSearch`}>Search Job Seekers</NavButton>
         </NavButtonDiv>
         <h1>Yo it rendered a dashboard!</h1>

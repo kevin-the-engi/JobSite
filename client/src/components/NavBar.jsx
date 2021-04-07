@@ -9,13 +9,12 @@ const NavBarWrapper = styled.div`
   width: 100vw;
   height: 6vh;
   background: #fff;
-  margin: -8px 0 1vh 0;
+  margin: -8px 0 0 0;
   border-bottom: 1px solid #e0e0e0;
-  color: #000;
+  color: #050802;
   font-family: Arial, sans-serif;
 
   @media (min-width: 768px) {
-    margin: -8px 0 3vh 0;
     justify-content: left;
   }
 `;
@@ -24,6 +23,7 @@ const Logo = styled.h1`
   margin: 0;
   padding: 0 1vw 0 0;
   font-size: 2.5rem;
+  color: #5FA317;
   @media (min-width: 768px) {
     padding: 0 1vw 0 5vw;
     font-size: 3rem;

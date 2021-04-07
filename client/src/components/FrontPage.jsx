@@ -12,11 +12,12 @@ import axios from 'axios';
 const FlexDiv = styled.div`
   font-family: Arial;
   display: flex;
-  margin: -2vh;
+  margin: 0;
   height: 94vh;
   width: 100vw;
   justify-content: center;
   flex-wrap: wrap;
+  overflow-x: hidden;
   background: linear-gradient(135deg, #BAFA75, #129490);
 `;
 const Div = styled.div`
@@ -70,17 +71,30 @@ const BottomDiv = styled.div`
   margin: auto auto 32px auto;
   text-align: center;
 `;
-const Toggle = styled.button`
-  height: 40px;
-  width: 160px;
-  margin: 16px 32px;
-  border: 1px solid grey;
-  border-radius: 25px;
-  background: rgba(255,255,255,0.4);
+
+const ToggleButtonDiv = styled.div`
+  height: 6vh;
+  width: 10vw;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 5vw;
   z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Toggle = styled.button`
+  position: relative;
+  text-align: center;
+  height: 4vh;
+  line-height: 4vh;
+  width: 9vw;
+  border: 1px solid grey;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #424242;
+  background: rgba(255,255,255,0.4);
 `;
 
 const URL = 'http://localhost:4000/api';
@@ -172,7 +186,9 @@ const FrontPage = () => {
 
   return (
     <FlexDiv>
-      <Toggle onClick={handleUserToggle}>{`${user === 'Seeker' ? 'Employer' : 'Seeker'} Portal`}</Toggle>
+      <ToggleButtonDiv>
+        <Toggle onClick={handleUserToggle}>{`${user === 'Seeker' ? 'Employer' : 'Seeker'} Portal`}</Toggle>
+      </ToggleButtonDiv>
       <Div>
         <h1>{APP_TITLE}</h1>
         <h3>{SLOGAN}</h3>
