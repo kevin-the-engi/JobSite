@@ -23,13 +23,18 @@ const Wrapper = styled.div`
 `;
 
 const Options = styled.div`
-height: 30vh;
-
+  height: 30vh;
   max-height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+const Form = styled.form`
+`;
+
+const TextArea = styled.textarea`
 `;
 
 const Button = styled.button`
@@ -45,24 +50,40 @@ const Button = styled.button`
   color: #424242;
 `;
 
-const TabModal = (props) => {
-  const { toggleModal } = props;
+const AddNotesModal = (props) => {
+  const { display } = props;
+  const [note, setNote] = useState('');
 
-  const handleClick = (event) => {
+  const handleChange = (event) => {
+    const { value } = event.target;
+
+    setNote(value);
+  };
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    toggleModal();
-    // call delete function in future
+    // call function to send data
+    display(false);
   };
 
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => event.stopPropagation()}>
       <Options>
-      <i className="fas fa-trash-alt fa-5x"></i>
-        <Button onClick={handleClick}>Delete</Button>
+        <Form onSubmit={handleSubmit}>
+          <TextArea
+            id="noteText"
+            name="note"
+            rows="5"
+            cols="30"
+            onChange={handleChange}
+            value={note}
+          />
+          <Button type="submit" value="Submit">Submit</Button>
+        </Form>
       </Options>
     </Wrapper>,
     document.getElementById('modal-root') || document.createElement('div'), // for testing purposes
   );
 };
 
-export default TabModal;
+export default AddNotesModal;

@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  max-width: 10vw;
+  max-width: 90vw;
   max-height: 95vh;
   overflow: hidden;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -23,17 +23,23 @@ const Wrapper = styled.div`
 `;
 
 const Options = styled.div`
-height: 30vh;
-
   max-height: 95vh;
+`;
+
+const Form = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+`;
+
+const TextArea = styled.textarea`
+`;
+
+const ButtonWrapper = styled.div`
+
 `;
 
 const Button = styled.button`
-  width: max(10vw, 50px);
+  width: max(10vw, 150px);
   align-items: center;
   font-size: 1rem;
   font-weight: bold;
@@ -45,24 +51,48 @@ const Button = styled.button`
   color: #424242;
 `;
 
-const TabModal = (props) => {
-  const { toggleModal } = props;
+const NotesModal = (props) => {
+  const [note, setNote] = useState('Notes..');
+  // setDefault state to notes prop
 
-  const handleClick = (event) => {
+  const handleChange = (event) => {
+    const { value } = event.target;
+
+    setNote(value);
+  };
+
+  const handleUpdate = (event) => {
     event.preventDefault();
-    toggleModal();
-    // call delete function in future
+
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
   };
 
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => event.stopPropagation()}>
       <Options>
-      <i className="fas fa-trash-alt fa-5x"></i>
-        <Button onClick={handleClick}>Delete</Button>
+        <Form onSubmit={handleUpdate}>
+          <TextArea
+            id="updateText"
+            name="note"
+            rows="5"
+            cols="30"
+            onChange={handleChange}
+            value={note}
+          />
+          <ButtonWrapper>
+            <Button type="submit">Update</Button>
+            <Button onClick={handleDelete}>Delete</Button>
+
+          </ButtonWrapper>
+        </Form>
+
       </Options>
     </Wrapper>,
     document.getElementById('modal-root') || document.createElement('div'), // for testing purposes
   );
 };
 
-export default TabModal;
+export default NotesModal;
