@@ -12,8 +12,8 @@ import axios from 'axios';
 const FlexDiv = styled.div`
   font-family: Arial;
   display: flex;
-  margin: -8px;
-  height: 100vh;
+  margin: -2vh;
+  height: 94vh;
   width: 100vw;
   justify-content: center;
   flex-wrap: wrap;
