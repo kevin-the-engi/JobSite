@@ -25,10 +25,14 @@ const TabsWrapper = styled.div`
 
 const Tab = styled.div`
   width: 100%;
+  background-color: whitesmoke;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid purple;
+  // border: 2px solid purple;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 `;
 
 const ContentWrapper = styled.div`
@@ -61,7 +65,7 @@ const Tabs = (props) => {
     toggleTab(id);
   };
 
-  return(
+  return (
     <PersonalContentWrapper>
       <TabsWrapper className="tabs">
         <Tab id="reminders" onClick={handleClick}>Reminders</Tab>
