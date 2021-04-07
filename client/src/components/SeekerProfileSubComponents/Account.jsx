@@ -5,18 +5,17 @@ import Profile from './Profile.jsx';
 import Tabs from './Tabs.jsx';
 
 const AccountWrapper = styled.div`
-  margin: 0 auto;
-  width: 95vw;
-  height: 88vh;
+  width: 95%;
+  height: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #BAFA75, #129490);
-  // background: #129490;
-  // background: linear-gradient(135deg, #5fa317, #129490);
+  justify-content: space-evenly;
 
-  box-shadow: 0 3px 10px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
+  @media (min-width: 768px) {
+    height: 80vh;
+    flex-direction: row;
+  }
 `;
 
 const Account = (props) => {
