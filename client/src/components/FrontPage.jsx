@@ -97,7 +97,7 @@ const Toggle = styled.button`
   background: rgba(255,255,255,0.4);
 `;
 
-const URL = 'http://localhost:4000/api';
+const URL = 'http://3.134.101.103:4000/api';
 const APP_TITLE = 'JobSite';
 const SLOGAN = 'Connecting people with jobs and jobs with people';
 const SEEKER_REGISTER_HEADER = 'Looking for a job? Sign up now!';
@@ -148,7 +148,11 @@ const FrontPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.location.href = `${window.location.origin}/#/employer`;
+    if (user === 'Seeker') {
+      window.location.href = `${window.location.origin}/#/seeker`;
+    } else {
+      window.location.href = `${window.location.origin}/#/employer`;
+    }
     // TODO validate form data before post request
     // if (formType === 'Register') {
     //   if (user === 'Seeker') {

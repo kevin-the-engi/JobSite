@@ -53,14 +53,15 @@ const List = styled.div`
 
 const ListJobResults = ({ toggleModal, jobResults, getJobToDisplay }) => (
   <ResultsWrapper>
-    <Header>Jobs Found: 35</Header>
+    <Header>{`Jobs Found: ${jobResults.length}`}</Header>
     <ListWrapper>
       <List>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((job) => (
+        {jobResults.map((job) => (
           <JobResult
             job={job}
             toggleModal={toggleModal}
             getJobToDisplay={getJobToDisplay}
+            key={job._id}
           />
         ))}
       </List>

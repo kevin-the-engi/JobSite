@@ -13,6 +13,9 @@ const Tile = styled.div`
   padding: .5vh 1%;
   font-family: Arial, sans-serif;
   color: #424242;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Name = styled.h1`
