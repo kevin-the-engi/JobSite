@@ -8,7 +8,10 @@
     "react-dev": "webpack",
     "build": "webpack --watch",
     "test": "jest --coverage",
-    "test-u": "npm run test -- -u"
+    "test-u": "npm run test -- -u",
+    "docker-build": "docker build -t blueocean-webapp:1.0 .",
+    "docker-login": "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 816674678256.dkr.ecr.us-east-2.amazonaws.com",
+    "docker-push": "docker tag blueocean-webapp:1.0 816674678256.dkr.ecr.us-east-2.amazonaws.com/blueocean-webapp:1.0 & docker push 816674678256.dkr.ecr.us-east-2.amazonaws.com/blueocean-webapp:1.0"
   },
   "repository": {
     "type": "git",
