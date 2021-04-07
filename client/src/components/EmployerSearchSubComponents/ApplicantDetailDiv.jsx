@@ -12,7 +12,7 @@ const ApplicantDetailWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: whitesmoke;
+  background: #FFF;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
@@ -28,7 +28,7 @@ const ApplicantResume = styled.div`
   align-items: center;
   border: solid 1px #e0e0e0;
   border-radius: 10px;
-  background: #fff;
+  background: #ffffff;
 `;
 
 const Header = styled.div`
@@ -41,6 +41,7 @@ const Header = styled.div`
 
 const Name = styled.h1`
   margin: .5vh 0 .25vh 0;
+  color: #5FA317;
   font-size: 1.5rem;
   font-weight: bold;
 `;
@@ -56,18 +57,21 @@ const ContactInfo = styled.div`
   margin-top: 1vh;
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 `;
 
 const Link = styled.a`
-  margin: 0;
+  margin: 0 .5vw;
   color: inherit;
   font-size: 1rem;
   text-decoration: none;
+
 `;
 
 const SectionTitle = styled.h2`
   font-size: 1rem;
   font-weight: bold;
+  color: #129490;
 `;
 
 const Section = styled.div`

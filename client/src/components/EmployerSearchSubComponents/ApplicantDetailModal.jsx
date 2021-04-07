@@ -19,6 +19,7 @@ const ApplicantDetailWrapper = styled.div`
   justify-content: space-around;
   border: 2px solid orange;
   background-color: whitesmoke;
+
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
@@ -47,6 +48,7 @@ const Header = styled.div`
 
 const Name = styled.h1`
   margin: .5vh 0 .25vh 0;
+  color: #5FA317;
   font-size: 1.5rem;
   font-weight: bold;
 `;
@@ -75,6 +77,7 @@ const Link = styled.a`
 const SectionTitle = styled.h2`
   font-size: 1rem;
   font-weight: bold;
+  color: #129490;
 `;
 
 const Section = styled.div`
