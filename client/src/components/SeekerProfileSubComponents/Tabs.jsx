@@ -7,35 +7,54 @@ import AppliedJobs from './AppliedJobs.jsx';
 import Notes from './Notes.jsx';
 
 const PersonalContentWrapper = styled.div`
-  width: 60%;
-  height: 77vh;
+  width: 100%;
+  height: 100%;
+  margin: 3vh 0 0 0;
   display: flex;
   flex-direction: column;
-  border: 2px solid white;
+  align-items: center;
+  justify-content: center;
+  background: #FFF;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
+  font-family: Arial, sans-serif;
+  color: #424242;
+
+  @media (min-width: 768px) {
+    width: 60vw;
+    margin: 0;
+  }
 `;
 
 const TabsWrapper = styled.div`
-  width: 100%;
+  width: 97%;
   height: 5vh;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border: 2px solid red;
 `;
 
 const Tab = styled.div`
   width: 100%;
+  background-color: whitesmoke;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid purple;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 `;
 
 const ContentWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 2px solid brown;
+  width: 97%;
+  height: 92%;
+  background-color: #F5F5F5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow-y: scroll;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   ::-webkit-scrollbar {
@@ -61,7 +80,7 @@ const Tabs = (props) => {
     toggleTab(id);
   };
 
-  return(
+  return (
     <PersonalContentWrapper>
       <TabsWrapper className="tabs">
         <Tab id="reminders" onClick={handleClick}>Reminders</Tab>
