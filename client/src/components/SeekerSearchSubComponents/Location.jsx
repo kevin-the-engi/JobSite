@@ -8,7 +8,8 @@ const Form = styled.form`
   align-items: center;
 
   @media (min-width: 768px) {
-    width: 30vw;
+    width: 34vw;
+    justify-content: space-between;
     flex-direction: row;
   }
 `;
