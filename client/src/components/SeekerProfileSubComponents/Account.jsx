@@ -19,10 +19,12 @@ const AccountWrapper = styled.div`
 `;
 
 const Account = (props) => {
+  const { reminders } = props;
+
   return(
     <AccountWrapper>
       <Profile />
-      <Tabs />
+      <Tabs reminders={reminders} />
     </AccountWrapper>
   );
 };

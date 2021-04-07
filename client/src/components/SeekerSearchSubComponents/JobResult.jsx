@@ -4,7 +4,8 @@ import styled from 'styled-components';
 const JobTile = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 9.5vh;
+  justify-content: center;
+  min-height: 8.5vh;
   width: 95%;
   background-color: #fff;
   border: solid 1px #e0e0e0;
@@ -15,9 +16,39 @@ const JobTile = styled.div`
   color: #424242;
 `;
 
+const SpacedRowDiv = styled.div`
+  margin: .25vh .25vw;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Title = styled.h1`
+  margin: 0 1vw;
+  color: #5FA317;
+  font-size: 1rem;
+  font-weight: bold;
+`;
+
+const Company = styled.p`
+  margin: 0 1vw 0 2vw;
+  font-weight: lighter;
+  font-style: italic;
+`;
+
+const Text = styled.p`
+  margin: 0 1vw 0 2vw;
+  font-weight: lighter;
+`;
+
 const JobResult = ({ job, toggleModal, getJobToDisplay }) => (
   <JobTile onClick={(event) => { event.preventDefault(); getJobToDisplay(job); toggleModal(); }}>
-    {job}
+    <SpacedRowDiv>
+      <Title>{job.title}</Title>
+      <Text>{`$${job.salary}`}</Text>
+    </SpacedRowDiv>
+    <Company>{job.company}</Company>
+    <Text>{job.city}</Text>
+    <Text>{`${job.employmentType}/${job.workLocationType}`}</Text>
   </JobTile>
 );
 
