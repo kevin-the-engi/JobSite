@@ -6,6 +6,6 @@ const app = express();
 app.use(express.static('client/dist'));
 app.use(express.json());
 
-app.listen(6000, () => {
+app.listen(process.env.PORT, () => {
   console.log('Client server listening on 6000');
 });
