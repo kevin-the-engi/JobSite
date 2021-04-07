@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 5;
+  z-index: 500;
   max-width: 30vw;
   max-height: 95vh;
   overflow: hidden;
@@ -58,8 +58,8 @@ const Button = styled.button`
   color: #424242;
 `;
 
-const NotesModal = (props) => {
-  const [note, setNote] = useState('Notes...');
+const NotesUpdateModal = ({ text }) => {
+  const [note, setNote] = useState(text);
   // setDefault state to notes prop
 
   const handleChange = (event) => {
@@ -68,18 +68,22 @@ const NotesModal = (props) => {
     setNote(value);
   };
 
-  const handleSubmit = (event) => {
+  const handleUpdate = (event) => {
     event.preventDefault();
-    // call function to send data
-    // display(false);
+    // call function to send note
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+    // call function to delete
   };
 
   return ReactDOM.createPortal(
-    <Wrapper onMouseDown={(event) => event.stopPropagation()}>
-      <Options>
-        <Form onSubmit={handleSubmit}>
+    <Wrapper onMouseDown={(event) => { event.stopPropagation(); console.log('mouseDown')}}>
+      <Options onMouseDown={(event) => { event.stopPropagation(); console.log('options')}}>
+        <Form onSubmit={handleUpdate}>
           <TextArea
-            id="noteText"
+            id="updateText"
             name="note"
             rows="10"
             cols="30"
@@ -87,52 +91,15 @@ const NotesModal = (props) => {
             value={note}
           />
           <ButtonWrapper>
-            <Button type="submit" value="Submit">Submit</Button>
+            <Button type="submit">Update</Button>
+            <Button onMouseDown={handleDelete}>Delete</Button>
           </ButtonWrapper>
         </Form>
+
       </Options>
     </Wrapper>,
     document.getElementById('modal-root') || document.createElement('div'), // for testing purposes
   );
-
-  // const handleChange = (event) => {
-  //   const { value } = event.target;
-
-  //   setNote(value);
-  // };
-
-  // const handleUpdate = (event) => {
-  //   event.preventDefault();
-  //   // call function to send note
-  // };
-
-  // const handleDelete = (event) => {
-  //   event.preventDefault();
-  //   // call function to delete
-  // };
-
-  // return ReactDOM.createPortal(
-  //   <Wrapper onMouseDown={(event) => { event.stopPropagation(); console.log('mouseDown')}}>
-  //     <Options onMouseDown={(event) => { event.stopPropagation(); console.log('options')}}>
-  //       <Form onSubmit={handleUpdate}>
-  //         <TextArea
-  //           id="updateText"
-  //           name="note"
-  //           rows="10"
-  //           cols="30"
-  //           onChange={handleChange}
-  //           value={note}
-  //         />
-  //         <ButtonWrapper>
-  //           <Button type="submit">Update</Button>
-  //           <Button onMouseDown={handleDelete}>Delete</Button>
-  //         </ButtonWrapper>
-  //       </Form>
-
-  //     </Options>
-  //   </Wrapper>,
-  //   document.getElementById('modal-root') || document.createElement('div'), // for testing purposes
-  // );
 };
 
-export default NotesModal;
+export default NotesUpdateModal;

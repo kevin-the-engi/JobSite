@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import RemindersCard from './RemindersCard.jsx';
 
 const RemindersWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Reminders = (props) => {

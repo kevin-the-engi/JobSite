@@ -5,6 +5,10 @@ import NotesCard from './NotesCard.jsx';
 import AddNotesModal from './AddNotesModal.jsx';
 
 const NotesWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const HeaderWrapper = styled.div`
@@ -31,7 +35,7 @@ const Button = styled.button`
 
 const Notes = (props) => {
   const notes = [
-    { title: 'title', text: 'Notes here' },
+    { title: 'title', text: 'I need to call the interviewer.' },
   ];
   const [showAdd, setShowAdd] = useState(false);
 
