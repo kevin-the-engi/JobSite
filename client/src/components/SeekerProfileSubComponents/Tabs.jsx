@@ -32,12 +32,14 @@ const TabsWrapper = styled.div`
   height: 5vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const Tab = styled.div`
-  width: 100%;
-  background-color: whitesmoke;
+  width: 24.75%;
+  background: ${props => props.selected ? '#F5F5F5' : '#129490'};
+  color: ${props => props.selected ? '#5fa317' : '#FFF'};
+  font-weight: ${props => props.selected ? 'bold' : 'normal'};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,10 +69,12 @@ const ContentWrapper = styled.div`
 `;
 
 const Tabs = (props) => {
+  const [selectedTab, setSelectedTab] = useState('reminders')
   const [tab, setTab] = useState('reminders');
 
   const toggleTab = (id) => {
     setTab(id);
+    setSelectedTab(id)
   };
 
   const handleClick = (event) => {
@@ -83,10 +87,10 @@ const Tabs = (props) => {
   return (
     <PersonalContentWrapper>
       <TabsWrapper className="tabs">
-        <Tab id="reminders" onClick={handleClick}>Reminders</Tab>
-        <Tab id="savedJobs" onClick={handleClick}>Jobs Saved</Tab>
-        <Tab id="appliedJobs" onClick={handleClick}>Jobs Applied</Tab>
-        <Tab id="notes" onClick={handleClick}>Notes</Tab>
+        <Tab selected={selectedTab === 'reminders'} id="reminders" onClick={handleClick}>REMINDERS</Tab>
+        <Tab selected={selectedTab === 'savedJobs'} id="savedJobs" onClick={handleClick}>SAVED JOBS</Tab>
+        <Tab selected={selectedTab === 'appliedJobs'} id="appliedJobs" onClick={handleClick}>APPLIED JOBS</Tab>
+        <Tab selected={selectedTab === 'notes'} id="notes" onClick={handleClick}>NOTES</Tab>
       </TabsWrapper>
       <ContentWrapper>
         {tab === 'reminders' ? <Reminders /> : null}
