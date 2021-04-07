@@ -62,7 +62,7 @@ const NotesCard = (props) => {
 
   return (
     <Wrapper onClick={toggleModal}>
-      <Body>
+      {/* <Body>
         {update ? (
           <Form onSubmit={handleSubmit}>
             <TextArea
@@ -77,18 +77,19 @@ const NotesCard = (props) => {
               <Button type="submit" value="Submit">Submit</Button>
             </ButtonWrapper>
           </Form>) : {text} }
-      </Body>
-      <ButtonWrapper>
+      </Body> */}
+      {text}
+      {/* <ButtonWrapper>
         <Button onClick={handleUpdate}>Update</Button>
-        <Button >Delete</Button>
-        {/* {show
-          ? (
-            <ModalBackground>
-              <NotesUpdateModal text={text} />
-            </ModalBackground>
-          ) : null} */}
 
-      </ButtonWrapper>
+      <Button >Delete</Button>
+      </ButtonWrapper> */}
+      {show
+        ? (
+          <ModalBackground>
+            <NotesUpdateModal text={text} />
+          </ModalBackground>
+        ) : null}
     </Wrapper>
   );
 };
