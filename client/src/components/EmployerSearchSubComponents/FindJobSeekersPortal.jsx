@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 import DummyData from '../../../../DummyData.js';
@@ -79,7 +80,11 @@ class FindJobSeekersPortal extends React.Component {
   }
 
   componentDidMount() {
-    // send GET Reques for data and assign to seekerResults
+    // send GET Request for data and assign to jobSeekers in state
+    // app.get('/api/resume/all', getAllResumes);
+    axios.get('/')
+    .then()
+    .catch();
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
   }
