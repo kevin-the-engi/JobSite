@@ -68,22 +68,18 @@ const NotesModal = (props) => {
     setNote(value);
   };
 
-  const handleUpdate = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    // call function to send note
-  };
-
-  const handleDelete = (event) => {
-    event.preventDefault();
-    // call function to delete
+    // call function to send data
+    // display(false);
   };
 
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => event.stopPropagation()}>
       <Options>
-        <Form onSubmit={handleUpdate}>
+        <Form onSubmit={handleSubmit}>
           <TextArea
-            id="updateText"
+            id="noteText"
             name="note"
             rows="10"
             cols="30"
@@ -91,15 +87,52 @@ const NotesModal = (props) => {
             value={note}
           />
           <ButtonWrapper>
-            <Button type="submit">Update</Button>
-            <Button onClick={handleDelete}>Delete</Button>
+            <Button type="submit" value="Submit">Submit</Button>
           </ButtonWrapper>
         </Form>
-
       </Options>
     </Wrapper>,
     document.getElementById('modal-root') || document.createElement('div'), // for testing purposes
   );
+
+  // const handleChange = (event) => {
+  //   const { value } = event.target;
+
+  //   setNote(value);
+  // };
+
+  // const handleUpdate = (event) => {
+  //   event.preventDefault();
+  //   // call function to send note
+  // };
+
+  // const handleDelete = (event) => {
+  //   event.preventDefault();
+  //   // call function to delete
+  // };
+
+  // return ReactDOM.createPortal(
+  //   <Wrapper onMouseDown={(event) => { event.stopPropagation(); console.log('mouseDown')}}>
+  //     <Options onMouseDown={(event) => { event.stopPropagation(); console.log('options')}}>
+  //       <Form onSubmit={handleUpdate}>
+  //         <TextArea
+  //           id="updateText"
+  //           name="note"
+  //           rows="10"
+  //           cols="30"
+  //           onChange={handleChange}
+  //           value={note}
+  //         />
+  //         <ButtonWrapper>
+  //           <Button type="submit">Update</Button>
+  //           <Button onMouseDown={handleDelete}>Delete</Button>
+  //         </ButtonWrapper>
+  //       </Form>
+
+  //     </Options>
+  //   </Wrapper>,
+  //   document.getElementById('modal-root') || document.createElement('div'), // for testing purposes
+  // );
 };
 
 export default NotesModal;

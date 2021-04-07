@@ -24,10 +24,12 @@ const ModalBackground = styled.div`
 
 const NotesCard = (props) => {
   const { note: { title, text } } = props;
-  const [show, setShow] = useState('false');
+  const [show, setShow] = useState(false);
 
   const toggleModal = (event) => {
     event.preventDefault();
+    console.log('wrapper');
+
     setShow(!show);
   };
 
@@ -39,7 +41,7 @@ const NotesCard = (props) => {
       {!show
         ? (
           <ModalBackground onMouseDown={toggleModal}>
-            <NotesModal toggleModal={toggleModal} />
+            <NotesModal />
           </ModalBackground>
         ) : null}
     </Wrapper>
