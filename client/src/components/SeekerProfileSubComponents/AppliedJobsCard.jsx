@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import DeleteModal from './DeleteModal.jsx';
 
 const Wrapper = styled.div`
-  width: 95%;
+  width: 98%;
   height: 10vh;
   border: 2px solid yellow;
   border-radius: 10px;

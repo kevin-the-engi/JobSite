@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import NotesModal from './NotesModal.jsx';
 
 const Wrapper = styled.div`
-  width: 95%;
+  width: 98%;
   height: 10vh;
   border: 2px solid yellow;
   border-radius: 10px;

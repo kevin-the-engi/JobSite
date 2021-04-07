@@ -38,7 +38,10 @@ const Tab = styled.div`
 const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
+  background-color: whitesmoke;
   border: 2px solid brown;
+  display: flex;
+  flex-direction: column;
   overflow-y: scroll;
 
   /* Hide scrollbar for Chrome, Safari and Opera */

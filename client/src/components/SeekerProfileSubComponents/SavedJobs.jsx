@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import SavedJobsCard from './SavedJobsCard.jsx';
+import SavedDropdown from './SavedDropdown.jsx';
 
 const SavedJobsWrapper = styled.div`
 
@@ -17,6 +18,7 @@ const SavedJobs = (props) => {
 
   return(
     <SavedJobsWrapper>
+      <SavedDropdown />
       {savedJobs.map(job =>
         <SavedJobsCard
           job={job}
