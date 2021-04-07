@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+  height: 40vh;
   position: fixed;
   display: table;
   background: #fff;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  max-width: 10vw;
+  max-width: 30vw;
   max-height: 95vh;
   overflow: hidden;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -23,18 +24,25 @@ const Wrapper = styled.div`
 `;
 
 const Options = styled.div`
-  height: 30vh;
+  height: 38vh;
   max-height: 95vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
 `;
 
 const Form = styled.form`
+  height: 38vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
 `;
 
 const TextArea = styled.textarea`
+  padding: 2vh 1vw;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 const Button = styled.button`
@@ -73,12 +81,14 @@ const AddNotesModal = (props) => {
           <TextArea
             id="noteText"
             name="note"
-            rows="5"
+            rows="10"
             cols="30"
             onChange={handleChange}
             value={note}
           />
-          <Button type="submit" value="Submit">Submit</Button>
+          <ButtonWrapper>
+            <Button type="submit" value="Submit">Submit</Button>
+          </ButtonWrapper>
         </Form>
       </Options>
     </Wrapper>,
