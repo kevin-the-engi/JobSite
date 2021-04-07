@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import FiltersModal from './FiltersModal.jsx';
 
 const Wrapper = styled.div`
-  width: max(20vw, 300px);
+  width: max(15vw, 250px);
   display: flex;
   justify-content: center;
 `;
@@ -24,12 +24,14 @@ const Button = styled.button`
   align-items: center;
   font-size: 1rem;
   font-weight: bold;
+  letter-spacing: 2px;
   height: 5vh;
   padding: 0 1.25vw;
-  background: none;
-  border: 1px solid #424242;
-  border-radius: 5px;
-  color: #424242;
+  background: #fff;
+  border: 2px solid #129490;
+  outline: none;
+  border-radius: 25px;
+  color: #129490;
 `;
 
 class Filters extends React.Component {
@@ -54,7 +56,7 @@ class Filters extends React.Component {
 
     return (
       <Wrapper>
-        <Button type="button" onClick={this.toggleModal}>Filters</Button>
+        <Button type="button" onClick={this.toggleModal}>FILTERS</Button>
         {show
           ? (
             <ModalBackground onMouseDown={this.toggleModal}>

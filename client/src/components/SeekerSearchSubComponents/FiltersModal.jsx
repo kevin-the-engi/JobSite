@@ -143,15 +143,16 @@ const Range = styled.input`
 
 const Button = styled.button`
   width: max(10vw, 150px);
-  align-items: center;
   font-size: 1rem;
   font-weight: bold;
+  letter-spacing: 2px;
   height: 5vh;
   padding: 0 1.25vw;
-  background: none;
-  border: 1px solid #424242;
-  border-radius: 5px;
-  color: #424242;
+  background: #129490;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  color: #fff;
 `;
 
 const FiltersModal = (props) => {
@@ -313,7 +314,7 @@ const FiltersModal = (props) => {
               100 Miles
             </label>
           </FieldSet>
-          <Button type="submit" value="Filter Results">Filter Results</Button>
+          <Button type="submit" value="Filter Results">FILTER</Button>
         </Form>
       </Options>
     </Wrapper>,
