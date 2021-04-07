@@ -17,11 +17,11 @@ const PageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  background: linear-gradient(135deg, #BAFA75, #129490);
+  // background: linear-gradient(135deg, #BAFA75, #129490);
   // background: #129490;
   // background: linear-gradient(135deg, #5fa317, #129490);
 
-  box-shadow: 0 3px 10px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
+  // box-shadow: 0 3px 10px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
 `;
 
 const SearchWrapper = styled.div`
@@ -30,11 +30,12 @@ const SearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  background: #fff;
+  justify-content: space-between;
+  // background: #fff;
   border-radius: 10px 10px 0 0;
 
   @media (min-width: 768px) {
+    justify-content: center;
     flex-direction: row;
     height: 8vh;
   }

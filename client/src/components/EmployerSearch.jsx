@@ -4,16 +4,19 @@ import styled from 'styled-components';
 import FindJobSeekersPortal from './EmployerSearchSubComponents/FindJobSeekersPortal.jsx';
 
 const EmployerSearchWrapper = styled.div`
-  margin: 0 auto;
   display: flex;
+  margin: 0;
   flex-direction: column;
+  justify-content: center;
+  background: #F5F5F5;
   align-items: center;
-  // height: 100vh;
+  height: 94vh;
+  max-width: 100vw;
 `;
 
 const NavButtonDiv = styled.div`
   height: 6vh;
-  width: 20vw;
+  width: auto;
   position: absolute;
   top: 0;
   right: 5vw;
@@ -27,20 +30,24 @@ const NavButton = styled.a`
   position: relative;
   text-align: center;
   height: 4vh;
+  margin: 0 1vw;
   line-height: 4vh;
-  width: 9vw;
-  border: 1px solid grey;
-  border-radius: 25px;
+  letter-spacing: 1px;
+  width: auto;
+  padding: .25vh 1.5vw;
   text-decoration: none;
-  color: #424242;
-  background: rgba(255,255,255,0.4);
+  background: #129490;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  color: #fff;
 `;
 
 const EmployerSearch = () => (
   <EmployerSearchWrapper>
     <NavButtonDiv>
-      <NavButton href={`${window.location.origin}/#/employer`}>Employer Dashboard</NavButton>
-      <NavButton href={`${window.location.origin}/#/employerSearch`}>Search Job Seekers</NavButton>
+      <NavButton href={`${window.location.origin}/#/employer`}>DASHBOARD</NavButton>
+      <NavButton href={`${window.location.origin}/#/employerSearch`}>HIRE</NavButton>
     </NavButtonDiv>
     <FindJobSeekersPortal />
   </EmployerSearchWrapper>

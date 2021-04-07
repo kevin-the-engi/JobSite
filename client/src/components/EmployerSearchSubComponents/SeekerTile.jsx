@@ -8,7 +8,8 @@ const Tile = styled.div`
   width: 95%;
   background-color: #fff;
   border: solid 1px #e0e0e0;
-  border-radius: 10px;
+  border-radius: 5px;
+  margin: .2vh 0;
   padding: .5vh 1%;
   font-family: Arial, sans-serif;
   color: #424242;
@@ -16,6 +17,7 @@ const Tile = styled.div`
 
 const Name = styled.h1`
   margin: .5vh 0 .25vh .5vw;
+  color: #5FA317;
   font-size: 1rem;
   font-weight: bold;
 `;

@@ -8,7 +8,8 @@ const Form = styled.form`
   align-items: center;
 
   @media (min-width: 768px) {
-    width: 40%;
+    justify-content: space-between;
+    width: 46%;
     flex-direction: row;
   }
 `;
@@ -19,9 +20,9 @@ const Input = styled.input`
   font-weight: bold;
   height: 4.8vh;
   padding: 0 1.25vw;
-  background: none;
-  border: 1px solid #424242;
-  border-radius: 5px;
+  background: #fff;
+  border: 1px solid #aeaeae;
+  border-radius: 25px;
   color: #424242;
 `;
 
@@ -29,12 +30,14 @@ const Button = styled.button`
   width: max(10vw, 150px);
   font-size: 1rem;
   font-weight: bold;
+  letter-spacing: 2px;
   height: 5vh;
   padding: 0 1.25vw;
-  background: none;
-  border: 1px solid #424242;
-  border-radius: 5px;
-  color: #424242;
+  background: #129490;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  color: #fff;
 `;
 
 class SearchBar extends React.Component {
@@ -74,7 +77,7 @@ class SearchBar extends React.Component {
           value={search}
           placeholder="Enter search term..."
         />
-        <Button type="submit" value="Search">Search</Button>
+        <Button type="submit" value="Search">SEARCH</Button>
       </Form>
     );
   }
