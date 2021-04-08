@@ -3,22 +3,7 @@ import styled from 'styled-components';
 import schema from '../constants.jsx';
 import NotesUpdateModal from './NotesUpdateModal.jsx';
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 10vh;
-  width: 95%;
-  background-color: #fff;
-  border: solid 1px #e0e0e0;
-  border-radius: 5px;
-  margin: .2vh 0;
-  padding: .5vh 1%;
-  font-family: Arial, sans-serif;
-  color: #424242;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+const Wrapper = schema.listCard;
 
 const ModalBackground = styled.div`
   position: fixed;

@@ -22,8 +22,7 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 4%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-radius: 4px;
 `;
 
 const ModalBackground = styled.div`
