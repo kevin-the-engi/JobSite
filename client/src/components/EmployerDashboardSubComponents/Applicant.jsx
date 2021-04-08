@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const JobTile = styled.div`
+const ApplicantTile = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,21 +40,16 @@ const Text = styled.p`
   font-weight: lighter;
 `;
 
-const JobPosting = ({ job, expand }) => (
-  <JobTile onClick={(event) => { event.preventDefault(); expand(job); }}>
+const Applicant = ({ applicant, toggleModal, getResumeToDisplay }) => (
+  <ApplicantTile onClick={(event) => { event.preventDefault(); toggleModal(); getResumeToDisplay(applicant) }}>
     {/* Delete the following once routed */}
-    <Text>{job}</Text>
+    <Text>{applicant}</Text>
 
     {/* Use the following once routed
 
-    <SpacedRowDiv>
-      <Title>{job.title}</Title>
-      <Text>{`$${job.salary}`}</Text>
-    </SpacedRowDiv>
-    <Company>{job.company}</Company>
-    <Text>{job.city}</Text>
-    <Text>{`${job.employmentType}/${job.workLocationType}`}</Text> */}
-  </JobTile>
+    <Title>{`${applicant.firstName} ${applicant.lastName}`}</Title>
+   */}
+  </ApplicantTile>
 );
 
-export default JobPosting;
+export default Applicant;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import JobPosting from './JobPosting.jsx';
+import Applicant from './Applicant.jsx';
 
-const PostedJobsWrapper = styled.div`
+const ApplicantsWrapper = styled.div`
   height: 72%;
   width: 100%;
   display: flex;
@@ -46,32 +46,34 @@ const List = styled.div`
   align-items: center;
 `;
 
-const PostedJobs = (props) => (
-  <PostedJobsWrapper>
-    <Header>Current Jobs Listed: 2</Header>
+const JobApplicants = ({ toggleModal, jobApplicants, getResumeToDisplay }) => (
+  <ApplicantsWrapper>
+    <Header>Current Applicants: 2</Header>
     <ListWrapper>
       <List>
 
         {/* Delete the following once routed */}
 
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((job) => (
-          <JobPosting
-            job={job}
-            key={job}
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((applicant) => (
+          <Applicant
+            applicant={applicant}
+            key={applicant}
+            toggleModal={toggleModal}
+            getResumeToDisplay={getResumeToDisplay}
           />
         ))}
 
         {/* Use the following once routed
 
-        {jobPosting.map((job) => (
-          <JobPosting
-            job={job}
-            key={job._id}
+        {jobApplicants.map((job) => (
+          <Applicant
+            applicant={applicant}
+            key={applicant._id}
           />
         ))} */}
       </List>
     </ListWrapper>
-  </PostedJobsWrapper>
+  </ApplicantsWrapper>
 );
 
-export default PostedJobs;
+export default JobApplicants;
