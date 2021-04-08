@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { get } from '../../http';
 
 import SearchBar from './SeekerSearchSubComponents/Searchbar.jsx';
 import Location from './SeekerSearchSubComponents/Location.jsx';
@@ -105,9 +106,12 @@ class JobPortal extends React.Component {
   }
 
   componentDidMount() {
-    // send GET Reques for data and assign to jobResults
+    // send GET Request for data and assign to jobResults
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
+    get('api/listing/all')
+      .then((data) => this.setState({ jobResults: data }))
+      .catch((e) => console.log(e));
   }
 
   componentWillUnmount() {

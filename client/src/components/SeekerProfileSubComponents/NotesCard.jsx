@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import styled from 'styled-components';
 
 import NotesUpdateModal from './NotesUpdateModal.jsx';
@@ -42,6 +42,9 @@ const NotesCard = (props) => {
 
   const toggleModal = (event) => {
     event.preventDefault();
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
+
     console.log('wrapper');
 
     setShow(!show);

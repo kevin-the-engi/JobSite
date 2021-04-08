@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import { patchField, deleteField } from '../../../http';
 
 const Wrapper = styled.div`
   height: 40vh;
@@ -70,13 +71,18 @@ const NotesUpdateModal = ({ text }) => {
 
   const handleUpdate = (event) => {
     event.preventDefault();
-    // call function to send note
-  };
+    patchField('api/seekerdata/note', { seekerId, noteId, body: note })// call function to send note
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }
 
   const handleDelete = (event) => {
     event.preventDefault();
-    // call function to delete
-  };
+    // call function to del
+    deleteField('api/seekerdata/note', { seekerId, noteId })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }
 
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => { event.stopPropagation(); console.log('mouseDown')}}>

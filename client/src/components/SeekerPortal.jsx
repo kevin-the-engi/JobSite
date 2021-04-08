@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { get } from '../../http';
 
 import Account from './SeekerProfileSubComponents/Account.jsx';
 
@@ -58,6 +59,25 @@ class SeekerPortal extends React.Component {
     };
   }
 
+  // Dummy data
+  componentDidMount() {
+    const id = {
+      seekerId: '606d2039fa660c4ce0b471fd',
+    };
+    get('api/seekerdata/all', id)
+      .then((data) =>
+        this.setState({
+          reminders: data.appointments,
+          savedJobs: data.savedJobs,
+          appliedJobs: data.applications,
+          notes: data.notes,
+        })
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
     return (
       <SeekerPortalWrapper>
@@ -65,7 +85,7 @@ class SeekerPortal extends React.Component {
           <NavButton href={`${window.location.origin}/#/seeker`}>MY PROFILE</NavButton>
           <NavButton href={`${window.location.origin}/#/jobs`}>FIND JOBS</NavButton>
         </NavButtonDiv>
-        <Account />
+        <Account reminders={this.state.reminders} />
       </SeekerPortalWrapper>
     );
   }

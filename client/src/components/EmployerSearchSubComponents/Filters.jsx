@@ -32,6 +32,9 @@ const Button = styled.button`
   outline: none;
   border-radius: 25px;
   color: #129490;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 class Filters extends React.Component {

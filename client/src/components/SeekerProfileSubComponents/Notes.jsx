@@ -44,6 +44,7 @@ const Notes = (props) => {
     setShowAdd(!showAdd);
     // send new note back up
   };
+  const dummySeekerId = '606d2039fa660c4ce0b471fd';
 
   return (
     <NotesWrapper>
@@ -53,10 +54,9 @@ const Notes = (props) => {
       {showAdd
         ? (
           <ModalBackground onMouseDown={toggleModal}>
-            <AddNotesModal toggleModal={toggleModal} display={setShowAdd} />
+            <AddNotesModal seekerId={dummySeekerId} toggleModal={toggleModal} display={setShowAdd} />
           </ModalBackground>
         ) : null}
-
       {notes.map((note) => (
         <NotesCard
           note={note}
