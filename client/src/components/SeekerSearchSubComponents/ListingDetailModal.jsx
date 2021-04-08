@@ -58,7 +58,7 @@ const SectionTitle = styled.h2`
   color: ${schema.secondary};
 `;
 
-const ListingDetailDiv = ({ jobToDisplay }) => (
+const ListingDetailModal = ({ jobToDisplay }) => (
   <JobDetailWrapper>
     {!jobToDisplay && <div>Select a job listing for more details</div>}
     {jobToDisplay && (
@@ -74,4 +74,4 @@ const ListingDetailDiv = ({ jobToDisplay }) => (
   </JobDetailWrapper>
 );
 
-export default ListingDetailDiv;
+export default ListingDetailModal;
