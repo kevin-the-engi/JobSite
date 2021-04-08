@@ -29,7 +29,7 @@ const ModalBackground = styled.div`
 `;
 
 const Button = styled.button`
-  width: max(30vw, 300px);
+  width: max(20vw, 280px);
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 2px;

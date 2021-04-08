@@ -19,18 +19,31 @@ const JobDetailWrapper = styled.div`
   color: #424242;
 `;
 
-const JobDetail = styled.div`
-  height: 95%;
+const JobDisplay = styled.div`
+  height: 98%;
   width: 98%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   border: solid 1px #e0e0e0;
   border-radius: 10px;
   background: #ffffff;
 `;
 
+const JobDetail = styled.div`
+  height: 90%;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+
 const Wrapper = styled.div`
+  height: 10%;
+  display: flex;
+  justify-content: center;
 `;
 
 const ModalBackground = styled.div`
@@ -44,44 +57,33 @@ const ModalBackground = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 0 1.25vw;
-  background: white;
-  border: 1px solid #424242;
-  border-radius: 5px;
-  color: #424242;
+  margin: auto;
+  width: min(15vw, 200px);
+  min-height: 3vh;
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  background: ${schema.primary};
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
   ${schema.hoverEffect}
 `;
 
-// const ListingDetailDiv = ({ jobToDisplay }) => {
-//   const [show, setShow] = useState(false);
+const SpacedRowDiv = styled.div`
+  margin: 2vh 1vw .5vh 1vw;
+  display: flex;
+  justify-content: space-evenly;
+`;
 
-//   const toggleModal = (event) => {
-//     event.preventDefault();
-//     setShow(!show);
-//     // send new note back up
-//   };
-
-//   return (
-//     <JobDetailWrapper>
-//       {!jobToDisplay && <div>Select a job listing for more details</div>}
-//       {jobToDisplay && (
-//         <JobDetail>
-//           {`${jobToDisplay}
-//           fill this in with all the job description fields,see ApplicantDetailDiv in EmployerSearchSubComponents for base styling options.
-//           Everyting here will need to be duplicated in the modal file.`}
-//           {show
-//           ? (
-//             <ModalBackground onMouseDown={toggleModal}>
-//               <SaveJobModal toggleModal={toggleModal} display={setShowAdd} />
-//             </ModalBackground>
-//           ) : null}
-//         </JobDetail>
-//       )}
-//     </JobDetailWrapper>
-//   )
-// };
 const Title = styled.h1`
-  margin: .5vh 0 .25vh 0;
+  margin: 2vh 0 .25vh 0;
   color: ${schema.primary};
   font-size: 1.5rem;
   font-weight: bold;
@@ -89,6 +91,7 @@ const Title = styled.h1`
 
 const Company = styled.p`
   margin: 0 1vw;
+  font-size: 1.15rem;
   font-weight: lighter;
   font-style: italic;
 `;
@@ -96,6 +99,14 @@ const Company = styled.p`
 const Description = styled.p`
   margin: 0 1vw;
   font-weight: lighter;
+`;
+
+const Section = styled.div`
+  width: 95%;
+  margin-top: .5vh;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-evenly;
 `;
 
 const SectionTitle = styled.h2`
@@ -117,24 +128,48 @@ const ListingDetailDiv = ({ jobToDisplay }) => {
     <JobDetailWrapper>
       {!jobToDisplay && <div>Select a job listing for more details</div>}
       {jobToDisplay && (
+      <JobDisplay>
         <JobDetail>
           <Title>{jobToDisplay.title}</Title>
           <Company>{jobToDisplay.company}</Company>
-          <SectionTitle>Job Description</SectionTitle>
-          <Description>{jobToDisplay.jobDescription}</Description>
-          <SectionTitle>Company Description</SectionTitle>
-          <Description>{jobToDisplay.companyDescription}</Description>
-
-          <Wrapper>
-            <Button onClick={toggleModal}>Save</Button>
-            {show
-              ? (
-                <ModalBackground onMouseDown={toggleModal}>
-                  <SaveJobModal toggleModal={toggleModal} />
-                </ModalBackground>
-              ) : null}
-          </Wrapper>
+          <Description>{`${jobToDisplay.city}`}</Description>
+          <SpacedRowDiv>
+            <Description>{`Job Type: ${jobToDisplay.employmentType.charAt(0).toUpperCase()}${jobToDisplay.employmentType.slice(1)}`}</Description>
+            <Description>{`Experience Level: ${jobToDisplay.experienceLevel.charAt(0).toUpperCase()}${jobToDisplay.experienceLevel.slice(1)}`}</Description>
+            <Description>{`Location: ${jobToDisplay.workLocationType.charAt(0).toUpperCase()}${jobToDisplay.workLocationType.slice(1)}`}</Description>
+          </SpacedRowDiv>
+          <Section>
+            <SectionTitle>Job Description</SectionTitle>
+            <Description>{jobToDisplay.jobDescription}</Description>
+          </Section>
+          <Section>
+            <SectionTitle>Requirements</SectionTitle>
+            {jobToDisplay.requirements.map((req) => <Description>{req}</Description>)}
+          </Section>
+          <Section>
+            <SectionTitle>Industry</SectionTitle>
+            <Description>{jobToDisplay.industry}</Description>
+          </Section>
+          <Section>
+            <SectionTitle>Salary and Benefits</SectionTitle>
+            <Description>{`Salary: $${jobToDisplay.salary.slice(0, jobToDisplay.salary.length - 3)},${jobToDisplay.salary.slice(jobToDisplay.salary.length - 3)}`}</Description>
+            { jobToDisplay.benefits.map((benefit) => <Description>{`Benefits: ${benefit}`}</Description>)}
+          </Section>
+          <Section>
+            <SectionTitle>{`About ${jobToDisplay.company}`}</SectionTitle>
+            <Description>{jobToDisplay.companyDescription}</Description>
+          </Section>
         </JobDetail>
+        <Wrapper>
+          <Button onClick={toggleModal}>Save</Button>
+          {show
+            ? (
+              <ModalBackground onMouseDown={toggleModal}>
+                <SaveJobModal toggleModal={toggleModal} />
+              </ModalBackground>
+            ) : null}
+        </Wrapper>
+      </JobDisplay>
       )}
 
     </JobDetailWrapper>
@@ -142,16 +177,3 @@ const ListingDetailDiv = ({ jobToDisplay }) => {
 };
 
 export default ListingDetailDiv;
-
-// benefits: ["401k"]
-// city: "San Francisco"
-// companyDescription: "Bibendum est ultricies integer quis auctor elit sed vulputate. Blandit cursus risus at ultrices mi."
-// datePosted: "2021-02-28T00:00:00.000Z"
-// employerId: "606d2d766faf2c4f0b45fa0a"
-// employmentType: "fulltime"
-// experienceLevel: "mid"
-// industry: "Online Education"
-// requirements: (2) ["2-4 years of qa training", "navigating reddit"]
-// salary: "100000"
-// workLocationType: "onsite"
-// zipcode: "91403"
