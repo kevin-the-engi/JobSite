@@ -57,6 +57,7 @@ const Button = styled.button`
   border: 1px solid grey;
   border-radius: 25px;
   background: white;
+  ${schema.hoverEffect}
 `;
 const BottomDiv = styled.div`
   position: absolute;
@@ -84,11 +85,12 @@ const Toggle = styled.button`
   height: 4vh;
   line-height: 4vh;
   width: 9vw;
-  border: 1px solid grey;
+  border: 1px solid ${schema.secondary};
   border-radius: 25px;
   text-decoration: none;
-  color: #424242;
+  color: ${schema.secondary};
   background: rgba(255,255,255,0.4);
+  ${schema.hoverEffect}
 `;
 
 const SEEKER_REGISTER_HEADER = 'Looking for a job? Sign up now!';

@@ -46,6 +46,7 @@ const NavButton = styled.a`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 class SeekerPortal extends React.Component {
