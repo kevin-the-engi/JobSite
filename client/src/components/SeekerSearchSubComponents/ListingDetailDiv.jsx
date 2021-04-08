@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
+import SaveJobModal from './SaveJobModal.jsx';
 
 const JobDetailWrapper = styled.div`
   width: 62%;
@@ -27,17 +29,33 @@ const JobDetail = styled.div`
   background: #ffffff;
 `;
 
-const ListingDetailDiv = ({ jobToDisplay }) => (
-  <JobDetailWrapper>
-    {!jobToDisplay && <div>Select a job listing for more details</div>}
-    {jobToDisplay && (
-      <JobDetail>
-        {`${jobToDisplay}
-        fill this in with all the job description fields,see ApplicantDetailDiv in EmployerSearchSubComponents for base styling options.
-        Everyting here will need to be duplicated in the modal file.`}
-      </JobDetail>
-    )}
-  </JobDetailWrapper>
-);
+const ListingDetailDiv = ({ jobToDisplay }) => {
+  const [show, setShow] = useState(false);
+
+  const toggleModal = (event) => {
+    event.preventDefault();
+    setShow(!show);
+    // send new note back up
+  };
+
+  return (
+    <JobDetailWrapper>
+      {!jobToDisplay && <div>Select a job listing for more details</div>}
+      {jobToDisplay && (
+        <JobDetail>
+          {`${jobToDisplay}
+          fill this in with all the job description fields,see ApplicantDetailDiv in EmployerSearchSubComponents for base styling options.
+          Everyting here will need to be duplicated in the modal file.`}
+          {show
+          ? (
+            <ModalBackground onMouseDown={toggleModal}>
+              <SaveJobModal toggleModal={toggleModal} display={setShowAdd} />
+            </ModalBackground>
+          ) : null}
+        </JobDetail>
+      )}
+    </JobDetailWrapper>
+  )
+};
 
 export default ListingDetailDiv;

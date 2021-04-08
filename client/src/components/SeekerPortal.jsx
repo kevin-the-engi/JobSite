@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { get } from '../../http';
 
 import Account from './SeekerProfileSubComponents/Account.jsx';
 
@@ -57,6 +58,20 @@ class SeekerPortal extends React.Component {
       notes: [],
     };
   }
+
+  // NEED SEEKER ID FOR COMPONENT DID MOUNT
+  // componentDidMount() {
+  //   // get notes
+  //   get( 'alldata', {seekerId})
+  //   get('/api/seekerdata/note/all')
+  //   //
+  //   get('/api/seekerdata/appointment/all')
+  //   //
+  //   get('/api/seekerdata/application/all')
+  //   //
+  //   get('/api/seekerdata/savedjob/all'')
+  // }
+
 
   render() {
     return (

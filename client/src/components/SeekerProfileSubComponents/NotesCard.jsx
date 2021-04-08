@@ -41,7 +41,7 @@ const NotesCard = (props) => {
   const [update, setUpdate] = useState(false);
 
   const toggleModal = (event) => {
-    event.preventDefault();
+    event.stopPropagation();
     console.log('wrapper');
 
     setShow(!show);
