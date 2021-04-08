@@ -59,20 +59,20 @@ class SeekerPortal extends React.Component {
     };
   }
 
+  // Dummy data
   componentDidMount() {
-
-  }
-
-  getAppointments() {
     const id = {
       seekerId: '606d2039fa660c4ce0b471fd',
     };
-    get('api/seekerdata/appointment/all', id)
-      .then((appointments) => {
+    get('api/seekerdata/all', id)
+      .then((data) =>
         this.setState({
-          reminders: appointments.body,
-        });
-      })
+          reminders: data.appointments,
+          savedJobs: data.savedJobs,
+          appliedJobs: data.applications,
+          notes: data.notes,
+        })
+      )
       .catch((err) => {
         console.log(err);
       });

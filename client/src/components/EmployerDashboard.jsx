@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { get } from '../../http';
 
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
+import Profile from './EmployerDashboardSubComponents/Profile.jsx';
+import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
+
+import ApplicantDetailDiv from './EmployerSearchSubComponents/ApplicantDetailDiv.jsx';
+import ApplicantDetailModal from './EmployerSearchSubComponents/ApplicantDetailModal.jsx';
 
 const PageWrapper = styled.div`
   margin: 0;
@@ -63,6 +69,10 @@ const LowerDashboardWrapper = styled.div`
 const LeftSide = styled.div`
   width: 95%;
   height: 97%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: #FFF;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
@@ -94,15 +104,60 @@ const RightSide = styled.div`
   }
 `;
 
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background-color: #42424275;
+`;
+
 class EmployerDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      isDesktop: false,
+      resumeToDisplay: null,
+      modalOpen: false,
+      jobApplicants: null,
+      notes: []
     };
+    this.updateScreenSize = this.updateScreenSize.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.getResumeToDisplay = this.getResumeToDisplay.bind(this);
+  }
+
+  componentDidMount() {
+    // NEED employerNoteId
+    get('api/employerdata/note/all', { employerNoteId })
+      .then((data) => this.setState({ notes: data.notes }))
+      .catch((err) => console.log(err));
+    this.updateScreenSize();
+    window.addEventListener('resize', this.updateScreenSize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateScreenSize);
+  }
+
+  getResumeToDisplay(seeker) {
+    this.setState({ resumeToDisplay: seeker });
+  }
+
+  toggleModal() {
+    this.setState((prevState) => ({
+      modalOpen: !prevState.modalOpen,
+    }));
+  }
+
+  updateScreenSize() {
+    this.setState({ isDesktop: window.innerWidth >= 768 });
   }
 
   render() {
+    const { jobApplicants, resumeToDisplay, toggleModal, isDesktop, modalOpen } = this.state;
     return (
       <PageWrapper>
         <NavButtonDiv>
@@ -112,10 +167,20 @@ class EmployerDashboard extends React.Component {
         <PostJob />
         <LowerDashboardWrapper>
           <LeftSide>
-            More components, see excalidraw
+            <Profile />
+            <JobApplicants
+              jobApplicants={jobApplicants}
+              toggleModal={this.toggleModal}
+              getResumeToDisplay={this.getResumeToDisplay}
+            />
           </LeftSide>
           <RightSide>
-            More components, see excalidraw
+            { isDesktop && <ApplicantDetailDiv resumeToDisplay={resumeToDisplay} />}
+            { !isDesktop && modalOpen && (
+              <ModalBackground onMouseDown={toggleModal}>
+                <ApplicantDetailModal resumeToDisplay={resumeToDisplay} />
+              </ModalBackground>
+            )}
           </RightSide>
         </LowerDashboardWrapper>
       </PageWrapper>
