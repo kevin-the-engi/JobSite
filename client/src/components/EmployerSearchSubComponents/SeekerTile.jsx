@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const Tile = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const Tile = styled.div`
 
 const Name = styled.h1`
   margin: .5vh 0 .25vh .5vw;
-  color: #5FA317;
+  color: ${schema.primary};
   font-size: 1rem;
   font-weight: bold;
 `;

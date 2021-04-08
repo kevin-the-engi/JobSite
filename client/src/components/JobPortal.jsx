@@ -8,6 +8,7 @@ import Filters from './SeekerSearchSubComponents/Filters.jsx';
 import ListJobResults from './SeekerSearchSubComponents/ListJobResults.jsx';
 import ListingDetailDiv from './SeekerSearchSubComponents/ListingDetailDiv.jsx';
 import ListingDetailModal from './SeekerSearchSubComponents/ListingDetailModal.jsx';
+import schema from './constants.jsx';
 
 const PageWrapper = styled.div`
   margin: 0;
@@ -41,7 +42,7 @@ const NavButton = styled.a`
   width: auto;
   padding: .25vh 1.5vw;
   text-decoration: none;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;
@@ -84,6 +85,7 @@ const ModalBackground = styled.div`
   height: 100%;
   z-index: 4;
   background-color: #42424275;
+  backdrop-filter: blur(12px);
 `;
 
 class JobPortal extends React.Component {

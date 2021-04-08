@@ -10,21 +10,17 @@ const AppliedJobsWrapper = styled.div`
   align-items: center;
 `;
 
-const AppliedJobs = (props) => {
+const AppliedJobs = () => {
   const savedJobs = [
-    { name: 'Ice-cream Taster', company: 'Ben & Jerry\'s', description: 'description'},
-    { name: 'Bear Poker', company: 'Volunteer', description: 'description'},
+    { name: 'Ice-cream Taster', company: 'Ben & Jerry\'s', description: 'description' },
+    { name: 'Bear Poker', company: 'Volunteer', description: 'description' },
   ];
 
-  return(
+  return (
     <AppliedJobsWrapper>
-      {savedJobs.map(job =>
-        <AppliedJobsCard
-          job={job}
-        />
-      )}
+      { savedJobs.map((job) => <AppliedJobsCard job={job} />) }
     </AppliedJobsWrapper>
-  )
-}
+  );
+};
 
 export default AppliedJobs;
