@@ -65,14 +65,14 @@ class SeekerPortal extends React.Component {
       seekerId: '606d2039fa660c4ce0b471fd',
     };
     get('api/seekerdata/all', id)
-      .then((data) =>
+      .then((data) => {
         this.setState({
           reminders: data.appointments,
           savedJobs: data.savedJobs,
           appliedJobs: data.applications,
           notes: data.notes,
-        })
-      )
+        });
+      })
       .catch((err) => {
         console.log(err);
       });

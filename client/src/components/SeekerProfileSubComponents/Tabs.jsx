@@ -38,9 +38,9 @@ const TabsWrapper = styled.div`
 
 const Tab = styled.div`
   width: 24.75%;
-  background: ${props => props.selected ? '#F5F5F5' : schema.secondary};
-  color: ${props => props.selected ? schema.primary : '#FFF'};
-  font-weight: ${props => props.selected ? 'bold' : 'normal'};
+  background: ${(props) => (props.selected ? '#F5F5F5' : schema.secondary)};
+  color: ${(props) => (props.selected ? schema.primary : '#FFF')};
+  font-weight: ${(props) => (props.selected ? 'bold' : 'normal')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,13 +69,13 @@ const ContentWrapper = styled.div`
     scrollbar-width: none;  /* Firefox */
 `;
 
-const Tabs = (props) => {
-  const [selectedTab, setSelectedTab] = useState('reminders')
+const Tabs = () => {
+  const [selectedTab, setSelectedTab] = useState('reminders');
   const [tab, setTab] = useState('reminders');
 
   const toggleTab = (id) => {
     setTab(id);
-    setSelectedTab(id)
+    setSelectedTab(id);
   };
 
   const handleClick = (event) => {

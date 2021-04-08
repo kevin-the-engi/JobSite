@@ -46,7 +46,9 @@ const List = styled.div`
   align-items: center;
 `;
 
-const JobApplicants = ({ toggleModal, selectedJobPosting, jobApplicants, getResumeToDisplay }) => (
+const JobApplicants = ({
+  toggleModal, selectedJobPosting, jobApplicants, getResumeToDisplay,
+}) => (
   <ApplicantsWrapper>
     <Header>Current Applicants: jobApplicants.length</Header>
     <ListWrapper>

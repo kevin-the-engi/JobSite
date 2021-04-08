@@ -10,7 +10,7 @@ const RemindersWrapper = styled.div`
   align-items: center;
 `;
 
-const Reminders = (props) => {
+const Reminders = () => {
   const reminders = [
     { date: '4th April', type: 'Follow-up', text: 'Reminder text' },
     { date: '5th April', type: 'Interview', text: 'Reminder text' },

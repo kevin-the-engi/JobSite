@@ -27,13 +27,11 @@ const Name = styled.h1`
   font-weight: bold;
 `;
 
-const Profile = (props) => {
-  return(
-    <ProfileWrapper>
-      <Image src="test.jpeg" alt="profilePic" width="125px" height="125px"></Image>
-      <Name>Ida B Higherin</Name>
-    </ProfileWrapper>
-  )
-};
+const Profile = () => (
+  <ProfileWrapper>
+    <Image src="test.jpeg" alt="profilePic" width="125px" height="125px" />
+    <Name>Ida B Higherin</Name>
+  </ProfileWrapper>
+);
 
 export default Profile;

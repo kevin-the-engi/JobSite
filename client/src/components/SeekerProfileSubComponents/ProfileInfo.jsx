@@ -50,19 +50,17 @@ const SectionTitle = styled.h2`
   color: ${schema.secondary};
 `;
 
-const ProfileInfo = (props) => {
-  return(
+const ProfileInfo = () => {
+  const tempLink = 'linkedin.com/in/jacobwpeterson';
+  return (
     <ProfileInfoWrapper>
       <Name>John Smith</Name>
       <ItalicText>Javascript | React | Node</ItalicText>
       <Text>555-867-5309</Text>
-      <Link>linkedin.com/in/jacobwpeterson</Link>
+      <Link href={tempLink}>{tempLink}</Link>
       <SectionTitle>Experience</SectionTitle>
       <SectionTitle>Education</SectionTitle>
       <SectionTitle>Certifications</SectionTitle>
-
-
-
     </ProfileInfoWrapper>
   );
 };

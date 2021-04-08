@@ -38,7 +38,9 @@ const RemindersCard = (props) => {
 
   return (
     <Wrapper onClick={toggleModal}>
-      {date} {type} {text}
+      {date}
+      {type}
+      {text}
       {!show
         ? (
           <ModalBackground onMouseDown={toggleModal}>

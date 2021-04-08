@@ -172,7 +172,13 @@ class EmployerDashboard extends React.Component {
 
   render() {
     const {
-      jobApplicants, selectedJobPosting, getSelectedItem, resumeToDisplay, toggleModal, isDesktop, modalOpen,
+      jobApplicants,
+      selectedJobPosting,
+      getSelectedItem,
+      resumeToDisplay,
+      toggleModal,
+      isDesktop,
+      modalOpen,
     } = this.state;
 
     return (
