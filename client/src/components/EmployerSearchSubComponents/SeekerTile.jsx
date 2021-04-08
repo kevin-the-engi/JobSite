@@ -10,12 +10,13 @@ const Tile = styled.div`
   background-color: #fff;
   border: solid 1px #e0e0e0;
   border-radius: 5px;
-  margin: .2vh 0;
+  margin: .25vh 0;
   padding: .5vh 1%;
   font-family: Arial, sans-serif;
   color: #424242;
   &:hover {
     cursor: pointer;
+    border-color: ${schema.secondary};
   }
 `;
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -42,6 +43,7 @@ const Button = styled.button`
   border: 1px solid #424242;
   border-radius: 5px;
   color: #424242;
+  ${schema.hoverEffect}
 `;
 
 const TabModal = (props) => {

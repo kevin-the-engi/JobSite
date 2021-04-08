@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { get } from '../../../http';
 
 import DummyData from '../../../../DummyData.js';
-
+import schema from '../constants.jsx';
 import SearchBar from './Searchbar.jsx';
 import Filters from './Filters.jsx';
 import ListSeekerResults from './ListSeekerResults.jsx';
@@ -56,7 +56,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 class FindJobSeekersPortal extends React.Component {

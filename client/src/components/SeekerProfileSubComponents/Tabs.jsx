@@ -37,15 +37,16 @@ const TabsWrapper = styled.div`
 `;
 
 const Tab = styled.div`
-  width: 24.75%;
+  width: 24.7%;
   background: ${(props) => (props.selected ? '#F5F5F5' : schema.secondary)};
   color: ${(props) => (props.selected ? schema.primary : '#FFF')};
   font-weight: ${(props) => (props.selected ? 'bold' : 'normal')};
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  ${schema.hoverEffect}
 `;
 
 const ContentWrapper = styled.div`

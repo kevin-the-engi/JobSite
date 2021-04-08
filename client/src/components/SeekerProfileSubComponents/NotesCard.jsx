@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import styled from 'styled-components';
-
+import schema from '../constants.jsx';
 import NotesUpdateModal from './NotesUpdateModal.jsx';
 
 const Wrapper = styled.div`
@@ -15,6 +15,9 @@ const Wrapper = styled.div`
   padding: .5vh 1%;
   font-family: Arial, sans-serif;
   color: #424242;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const ModalBackground = styled.div`
@@ -24,7 +27,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 const Body = styled.div`
