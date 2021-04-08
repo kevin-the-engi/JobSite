@@ -12,7 +12,6 @@ const NotesWrapper = styled.div`
 `;
 
 const HeaderWrapper = styled.div`
-  border: 2px solid black;
 `;
 
 const ModalBackground = styled.div`
@@ -34,8 +33,11 @@ const Button = styled.button`
 `;
 
 const Notes = (props) => {
-  console.log(props)
-  const { notes, postNote } = props;
+  // const { notes, postNote } = props;
+  const notes = [
+    { title: 'This is the title', text: 'this is the body', category: 'this is a category' },
+  ];
+
   const [showAdd, setShowAdd] = useState(false);
 
   const toggleModal = (event) => {
@@ -56,7 +58,7 @@ const Notes = (props) => {
               seekerId={dummySeekerId}
               toggleModal={toggleModal}
               display={setShowAdd}
-              postNote={postNote}
+              // postNote={postNote}
             />
           </ModalBackground>
         ) : null}
