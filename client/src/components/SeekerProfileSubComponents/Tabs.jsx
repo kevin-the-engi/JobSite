@@ -69,14 +69,10 @@ const ContentWrapper = styled.div`
     scrollbar-width: none;  /* Firefox */
 `;
 
-<<<<<<< HEAD
-const Tabs = () => {
-=======
 const Tabs = (props) => {
   const {
     reminders, savedJobs, appliedJobs, notes, postNote,
   } = props;
->>>>>>> afcd508d717fa5150e0dcd67b5c09ad3606e6928
   const [selectedTab, setSelectedTab] = useState('reminders');
   const [tab, setTab] = useState('reminders');
 

@@ -65,16 +65,8 @@ class SeekerPortal extends React.Component {
 
   // Dummy data
   componentDidMount() {
-<<<<<<< HEAD
-    const id = {
-      seekerId: '606d2039fa660c4ce0b471fd',
-    };
-    get('api/seekerdata/all', id)
-      .then((data) => {
-=======
     get('api/seekerdata/all', { seekerId: this.state.seekerId })
-      .then((data) =>
->>>>>>> afcd508d717fa5150e0dcd67b5c09ad3606e6928
+      .then((data) => {
         this.setState({
           reminders: data.appointments,
           savedJobs: data.savedJobs,
