@@ -91,9 +91,6 @@ const Toggle = styled.button`
   background: rgba(255,255,255,0.4);
 `;
 
-const URL = 'http://3.134.101.103:4000/api';
-const APP_TITLE = 'JobSite';
-const SLOGAN = 'Connecting people with jobs and jobs with people';
 const SEEKER_REGISTER_HEADER = 'Looking for a job? Sign up now!';
 const EMPLOYER_REGISTER_HEADER = 'Looking for applicants? Sign up now!';
 const SEEKER_LOGIN_HEADER = 'Login to get back to your search!';
@@ -101,7 +98,9 @@ const EMPLOYER_LOGIN_HEADER = 'Login to get access to your applicants!';
 const REGISTER_BOTTOM_TEXT = 'Already a user? ';
 const LOGIN_BOTTOM_TEXT = 'Don\'t have an account yet? ';
 
-const FrontPage = ({ setUserID, setAccountType, bubbleUpEmail, bubbleUpCompany }) => {
+const FrontPage = ({
+  setUserID, setAccountType, bubbleUpEmail, bubbleUpCompany,
+}) => {
   const [user, setUser] = useState('Seeker');
   const [formType, setFormType] = useState('Register');
   const [firstName, setFirstName] = useState('');
@@ -147,7 +146,7 @@ const FrontPage = ({ setUserID, setAccountType, bubbleUpEmail, bubbleUpCompany }
 
     if (formType === 'Register') {
       if (user === 'Seeker') {
-        axios.post(`${URL}/users`, {
+        axios.post(`${schema.url}/users`, {
           firstName,
           lastName,
           email,
@@ -162,7 +161,7 @@ const FrontPage = ({ setUserID, setAccountType, bubbleUpEmail, bubbleUpCompany }
             window.location.href = `${window.location.origin}/#/seeker`;
           });
       } else {
-        axios.post(`${URL}/employers`, {
+        axios.post(`${schema.url}/employers`, {
           company,
           firstName,
           lastName,
@@ -180,7 +179,7 @@ const FrontPage = ({ setUserID, setAccountType, bubbleUpEmail, bubbleUpCompany }
           });
       }
     } else {
-      axios.post(`${URL}/auth`, {
+      axios.post(`${schema.url}/auth`, {
         email,
         password,
       })
@@ -215,8 +214,8 @@ const FrontPage = ({ setUserID, setAccountType, bubbleUpEmail, bubbleUpCompany }
         <Toggle onClick={handleUserToggle}>{`${user === 'Seeker' ? 'Employer' : 'Seeker'} Portal`}</Toggle>
       </ToggleButtonDiv>
       <Div>
-        <h1>{APP_TITLE}</h1>
-        <h3>{SLOGAN}</h3>
+        <h1>{schema.title}</h1>
+        <h3>{schema.slogan}</h3>
       </Div>
       <Form>
         <h2>{`${formType} as ${user}`}</h2>

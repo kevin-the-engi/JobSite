@@ -42,8 +42,8 @@ const Slogan = styled.p`
 
 const NavBar = () => (
   <NavBarWrapper>
-    <Logo>JobSite</Logo>
-    <Slogan>Connecting people with jobs and jobs with people</Slogan>
+    <Logo>{schema.title}</Logo>
+    <Slogan>{schema.slogan}</Slogan>
   </NavBarWrapper>
 );
 
