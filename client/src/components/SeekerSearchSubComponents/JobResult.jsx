@@ -5,7 +5,7 @@ import schema from '../constants.jsx';
 const JobTile = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   min-height: 8.5vh;
   width: 95%;
   background-color: #fff;
@@ -45,11 +45,10 @@ const JobResult = ({ job, toggleModal, getJobToDisplay }) => (
   <JobTile onClick={(event) => { event.preventDefault(); getJobToDisplay(job); toggleModal(); }}>
     <SpacedRowDiv>
       <Title>{job.title}</Title>
-      <Text>{`$${job.salary}`}</Text>
+      <Text>{`$${job.salary.slice(0, job.salary.length - 3)},${job.salary.slice(job.salary.length - 3)}`}</Text>
     </SpacedRowDiv>
-    <Company>{job.company}</Company>
-    <Text>{job.city}</Text>
-    <Text>{`${job.employmentType}/${job.workLocationType}`}</Text>
+    <Company>{`${job.company} (${job.city})`}</Company>
+    <Text>{`${job.employmentType.charAt(0).toUpperCase()}${job.employmentType.slice(1)} / ${job.experienceLevel.charAt(0).toUpperCase()}${job.experienceLevel.slice(1)}-level / ${job.workLocationType.charAt(0).toUpperCase()}${job.workLocationType.slice(1)}`}</Text>
   </JobTile>
 );
 

@@ -10,8 +10,6 @@ import Notes from './EmployerDashboardSubComponents/Notes.jsx';
 import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
 import DropDown from './EmployerDashboardSubComponents/DropDown.jsx';
 
-import ApplicantDetailDiv from './EmployerSearchSubComponents/ApplicantDetailDiv.jsx';
-import ApplicantDetailModal from './EmployerSearchSubComponents/ApplicantDetailModal.jsx';
 import schema from './constants.jsx';
 
 const PageWrapper = styled.div`

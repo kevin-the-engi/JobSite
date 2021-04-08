@@ -33,7 +33,6 @@ class SeekerPortal extends React.Component {
       appliedJobs: [],
       notes: [],
     };
-
     // this.deleteAppointment = this.deleteAppointment.bind(this);
     this.postNote = this.postNote.bind(this);
   }
@@ -86,8 +85,8 @@ class SeekerPortal extends React.Component {
     return (
       <SeekerPortalWrapper>
         <NavButtonDiv>
-          <NavButton href={`${window.location.origin}/#/seeker`}>MY PROFILE</NavButton>
-          <NavButton href={`${window.location.origin}/#/jobs`}>FIND JOBS</NavButton>
+          <NavButton href={`${window.location.origin}/#/seeker`}>PROFILE</NavButton>
+          <NavButton href={`${window.location.origin}/#/jobs`}>JOBS</NavButton>
         </NavButtonDiv>
         <Account
           seekerId={seekerId}

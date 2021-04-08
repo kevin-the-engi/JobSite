@@ -21,7 +21,7 @@ const NavBarWrapper = styled.div`
 
 const Logo = styled.h1`
   margin: 0;
-  padding: 0 1vw 0 0;
+  padding: 0 1vw 0 5vw;
   font-size: 2.5rem;
   color: ${schema.primary};
   @media (min-width: 768px) {
@@ -32,7 +32,7 @@ const Logo = styled.h1`
 
 const Slogan = styled.p`
   display: none;
-  @media (min-width: 870px) {
+  @media (min-width: 900px) {
     display: inline;
     font-size: 1rem;
     margin: 0 0 7px 0;

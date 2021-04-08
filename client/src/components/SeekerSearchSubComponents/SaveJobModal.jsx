@@ -14,13 +14,13 @@ const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  max-width: 30vw;
+  width: 90vw;
   max-height: 95vh;
   overflow: hidden;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 
   @media (min-width: 768px) {
-    width: 50vw;
+    width: 25vw;
   }
 `;
 
@@ -33,8 +33,8 @@ const Form = styled.form`
   height: 38vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-around;
-
 `;
 
 const FieldSet = styled.fieldset`
@@ -44,7 +44,8 @@ const FieldSet = styled.fieldset`
   justify-content: space-evenly;
   border-radius: 5px;
   margin: 1vh 0;
-  width: 95%;
+  width: 90%;
+  max-width: 90%;
 
   @media (min-width: 768px) {
     flex-wrap: none;
@@ -90,21 +91,31 @@ const Radio = styled.input`
 
 const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 `;
 
 const Button = styled.button`
-  width: max(10vw, 50px);
-  align-items: center;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 5vh;
-  padding: 0 1.25vw;
-  background: none;
-  border: 1px solid #424242;
-  border-radius: 5px;
-  color: #424242;
-  ${schema.hoverEffect}
+    margin: auto;
+    width: 40vw;
+    min-height: 3vh;
+    font: inherit;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    background: ${schema.primary};
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+    ${schema.hoverEffect}
+
+    @media (min-width: 768px) {
+      width: 10vw;
+
+    }
 `;
 
 const SaveJobModal = (props) => {
