@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { get } from '../../http';
 
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
 
@@ -98,9 +99,15 @@ class EmployerDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      notes: []
     };
   }
+  // NEED employerNoteId
+  // componentDidMount(){
+  //   get('api/employerdata/note/all', { employerNoteId })
+  //     .then((data) => this.setState({ notes: data.notes })
+  //     .catch((err) => console.log(err))
+  // }
 
   render() {
     return (
