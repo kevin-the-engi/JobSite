@@ -4,7 +4,9 @@ import { get } from '../../http';
 
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
 import Profile from './EmployerDashboardSubComponents/Profile.jsx';
-import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
+// import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
+
+import Notes from './EmployerDashboardSubComponents/Notes.jsx';
 
 import ApplicantDetailDiv from './EmployerSearchSubComponents/ApplicantDetailDiv.jsx';
 import ApplicantDetailModal from './EmployerSearchSubComponents/ApplicantDetailModal.jsx';
@@ -72,7 +74,7 @@ const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   background: #FFF;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
@@ -122,7 +124,7 @@ class EmployerDashboard extends React.Component {
       resumeToDisplay: null,
       modalOpen: false,
       jobApplicants: null,
-      notes: []
+      notes: [],
     };
     this.updateScreenSize = this.updateScreenSize.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
@@ -131,8 +133,10 @@ class EmployerDashboard extends React.Component {
 
   componentDidMount() {
     // NEED employerNoteId
-    get('api/employerdata/note/all', { employerNoteId })
-      .then((data) => this.setState({ notes: data.notes }))
+    get('api/employerdata/note/all', { employerNoteId: '606d288db9fe4c4ece49270c' })
+
+    // get('api/employerdata/note/all', { employerNoteId })
+      .then((data) => this.setState({ notes: data.notes }), () => console.log(this.state.notes))
       .catch((err) => console.log(err));
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
@@ -157,7 +161,9 @@ class EmployerDashboard extends React.Component {
   }
 
   render() {
-    const { jobApplicants, resumeToDisplay, toggleModal, isDesktop, modalOpen } = this.state;
+    const {
+      jobApplicants, resumeToDisplay, toggleModal, isDesktop, modalOpen,
+    } = this.state;
     return (
       <PageWrapper>
         <NavButtonDiv>
@@ -168,11 +174,12 @@ class EmployerDashboard extends React.Component {
         <LowerDashboardWrapper>
           <LeftSide>
             <Profile />
-            <JobApplicants
+            <Notes />
+            {/* <JobApplicants
               jobApplicants={jobApplicants}
               toggleModal={this.toggleModal}
               getResumeToDisplay={this.getResumeToDisplay}
-            />
+            /> */}
           </LeftSide>
           <RightSide>
             { isDesktop && <ApplicantDetailDiv resumeToDisplay={resumeToDisplay} />}
