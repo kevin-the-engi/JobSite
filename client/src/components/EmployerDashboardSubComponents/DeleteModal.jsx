@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import { deleteField } from '../../../http';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -23,7 +24,8 @@ const Wrapper = styled.div`
 `;
 
 const Options = styled.div`
-  height: 30vh;
+height: 30vh;
+
   max-height: 95vh;
   display: flex;
   flex-direction: column;
@@ -45,18 +47,21 @@ const Button = styled.button`
 `;
 
 const TabModal = (props) => {
-  const { toggleModal, updateJob, tabName } = props;
+  const { toggleModal } = props;
 
+  // NEED SEEKER ID & appointment id!!!!!!!!!!!
   const handleClick = (event) => {
     event.preventDefault();
     toggleModal();
-    // call delete function in future
+    deleteField('api/seekerdata/appointment', { seekerId, appointmentId })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => event.stopPropagation()}>
       <Options>
-        <Button>{ tabName === 'saved' ? 'Apply' : 'Interview' }</Button>
+        <i className="fas fa-trash-alt fa-5x" />
         <Button onClick={handleClick}>Delete</Button>
       </Options>
     </Wrapper>,

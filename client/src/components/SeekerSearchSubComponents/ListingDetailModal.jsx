@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const JobDetailWrapper = styled.div`
   z-index: 2;
@@ -35,7 +36,7 @@ const JobDetail = styled.div`
 `;
 const Title = styled.h1`
   margin: .5vh 0 .25vh 0;
-  color: #5FA317;
+  color: ${schema.primary};
   font-size: 1.5rem;
   font-weight: bold;
 `;
@@ -54,7 +55,7 @@ const Description = styled.p`
 const SectionTitle = styled.h2`
   font-size: 1rem;
   font-weight: bold;
-  color: #129490;
+  color: ${schema.secondary};
 `;
 
 const ListingDetailDiv = ({ jobToDisplay }) => (

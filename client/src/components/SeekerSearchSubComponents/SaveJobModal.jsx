@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const Wrapper = styled.div`
   height: 40vh;
@@ -76,7 +77,7 @@ const Radio = styled.input`
     border-radius: 50%;
     position: relative;
     top: 2px;
-    background-color: #5fa317;
+    background-color: ${schema.primary};
     background-clip: content-box;
     padding: 1px;
     content: '';

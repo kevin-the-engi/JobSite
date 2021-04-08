@@ -55,13 +55,13 @@ const TabModal = (props) => {
     toggleModal();
     deleteField('api/seekerdata/appointment', { seekerId, appointmentId })
       .then((res) => console.log(res))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
 
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => event.stopPropagation()}>
       <Options>
-      <i className="fas fa-trash-alt fa-5x"></i>
+        <i className="fas fa-trash-alt fa-5x" />
         <Button onClick={handleClick}>Delete</Button>
       </Options>
     </Wrapper>,

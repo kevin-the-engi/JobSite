@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const JobTile = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ const SpacedRowDiv = styled.div`
 
 const Title = styled.h1`
   margin: 0 1vw;
-  color: #5FA317;
+  color: ${schema.primary};
   font-size: 1rem;
   font-weight: bold;
 `;

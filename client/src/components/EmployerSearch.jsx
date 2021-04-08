@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import FindJobSeekersPortal from './EmployerSearchSubComponents/FindJobSeekersPortal.jsx';
+import schema from './constants.jsx';
 
 const EmployerSearchWrapper = styled.div`
   display: flex;
@@ -36,7 +37,7 @@ const NavButton = styled.a`
   width: auto;
   padding: .25vh 1.5vw;
   text-decoration: none;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;

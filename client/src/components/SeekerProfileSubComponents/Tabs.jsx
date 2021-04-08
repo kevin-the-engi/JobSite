@@ -5,6 +5,7 @@ import Reminders from './Reminders.jsx';
 import SavedJobs from './SavedJobs.jsx';
 import AppliedJobs from './AppliedJobs.jsx';
 import Notes from './Notes.jsx';
+import schema from '../constants.jsx';
 
 const PersonalContentWrapper = styled.div`
   width: 100%;
@@ -37,9 +38,9 @@ const TabsWrapper = styled.div`
 
 const Tab = styled.div`
   width: 24.75%;
-  background: ${props => props.selected ? '#F5F5F5' : '#129490'};
-  color: ${props => props.selected ? '#5fa317' : '#FFF'};
-  font-weight: ${props => props.selected ? 'bold' : 'normal'};
+  background: ${(props) => (props.selected ? '#F5F5F5' : schema.secondary)};
+  color: ${(props) => (props.selected ? schema.primary : '#FFF')};
+  font-weight: ${(props) => (props.selected ? 'bold' : 'normal')};
   display: flex;
   justify-content: center;
   align-items: center;

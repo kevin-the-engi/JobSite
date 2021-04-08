@@ -85,8 +85,8 @@ const NotesUpdateModal = ({ text }) => {
   };
 
   return ReactDOM.createPortal(
-    <Wrapper onMouseDown={(event) => { event.stopPropagation(); console.log('mouseDown'); }}>
-      <Options onMouseDown={(event) => { event.stopPropagation(); console.log('options'); }}>
+    <Wrapper onMouseDown={(event) => { event.stopPropagation(); console.log('mouseDown')}}>
+      <Options onMouseDown={(event) => { event.stopPropagation(); console.log('options')}}>
         <Form onSubmit={handleUpdate}>
           <TextArea
             id="updateText"

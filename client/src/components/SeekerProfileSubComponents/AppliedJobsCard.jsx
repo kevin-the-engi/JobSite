@@ -36,9 +36,11 @@ const AppliedJobsCard = (props) => {
     setShow(!show);
   };
 
-  return(
+  return (
     <Wrapper onClick={toggleModal}>
-      {name} {company} {description}
+      {name}
+      {company}
+      {description}
       {!show
         ? (
           <ModalBackground onMouseDown={toggleModal}>

@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { get } from '../../http';
+import axios from 'axios';
+
 
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
 import Profile from './EmployerDashboardSubComponents/Profile.jsx';
+import Notes from './EmployerDashboardSubComponents/Notes.jsx';
 import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
+import DropDown from './EmployerDashboardSubComponents/DropDown.jsx';
 
 import ApplicantDetailDiv from './EmployerSearchSubComponents/ApplicantDetailDiv.jsx';
 import ApplicantDetailModal from './EmployerSearchSubComponents/ApplicantDetailModal.jsx';
+import schema from './constants.jsx';
 
 const PageWrapper = styled.div`
   margin: 0;
@@ -45,7 +50,7 @@ const NavButton = styled.a`
   width: auto;
   padding: .25vh 1.5vw;
   text-decoration: none;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;
@@ -72,7 +77,7 @@ const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   background: #FFF;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
@@ -119,21 +124,53 @@ class EmployerDashboard extends React.Component {
     super(props);
     this.state = {
       isDesktop: false,
+      employerId: null,
       resumeToDisplay: null,
       modalOpen: false,
       jobApplicants: null,
-      notes: []
+      allJobPosting: null,
+      selectedJobPosting: null,
+      notes: [],
     };
     this.updateScreenSize = this.updateScreenSize.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.getSelectedItem = this.getSelectedItem.bind(this);
     this.getResumeToDisplay = this.getResumeToDisplay.bind(this);
   }
 
   componentDidMount() {
-    // NEED employerNoteId
-    get('api/employerdata/note/all', { employerNoteId })
-      .then((data) => this.setState({ notes: data.notes }))
+    axios({
+      url: 'http://localhost:3001/api/employerdata/id',
+      method: 'get',
+      params: {
+        email: this.props.email,
+      },
+    })
+      .then((result) => {
+        this.setState({ employerId: result.data.employerNoteId });
+        return axios({
+          url: 'http://localhost:3001/api/listing/employer',
+          method: 'get',
+          params: {
+            employerId: this.state.employerId,
+          },
+        });
+      })
+      .then((data) => {
+        this.setState({ allJobPosting: data.data });
+        return axios({
+          url: 'http://localhost:3001/api/employerdata/note/all',
+          method: 'get',
+          params: {
+            employerId: this.state.employerId,
+          },
+        });
+      })
+      .then((response) => {
+        this.setState({ notes: response.data.notes });
+      })
       .catch((err) => console.log(err));
+
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
   }
@@ -144,6 +181,10 @@ class EmployerDashboard extends React.Component {
 
   getResumeToDisplay(seeker) {
     this.setState({ resumeToDisplay: seeker });
+  }
+
+  getSelectedItem(selectedJobPosting) {
+    this.setState({ selectedJobPosting });
   }
 
   toggleModal() {
@@ -157,7 +198,16 @@ class EmployerDashboard extends React.Component {
   }
 
   render() {
-    const { jobApplicants, resumeToDisplay, toggleModal, isDesktop, modalOpen } = this.state;
+    const {
+      jobApplicants,
+      selectedJobPosting,
+      getSelectedItem,
+      resumeToDisplay,
+      toggleModal,
+      isDesktop,
+      modalOpen,
+    } = this.state;
+
     return (
       <PageWrapper>
         <NavButtonDiv>
@@ -168,19 +218,22 @@ class EmployerDashboard extends React.Component {
         <LowerDashboardWrapper>
           <LeftSide>
             <Profile />
+            <Notes />
+          </LeftSide>
+          <RightSide>
+            <DropDown getSelectedItem={this.getSelectedItem} list={[{ title: 'job 1' }, { title: 'job 2' }, { title: 'job 3' }]} />
             <JobApplicants
               jobApplicants={jobApplicants}
               toggleModal={this.toggleModal}
               getResumeToDisplay={this.getResumeToDisplay}
+              selectedJobPosting={selectedJobPosting}
             />
-          </LeftSide>
-          <RightSide>
-            { isDesktop && <ApplicantDetailDiv resumeToDisplay={resumeToDisplay} />}
+            {/* { isDesktop && <ApplicantDetailDiv resumeToDisplay={resumeToDisplay} />}
             { !isDesktop && modalOpen && (
               <ModalBackground onMouseDown={toggleModal}>
                 <ApplicantDetailModal resumeToDisplay={resumeToDisplay} />
               </ModalBackground>
-            )}
+            )} */}
           </RightSide>
         </LowerDashboardWrapper>
       </PageWrapper>

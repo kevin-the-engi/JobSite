@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const ProfileWrapper = styled.div`
   height: 25%;
@@ -16,23 +17,21 @@ const ProfileWrapper = styled.div`
 const Image = styled.img`
   border-radius: 50%;
   padding: 2px;
-  border: 3px solid #5fa317;
+  border: 3px solid ${schema.primary};
 `;
 
 const Name = styled.h1`
   margin: .5vh 0 .25vh 0;
-  color: #5FA317;
+  color: ${schema.primary};
   font-size: 1.5rem;
   font-weight: bold;
 `;
 
-const Profile = (props) => {
-  return(
-    <ProfileWrapper>
-      <Image src="test.jpeg" alt="profilePic" width="125px" height="125px"></Image>
-      <Name>Ida B Higherin</Name>
-    </ProfileWrapper>
-  )
-};
+const Profile = () => (
+  <ProfileWrapper>
+    <Image src="test.jpeg" alt="profilePic" width="125px" height="125px" />
+    <Name>Ida B Higherin</Name>
+  </ProfileWrapper>
+);
 
 export default Profile;

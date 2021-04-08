@@ -12,7 +12,6 @@
     "docker-build": "docker build -t blueocean-webapp:1.0 .",
     "docker-run": "docker run --name blueocean-webapp -d -p 8080:80 blueocean-webapp:1.0",
     "docker-login": "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 816674678256.dkr.ecr.us-east-2.amazonaws.com",
-    
     "docker-push": "docker tag blueocean-webapp:1.0 816674678256.dkr.ecr.us-east-2.amazonaws.com/blueocean-webapp:1.0 & docker push 816674678256.dkr.ecr.us-east-2.amazonaws.com/blueocean-webapp:1.0"
   },
   "repository": {
@@ -32,6 +31,7 @@
     "nodemon": "^2.0.7",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-fontawesome": "^1.7.1",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.3"
   },

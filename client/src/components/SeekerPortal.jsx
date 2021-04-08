@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { get, post } from '../../http';
+import schema from './constants.jsx';
 
 import Account from './SeekerProfileSubComponents/Account.jsx';
 
@@ -40,7 +41,7 @@ const NavButton = styled.a`
   width: auto;
   padding: .25vh 1.5vw;
   text-decoration: none;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;
@@ -66,14 +67,14 @@ class SeekerPortal extends React.Component {
   // Dummy data
   componentDidMount() {
     get('api/seekerdata/all', { seekerId: this.state.seekerId })
-      .then((data) =>
+      .then((data) => {
         this.setState({
           reminders: data.appointments,
           savedJobs: data.savedJobs,
           appliedJobs: data.applications,
           notes: data.notes,
-        })
-      )
+        });
+      })
       .catch((err) => {
         console.log(err);
       });
