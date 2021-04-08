@@ -7,7 +7,6 @@ import AddNotesModal from './AddNotesModal.jsx';
 const NotesWrapper = styled.div`
   width: 100%;
   height: 70%;
-  // margin: 2vh 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -155,7 +155,7 @@ class PostJobModal extends React.Component {
 
             <label>Experience Level:</label>
             <select id="experienceLevel" onChange={this.handleChange}>
-              <option selectde value="entry">Entry</option>
+              <option value="entry">Entry</option>
               <option value="mid">Mid</option>
               <option value="senior">Senior</option>
               <option value="executive">Executive</option>
@@ -197,7 +197,7 @@ class PostJobModal extends React.Component {
 
             <label>Location Type:</label>
             <select id="workLocationType" onChange={this.handleChange}>
-              <option selectde value="onsite">Onsite</option>
+              <option value="onsite">Onsite</option>
               <option value="remote">Remote</option>
               <option value="mixed">Mixed</option>
             </select>
