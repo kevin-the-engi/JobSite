@@ -32,7 +32,7 @@ const Logo = styled.h1`
 
 const Slogan = styled.p`
   display: none;
-  @media (min-width: 870px) {
+  @media (min-width: 900px) {
     display: inline;
     font-size: 1rem;
     margin: 0 0 7px 0;
