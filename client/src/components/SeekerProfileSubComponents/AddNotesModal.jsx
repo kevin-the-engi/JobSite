@@ -65,7 +65,7 @@ const Button = styled.button`
 `;
 
 const AddNotesModal = (props) => {
-  const { display } = props;
+  const { display, seekerId } = props;
   const [note, setNote] = useState('');
   const [noteCategory, setNoteCategory] = useState('personal');
   const [noteTitle, setNoteTitle] = useState('');
@@ -90,7 +90,7 @@ const AddNotesModal = (props) => {
 
   const submitNote = () => {
     const postData = {
-      seekerId: props.seekerId,
+      seekerId,
       noteObj: {
         category: noteCategory,
         title: noteTitle,
