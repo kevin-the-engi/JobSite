@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
+import Profile from './EmployerDashboardSubComponents/Profile.jsx';
+import PostedJobs from './EmployerDashboardSubComponents/PostedJobs.jsx';
 
 const PageWrapper = styled.div`
   margin: 0;
@@ -63,6 +65,10 @@ const LowerDashboardWrapper = styled.div`
 const LeftSide = styled.div`
   width: 95%;
   height: 97%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: #FFF;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
@@ -112,7 +118,8 @@ class EmployerDashboard extends React.Component {
         <PostJob />
         <LowerDashboardWrapper>
           <LeftSide>
-            More components, see excalidraw
+            <Profile />
+            <PostedJobs />
           </LeftSide>
           <RightSide>
             More components, see excalidraw
