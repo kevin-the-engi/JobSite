@@ -123,6 +123,7 @@ const ListingDetailDiv = ({ jobToDisplay }) => {
           <Description>{jobToDisplay.jobDescription}</Description>
           <SectionTitle>Company Description</SectionTitle>
           <Description>{jobToDisplay.companyDescription}</Description>
+
           <Wrapper>
             <Button onClick={toggleModal}>Save</Button>
             {show
@@ -132,7 +133,6 @@ const ListingDetailDiv = ({ jobToDisplay }) => {
                 </ModalBackground>
               ) : null}
           </Wrapper>
-
         </JobDetail>
       )}
 
