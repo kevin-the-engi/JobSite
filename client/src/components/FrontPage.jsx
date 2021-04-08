@@ -100,7 +100,7 @@ const EMPLOYER_LOGIN_HEADER = 'Login to get access to your applicants!';
 const REGISTER_BOTTOM_TEXT = 'Already a user? ';
 const LOGIN_BOTTOM_TEXT = 'Don\'t have an account yet? ';
 
-const FrontPage = ({ setUserID, setAccountType }) => {
+const FrontPage = ({ setUserID, setAccountType, bubbleUpEmail, bubbleUpCompany }) => {
   const [user, setUser] = useState('Seeker');
   const [formType, setFormType] = useState('Register');
   const [firstName, setFirstName] = useState('');
@@ -141,11 +141,6 @@ const FrontPage = ({ setUserID, setAccountType }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (user === 'Seeker') {
-    //   window.location.href = `${window.location.origin}/#/seeker`;
-    // } else {
-    //   window.location.href = `${window.location.origin}/#/employer`;
-    // }
 
     // TODO validate form data before post request
 
@@ -161,7 +156,9 @@ const FrontPage = ({ setUserID, setAccountType }) => {
             const { accessToken, _id } = data.data;
             setUserID(_id);
             setAccountType('User');
+            bubbleUpEmail(email);
             // Do something with accessToken
+            window.location.href = `${window.location.origin}/#/seeker`;
           });
       } else {
         axios.post(`${URL}/employers`, {
@@ -175,7 +172,10 @@ const FrontPage = ({ setUserID, setAccountType }) => {
             const { accessToken, _id } = data.data;
             setUserID(_id);
             setAccountType('Employer');
+            bubbleUpEmail(email);
+            bubbleUpCompany(company);
             // Do something with accessToken
+            window.location.href = `${window.location.origin}/#/employer`;
           });
       }
     } else {
@@ -187,7 +187,14 @@ const FrontPage = ({ setUserID, setAccountType }) => {
           const { accessToken, _id, accountType } = data.data;
           setUserID(_id);
           setAccountType(accountType);
+          bubbleUpEmail(email);
           // Do something with accessToken
+          if (user === 'Seeker') {
+            window.location.href = `${window.location.origin}/#/seeker`;
+          } else {
+            bubbleUpCompany(company);
+            window.location.href = `${window.location.origin}/#/employer`;
+          }
         });
     }
   };

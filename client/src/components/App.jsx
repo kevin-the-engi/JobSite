@@ -17,6 +17,8 @@ import EmployerSearch from './EmployerSearch.jsx';
 
 const App = () => {
   const [userID, setUserID] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
   const [accountType, setAccountType] = useState('');
 
   return (
@@ -41,6 +43,8 @@ const App = () => {
           <FrontPage
             setUserID={(id) => setUserID(id)}
             setAccountType={(type) => setAccountType(type)}
+            bubbleUpEmail={(val) => setEmail(val)}
+            bubbleUpCompany={(val) => setCompany(val)}
           />
         </Route>
       </Switch>
