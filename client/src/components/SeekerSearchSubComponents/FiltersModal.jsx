@@ -18,6 +18,23 @@ const Wrapper = styled.div`
   overflow: hidden;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 
+  animation-name: fly;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.4s;
+  @keyframes fly {
+    0% {
+      top: 100%;
+    }
+    70% {
+      top: 49%;
+    }
+    100% {
+      top: 50%;
+    }
+  }
+
+
   @media (min-width: 768px) {
     width: 50vw;
   }
@@ -154,6 +171,7 @@ const Button = styled.button`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 const FiltersModal = (props) => {

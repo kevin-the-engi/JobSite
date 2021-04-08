@@ -53,7 +53,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 const Button = styled.button`
@@ -73,6 +73,7 @@ const Button = styled.button`
   outline: none;
   position: relative;
   padding: 10px;
+  ${schema.hoverEffect}
 `;
 
 const SpacedRowDiv = styled.div`

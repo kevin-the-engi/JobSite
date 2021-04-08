@@ -110,6 +110,7 @@ const Button = styled.button`
     outline: none;
     position: relative;
     padding: 10px;
+    ${schema.hoverEffect}
 
     @media (min-width: 768px) {
       width: 10vw;

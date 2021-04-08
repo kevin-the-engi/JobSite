@@ -1,21 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import schema from '../constants.jsx';
 import DeleteModal from './DeleteModal.jsx';
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 15vh;
-  width: 95%;
-  background-color: #fff;
-  border: solid 1px #e0e0e0;
-  border-radius: 5px;
-  margin: .2vh 0;
-  padding: .5vh 1%;
-  font-family: Arial, sans-serif;
-  color: #424242;
-`;
+const Wrapper = schema.listCard;
 
 const ReminderWrapper = styled.div`
   height: 100%;
@@ -60,7 +48,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 const RemindersCard = (props) => {
