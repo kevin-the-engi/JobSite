@@ -27,7 +27,19 @@ const ModalBackground = styled.div`
   background-color: #42424275;
 `;
 
+const NoteWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.div``;
+
 const Body = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ButtonWrapper = styled.div`
@@ -36,7 +48,7 @@ const ButtonWrapper = styled.div`
 const Button = styled.div``;
 
 const NotesCard = (props) => {
-  const { note: { title, text } } = props;
+  const { note: { title, text, category } } = props;
   const [show, setShow] = useState(false);
   const [update, setUpdate] = useState(false);
 
@@ -50,43 +62,21 @@ const NotesCard = (props) => {
     setShow(!show);
   };
 
-  const handleChange = (event) => {
-
-  }
-
   const handleUpdate = (event) => {
     event.preventDefault();
     setUpdate(!update);
   }
 
-  const handleSubmit = (event) => {
-
-  }
-
   return (
     <Wrapper onClick={toggleModal}>
-      {/* <Body>
-        {update ? (
-          <Form onSubmit={handleSubmit}>
-            <TextArea
-              id="noteText"
-              name="note"
-              rows="10"
-              cols="30"
-              onChange={handleChange}
-              value={note}
-            />
-            <ButtonWrapper>
-              <Button type="submit" value="Submit">Submit</Button>
-            </ButtonWrapper>
-          </Form>) : {text} }
-      </Body> */}
-      {text}
-      {/* <ButtonWrapper>
-        <Button onClick={handleUpdate}>Update</Button>
-
-      <Button >Delete</Button>
-      </ButtonWrapper> */}
+      <NoteWrapper>
+        <Title>
+          {title}
+        </Title>
+        <Body>
+          {text}
+        </Body>
+      </NoteWrapper>
       {show
         ? (
           <ModalBackground>

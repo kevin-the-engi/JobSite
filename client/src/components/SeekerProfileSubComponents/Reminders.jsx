@@ -10,24 +10,26 @@ const RemindersWrapper = styled.div`
   align-items: center;
 `;
 
-const Reminders = () => {
-  // const { reminders } = props;
+const Reminders = (props) => {
+  const { seekerId } = props;
   // replace once backend is hooked up
   const reminders = [
-    { date: '4th April', type: 'Follow-up', text: 'Reminder text' },
-    { date: '5th April', type: 'Interview', text: 'Reminder text' },
-    { date: '10th April', type: 'Profit', text: 'Reminder text' },
-    { date: '10th April', type: 'Profit', text: 'Reminder text' },
-    { date: '10th April', type: 'Profit', text: 'Reminder text' },
-    { date: '10th April', type: 'Profit', text: 'Reminder text' },
-    { date: '10th April', type: 'Profit', text: 'Reminder text' },
-    { date: '10th April', type: 'Profit', text: 'Reminder text' },
+    {
+      _id: '606d211bfa660c4ce0b471fe',
+      startTime: '2021-04-09T10:15:00.000Z',
+      endTime: '2021-04-10T10:45:00.000Z',
+      category: 'personal',
+      title: 'garbage',
+      appointmentNote: 'shred all sensitive data before meeting',
+      dateCreated: '2021-04-07T03:03:55.742Z',
+    },
   ];
 
   return (
     <RemindersWrapper>
       {reminders.map((reminder) => (
         <RemindersCard
+          seekerId={seekerId}
           reminder={reminder}
         />
       ))}
