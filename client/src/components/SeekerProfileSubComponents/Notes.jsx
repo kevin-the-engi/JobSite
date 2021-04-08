@@ -34,18 +34,16 @@ const Button = styled.button`
 `;
 
 const Notes = (props) => {
-  const notes = [
-    { title: 'title', text: 'I need to call the interviewer.' },
-  ];
+  console.log(props)
+  const { notes, postNote } = props;
   const [showAdd, setShowAdd] = useState(false);
 
   const toggleModal = (event) => {
     event.preventDefault();
     setShowAdd(!showAdd);
-    // send new note back up
   };
   const dummySeekerId = '606d2039fa660c4ce0b471fd';
-
+  // bring id from parent and replace
   return (
     <NotesWrapper>
       <HeaderWrapper>
@@ -54,7 +52,12 @@ const Notes = (props) => {
       {showAdd
         ? (
           <ModalBackground onMouseDown={toggleModal}>
-            <AddNotesModal seekerId={dummySeekerId} toggleModal={toggleModal} display={setShowAdd} />
+            <AddNotesModal
+              seekerId={dummySeekerId}
+              toggleModal={toggleModal}
+              display={setShowAdd}
+              postNote={postNote}
+            />
           </ModalBackground>
         ) : null}
       {notes.map((note) => (

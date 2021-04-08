@@ -69,12 +69,15 @@ const ContentWrapper = styled.div`
 `;
 
 const Tabs = (props) => {
-  const [selectedTab, setSelectedTab] = useState('reminders')
+  const {
+    reminders, savedJobs, appliedJobs, notes, postNote,
+  } = props;
+  const [selectedTab, setSelectedTab] = useState('reminders');
   const [tab, setTab] = useState('reminders');
 
   const toggleTab = (id) => {
     setTab(id);
-    setSelectedTab(id)
+    setSelectedTab(id);
   };
 
   const handleClick = (event) => {
@@ -93,10 +96,10 @@ const Tabs = (props) => {
         <Tab selected={selectedTab === 'notes'} id="notes" onClick={handleClick}>NOTES</Tab>
       </TabsWrapper>
       <ContentWrapper>
-        {tab === 'reminders' ? <Reminders /> : null}
-        {tab === 'savedJobs' ? <SavedJobs /> : null}
-        {tab === 'appliedJobs' ? <AppliedJobs /> : null}
-        {tab === 'notes' ? <Notes /> : null}
+        {tab === 'reminders' ? <Reminders reminders={reminders} /> : null}
+        {tab === 'savedJobs' ? <SavedJobs savedJobs={savedJobs} /> : null}
+        {tab === 'appliedJobs' ? <AppliedJobs appliedJobs={appliedJobs} /> : null}
+        {tab === 'notes' ? <Notes notes={notes} postNote={postNote} /> : null}
       </ContentWrapper>
     </PersonalContentWrapper>
   );

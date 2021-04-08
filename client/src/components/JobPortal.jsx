@@ -100,6 +100,7 @@ class JobPortal extends React.Component {
     this.updateScreenSize = this.updateScreenSize.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.getJobToDisplay = this.getJobToDisplay.bind(this);
+    this.getJobListings = this.getJobListings.bind(this);
     this.setSearch = this.setSearch.bind(this);
     this.setLocation = this.setLocation.bind(this);
     this.setFilters = this.setFilters.bind(this);
@@ -109,13 +110,23 @@ class JobPortal extends React.Component {
     // send GET Request for data and assign to jobResults
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
-    get('api/listing/all')
-      .then((data) => this.setState({ jobResults: data }))
-      .catch((e) => console.log(e));
+    this.getJobListings();
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateScreenSize);
+  }
+
+  getJobListings() {
+    const { filters:
+      { employment, experience, locationType, salary, datePosted, locationRange }
+    } = this.state;
+
+    const params = ``;
+
+    get('api/listing/all')
+    .then((data) => this.setState({ jobResults: data }))
+    .catch((e) => console.log(e));
   }
 
   getJobToDisplay(job) {

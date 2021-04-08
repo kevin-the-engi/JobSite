@@ -120,7 +120,6 @@ const SaveJobModal = (props) => {
     // call to pass interest
   };
 
-
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => { event.stopPropagation(); }}>
       <Options>
