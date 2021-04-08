@@ -11,6 +11,8 @@ const RemindersWrapper = styled.div`
 `;
 
 const Reminders = (props) => {
+  // const { reminders } = props;
+  // replace once backend is hooked up
   const reminders = [
     { date: '4th April', type: 'Follow-up', text: 'Reminder text' },
     { date: '5th April', type: 'Interview', text: 'Reminder text' },
