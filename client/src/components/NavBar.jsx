@@ -21,7 +21,7 @@ const NavBarWrapper = styled.div`
 
 const Logo = styled.h1`
   margin: 0;
-  padding: 0 1vw 0 0;
+  padding: 0 1vw 0 5vw;
   font-size: 2.5rem;
   color: ${schema.primary};
   @media (min-width: 768px) {

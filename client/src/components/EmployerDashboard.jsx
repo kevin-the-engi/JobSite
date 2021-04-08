@@ -8,8 +8,6 @@ import Notes from './EmployerDashboardSubComponents/Notes.jsx';
 import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
 import DropDown from './EmployerDashboardSubComponents/DropDown.jsx';
 
-import ApplicantDetailDiv from './EmployerSearchSubComponents/ApplicantDetailDiv.jsx';
-import ApplicantDetailModal from './EmployerSearchSubComponents/ApplicantDetailModal.jsx';
 import schema from './constants.jsx';
 
 const PageWrapper = styled.div`
@@ -139,10 +137,10 @@ class EmployerDashboard extends React.Component {
     // Need all job postings
 
     // NEED employerNoteId
-    get('api/employerdata/note/all', { employerNoteId: '606d288db9fe4c4ece49270c' })
-    // get('api/employerdata/note/all', { employerNoteId })
-      .then((data) => this.setState({ notes: data.notes }), () => console.log(this.state.notes))
-      .catch((err) => console.log(err));
+    // get('api/employerdata/note/all', { employerNoteId: '606d288db9fe4c4ece49270c' })
+    // // get('api/employerdata/note/all', { employerNoteId })
+    //   .then((data) => this.setState({ notes: data.notes }), () => console.log(this.state.notes))
+    //   .catch((err) => console.log(err));
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
   }

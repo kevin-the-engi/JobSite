@@ -120,15 +120,18 @@ class JobPortal extends React.Component {
   }
 
   getJobListings() {
-    const { filters:
-      { employment, experience, locationType, salary, datePosted, locationRange }
+    const {
+      filters:
+      {
+        employment, experience, locationType, salary, datePosted, locationRange,
+      },
     } = this.state;
 
-    const params = ``;
+    const params = '';
 
     get('api/listing/all')
-    .then((data) => this.setState({ jobResults: data }))
-    .catch((e) => console.log(e));
+      .then((data) => this.setState({ jobResults: data }))
+      .catch((e) => console.log(e));
   }
 
   getJobToDisplay(job) {
@@ -171,8 +174,8 @@ class JobPortal extends React.Component {
     return (
       <PageWrapper>
         <NavButtonDiv>
-          <NavButton href={`${window.location.origin}/#/seeker`}>MY PROFILE</NavButton>
-          <NavButton href={`${window.location.origin}/#/jobs`}>FIND JOBS</NavButton>
+          <NavButton href={`${window.location.origin}/#/seeker`}>PROFILE</NavButton>
+          <NavButton href={`${window.location.origin}/#/jobs`}>JOBS</NavButton>
         </NavButtonDiv>
         <SearchWrapper>
           <SearchBar setSearch={this.setSearch} />
@@ -185,10 +188,10 @@ class JobPortal extends React.Component {
             toggleModal={this.toggleModal}
             getJobToDisplay={this.getJobToDisplay}
           />
-          { isDesktop && <ListingDetailDiv jobToDisplay={jobToDisplay} /> }
+          { isDesktop && <ListingDetailDiv toggleModal={this.toggleModal} jobToDisplay={jobToDisplay} /> }
           { !isDesktop && modalOpen && (
             <ModalBackground onMouseDown={this.toggleModal}>
-              <ListingDetailModal jobToDisplay={jobToDisplay} />
+              <ListingDetailModal toggleModal={this.toggleModal} jobToDisplay={jobToDisplay} />
             </ModalBackground>
           )}
         </JobResultsPortalWrapper>
