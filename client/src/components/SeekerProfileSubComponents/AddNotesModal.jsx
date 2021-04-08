@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import { post } from '../../../http';
+
+import NotesDropDown from './NotesDropDown.jsx';
 
 const Wrapper = styled.div`
   height: 40vh;
@@ -36,6 +39,9 @@ const Form = styled.form`
 
 `;
 
+const Input = styled.input`
+`;
+
 const TextArea = styled.textarea`
   padding: 2vh 1vw;
 `;
@@ -61,23 +67,46 @@ const Button = styled.button`
 const AddNotesModal = (props) => {
   const { display } = props;
   const [note, setNote] = useState('');
+  const [noteCategory, setNoteCategory] = useState('personal');
+  const [noteTitle, setNoteTitle] = useState('');
 
   const handleChange = (event) => {
     const { value } = event.target;
 
     setNote(value);
   };
-
+  const handleTitleChange = (event) => {
+    setNoteTitle(event.target.value);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     // call function to send data
     display(false);
   };
 
+  const handleCategory = (category) => {
+    setNoteCategory(category);
+  };
+
+  const submitNote = () => {
+    let postData = {
+      seekerId: props.seekerId,
+      noteObj: {
+        category: noteCategory,
+        title: noteTitle,
+        body: note
+      }
+    };
+    post('api/seekerdata/note', postData)
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
+  };
+
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => event.stopPropagation()}>
       <Options>
         <Form onSubmit={handleSubmit}>
+          <Input onChange={handleTitleChange} type="input" placeholder="Title..." />
           <TextArea
             id="noteText"
             name="note"
@@ -86,8 +115,9 @@ const AddNotesModal = (props) => {
             onChange={handleChange}
             value={note}
           />
+          <NotesDropDown select={handleCategory} />
           <ButtonWrapper>
-            <Button type="submit" value="Submit">Submit</Button>
+            <Button type="submit" onClick={submitNote} value="Submit">Submit</Button>
           </ButtonWrapper>
         </Form>
       </Options>

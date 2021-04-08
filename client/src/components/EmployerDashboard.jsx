@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { get } from '../../http';
 
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
 import Profile from './EmployerDashboardSubComponents/Profile.jsx';
@@ -121,6 +122,7 @@ class EmployerDashboard extends React.Component {
       resumeToDisplay: null,
       modalOpen: false,
       jobApplicants: null,
+      notes: []
     };
     this.updateScreenSize = this.updateScreenSize.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
@@ -128,10 +130,10 @@ class EmployerDashboard extends React.Component {
   }
 
   componentDidMount() {
-    //this needs to be updated to grab all the applicants to a certain employer's job postings
-    // get('api/resume/all')
-    //   .then((data) => this.setState({ jobApplicants: data }))
-    //   .catch();
+    // NEED employerNoteId
+    get('api/employerdata/note/all', { employerNoteId })
+      .then((data) => this.setState({ notes: data.notes }))
+      .catch((err) => console.log(err));
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
   }

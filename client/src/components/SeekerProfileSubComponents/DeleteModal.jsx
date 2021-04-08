@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import { deleteField } from '../../../http';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -48,10 +49,13 @@ const Button = styled.button`
 const TabModal = (props) => {
   const { toggleModal } = props;
 
+  // NEED SEEKER ID & appointment id!!!!!!!!!!!
   const handleClick = (event) => {
     event.preventDefault();
     toggleModal();
-    // call delete function in future
+    deleteField('api/seekerdata/appointment', { seekerId, appointmentId })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
   };
 
   return ReactDOM.createPortal(
