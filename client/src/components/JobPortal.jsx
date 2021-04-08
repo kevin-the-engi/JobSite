@@ -47,6 +47,7 @@ const NavButton = styled.a`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 const SearchWrapper = styled.div`
@@ -84,14 +85,14 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
-  backdrop-filter: blur(12px);
+  ${schema.modalBackdrop}
 `;
 
 class JobPortal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      seekerId: '606d2039fa660c4ce0b471fd',
       isDesktop: false,
       search: '',
       location: '',
@@ -120,11 +121,11 @@ class JobPortal extends React.Component {
   }
 
   getJobListings() {
-    const { filters:
-      { employment, experience, locationType, salary, datePosted, locationRange }
-    } = this.state;
+    // const { filters:
+    //   { employment, experience, locationType, salary, datePosted, locationRange }
+    // } = this.state;
 
-    const params = ``;
+    // const params = ``;
 
     get('api/listing/all')
     .then((data) => this.setState({ jobResults: data }))

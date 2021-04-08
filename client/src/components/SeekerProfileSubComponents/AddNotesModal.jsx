@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { post } from '../../../http';
-
+import schema from '../constants.jsx';
 import NotesDropDown from './NotesDropDown.jsx';
 
 const Wrapper = styled.div`
@@ -62,10 +62,11 @@ const Button = styled.button`
   border: 1px solid #424242;
   border-radius: 5px;
   color: #424242;
+  ${schema.hoverEffect}
 `;
 
 const AddNotesModal = (props) => {
-  const { display } = props;
+  const { display, seekerId } = props;
   const [note, setNote] = useState('');
   const [noteCategory, setNoteCategory] = useState('personal');
   const [noteTitle, setNoteTitle] = useState('');
@@ -90,7 +91,7 @@ const AddNotesModal = (props) => {
 
   const submitNote = () => {
     const postData = {
-      seekerId: props.seekerId,
+      seekerId,
       noteObj: {
         category: noteCategory,
         title: noteTitle,

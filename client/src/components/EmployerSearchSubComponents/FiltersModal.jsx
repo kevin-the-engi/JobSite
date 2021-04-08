@@ -154,6 +154,7 @@ const Button = styled.button`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 class FiltersModal extends React.Component {

@@ -42,6 +42,7 @@ const NavButton = styled.a`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 const EmployerSearch = () => (

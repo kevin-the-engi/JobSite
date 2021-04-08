@@ -55,6 +55,7 @@ const NavButton = styled.a`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 const LowerDashboardWrapper = styled.div`
@@ -116,7 +117,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 class EmployerDashboard extends React.Component {

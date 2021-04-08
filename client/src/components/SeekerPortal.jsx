@@ -46,6 +46,7 @@ const NavButton = styled.a`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 class SeekerPortal extends React.Component {
@@ -60,6 +61,7 @@ class SeekerPortal extends React.Component {
       notes: [],
     };
 
+    this.deleteAppointment = this.deleteAppointment.bind(this);
     this.postNote = this.postNote.bind(this);
   }
 
@@ -105,7 +107,7 @@ class SeekerPortal extends React.Component {
 
   render() {
     const {
-      reminders, savedJobs, appliedJobs, notes,
+      seekerId, reminders, savedJobs, appliedJobs, notes,
     } = this.state;
 
     return (
@@ -115,6 +117,7 @@ class SeekerPortal extends React.Component {
           <NavButton href={`${window.location.origin}/#/jobs`}>FIND JOBS</NavButton>
         </NavButtonDiv>
         <Account
+          seekerId={seekerId}
           reminders={reminders}
           savedJobs={savedJobs}
           appliedJobs={appliedJobs}

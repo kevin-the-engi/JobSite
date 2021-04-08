@@ -37,15 +37,16 @@ const TabsWrapper = styled.div`
 `;
 
 const Tab = styled.div`
-  width: 24.75%;
+  width: 24.7%;
   background: ${(props) => (props.selected ? '#F5F5F5' : schema.secondary)};
   color: ${(props) => (props.selected ? schema.primary : '#FFF')};
   font-weight: ${(props) => (props.selected ? 'bold' : 'normal')};
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  ${schema.hoverEffect}
 `;
 
 const ContentWrapper = styled.div`
@@ -71,7 +72,7 @@ const ContentWrapper = styled.div`
 
 const Tabs = (props) => {
   const {
-    reminders, savedJobs, appliedJobs, notes, postNote,
+    seekerId, reminders, savedJobs, appliedJobs, notes, postNote,
   } = props;
   const [selectedTab, setSelectedTab] = useState('reminders');
   const [tab, setTab] = useState('reminders');
@@ -97,10 +98,10 @@ const Tabs = (props) => {
         <Tab selected={selectedTab === 'notes'} id="notes" onClick={handleClick}>NOTES</Tab>
       </TabsWrapper>
       <ContentWrapper>
-        {tab === 'reminders' ? <Reminders reminders={reminders} /> : null}
+        {tab === 'reminders' ? <Reminders seekerId={seekerId} reminders={reminders} /> : null}
         {tab === 'savedJobs' ? <SavedJobs savedJobs={savedJobs} /> : null}
         {tab === 'appliedJobs' ? <AppliedJobs appliedJobs={appliedJobs} /> : null}
-        {tab === 'notes' ? <Notes notes={notes} postNote={postNote} /> : null}
+        {tab === 'notes' ? <Notes seekerId={seekerId} notes={notes} /> : null}
       </ContentWrapper>
     </PersonalContentWrapper>
   );

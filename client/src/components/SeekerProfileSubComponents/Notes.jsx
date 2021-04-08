@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import schema from '../constants.jsx';
 import NotesCard from './NotesCard.jsx';
 import AddNotesModal from './AddNotesModal.jsx';
 
@@ -12,7 +12,6 @@ const NotesWrapper = styled.div`
 `;
 
 const HeaderWrapper = styled.div`
-  border: 2px solid black;
 `;
 
 const ModalBackground = styled.div`
@@ -22,7 +21,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 const Button = styled.button`
@@ -31,12 +30,13 @@ const Button = styled.button`
   border: 1px solid #424242;
   border-radius: 5px;
   color: #424242;
+  ${schema.hoverEffect}
 `;
 
 const Notes = (props) => {
-//   const { notes, postNote } = props;
+  const { seekerId } = props;
   const notes = [
-    { title: 'title', text: 'I need to call the interviewer.' },
+    { title: 'This is the title', text: 'this is the body', category: 'this is a category' },
   ];
 
   const [showAdd, setShowAdd] = useState(false);
@@ -45,7 +45,6 @@ const Notes = (props) => {
     event.preventDefault();
     setShowAdd(!showAdd);
   };
-  const dummySeekerId = '606d2039fa660c4ce0b471fd';
   // bring id from parent and replace
   return (
     <NotesWrapper>
@@ -56,10 +55,10 @@ const Notes = (props) => {
         ? (
           <ModalBackground onMouseDown={toggleModal}>
             <AddNotesModal
-              seekerId={dummySeekerId}
+              seekerId={seekerId}
               toggleModal={toggleModal}
               display={setShowAdd}
-              postNote={postNote}
+              // postNote={postNote}
             />
           </ModalBackground>
         ) : null}
