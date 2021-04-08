@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
+import {post} from '../../../http';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -105,6 +106,7 @@ class PostJobModal extends React.Component {
     super(props);
     this.state = {
       yearsExperience: '',
+      workLocationType: 'onsite',
       // range: {
       //   min: 0,
       //   max: 120000,
@@ -124,7 +126,30 @@ class PostJobModal extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.toggleModal();
+
+    const jobPost = {
+      employerId: this.props.employerId,
+      company: this.state.company,
+      industry: this.state.industry,
+      datePosted: new Date(),
+      title: this.state.title,
+      employmentType: this.state.employmentType,
+      workLocationType: this.state.workLocationType,
+      zipcode: this.state.zipcode,
+      city: this.state.city,
+      experienceLevel: this.state.experienceLevel,
+      requirements: [this.state.requirements],
+      benefits: [this.state.benefits],
+      salary: this.state.salary,
+      jobDescription: this.state.jobDescription,
+      companyDescription: this.state.companyDescription,
+    };
+    post('api/listing', jobPost)
+      .then((result) => {
+        console.log(result);
+        this.props.toggleModal();
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -134,6 +159,11 @@ class PostJobModal extends React.Component {
       <Wrapper onMouseDown={(event) => event.stopPropagation()}>
         <Options>
           <Form onSubmit={this.handleSubmit}>
+            <label>
+              Company:
+              <input type="text" id="company" onChange={this.handleChange} />
+            </label>
+
             <label>
               Job Title:
               <input type="text" id="title" onChange={this.handleChange} />

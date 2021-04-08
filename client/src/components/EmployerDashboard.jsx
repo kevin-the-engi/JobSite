@@ -214,7 +214,7 @@ class EmployerDashboard extends React.Component {
           <NavButton href={`${window.location.origin}/#/employer`}>DASHBOARD</NavButton>
           <NavButton href={`${window.location.origin}/#/employerSearch`}>HIRE</NavButton>
         </NavButtonDiv>
-        <PostJob />
+        <PostJob employerId={this.state.employerId} />
         <LowerDashboardWrapper>
           <LeftSide>
             <Profile />
