@@ -12,7 +12,7 @@ const SavedJobsWrapper = styled.div`
   align-items: center;
 `;
 
-const SavedJobs = (props) => {
+const SavedJobs = () => {
   const savedJobs = [
     { name: 'Software Developer', company: 'Facebook', description: 'description' },
     { name: 'Front-end', company: 'Google', description: 'description' },

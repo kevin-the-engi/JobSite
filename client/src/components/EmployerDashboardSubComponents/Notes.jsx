@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import NotesCard from './NotesCard.jsx';
 import AddNotesModal from './AddNotesModal.jsx';
+import schema from '../constants.jsx';
 
 const NotesWrapper = styled.div`
   width: 100%;
@@ -15,7 +16,7 @@ const NotesWrapper = styled.div`
 const HeaderWrapper = styled.div`
   width: 89%;
   height: 5%;
-  background: #129490;
+  background: ${schema.secondary};
   color: #FFF;
   display: flex;
   justify-content: space-between;
@@ -43,7 +44,7 @@ const Button = styled.button`
   color: #424242;
 `;
 
-const Notes = (props) => {
+const Notes = () => {
   const notes = [
     { title: 'title', text: 'I need to call the interviewer.' },
   ];
@@ -58,13 +59,18 @@ const Notes = (props) => {
 
   return (
     <NotesWrapper>
-      <HeaderWrapper> Notes
+      <HeaderWrapper>
+        Notes
         <Button onClick={toggleModal}>ADD NOTE</Button>
       </HeaderWrapper>
       {showAdd
         ? (
           <ModalBackground onMouseDown={toggleModal}>
-            <AddNotesModal seekerId={dummySeekerId} toggleModal={toggleModal} display={setShowAdd} />
+            <AddNotesModal
+              seekerId={dummySeekerId}
+              toggleModal={toggleModal}
+              display={setShowAdd}
+            />
           </ModalBackground>
         ) : null}
       {notes.map((note) => (

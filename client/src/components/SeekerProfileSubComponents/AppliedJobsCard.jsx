@@ -38,7 +38,9 @@ const AppliedJobsCard = (props) => {
 
   return (
     <Wrapper onClick={toggleModal}>
-      {name} {company} {description}
+      {name}
+      {company}
+      {description}
       {!show
         ? (
           <ModalBackground onMouseDown={toggleModal}>
