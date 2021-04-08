@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const Image = styled.img`
   border-radius: 50%;
   padding: 2px;
-  border: 3px solid #5fa317;
+  border: 3px solid ${schema.primary};
 `;
 
-const ProfilePic = (props) => {
-  return(
-    <div>
-      <Image src="test.jpeg" alt="profilePic" width="150px" height="150px"></Image>
-    </div>
-  );
-};
+const ProfilePic = () => (
+  <div>
+    <Image src="test.jpeg" alt="profilePic" width="150px" height="150px" />
+  </div>
+);
 
 export default ProfilePic;

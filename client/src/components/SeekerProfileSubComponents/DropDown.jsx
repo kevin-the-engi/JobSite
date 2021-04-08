@@ -7,7 +7,7 @@ const Select = styled.select`
 const Option = styled.option`
 `;
 
-const DropDown = (props) => {
+const DropDown = () => {
   const [selected, setSelected] = useState('extremelyInterested');
 
   const handleSelect = (event) => {

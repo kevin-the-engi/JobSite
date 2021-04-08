@@ -6,13 +6,23 @@ import AddNotesModal from './AddNotesModal.jsx';
 
 const NotesWrapper = styled.div`
   width: 100%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const HeaderWrapper = styled.div`
-  border: 2px solid black;
+  width: 89%;
+  height: 5%;
+  background: #129490;
+  color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 `;
 
 const ModalBackground = styled.div`
@@ -34,33 +44,27 @@ const Button = styled.button`
 `;
 
 const Notes = (props) => {
-//   const { notes, postNote } = props;
   const notes = [
     { title: 'title', text: 'I need to call the interviewer.' },
   ];
-
   const [showAdd, setShowAdd] = useState(false);
 
   const toggleModal = (event) => {
     event.preventDefault();
     setShowAdd(!showAdd);
+    // send new note back up
   };
   const dummySeekerId = '606d2039fa660c4ce0b471fd';
-  // bring id from parent and replace
+
   return (
     <NotesWrapper>
-      <HeaderWrapper>
-        <Button onClick={toggleModal}>Add</Button>
+      <HeaderWrapper> Notes
+        <Button onClick={toggleModal}>ADD NOTE</Button>
       </HeaderWrapper>
       {showAdd
         ? (
           <ModalBackground onMouseDown={toggleModal}>
-            <AddNotesModal
-              seekerId={dummySeekerId}
-              toggleModal={toggleModal}
-              display={setShowAdd}
-              postNote={postNote}
-            />
+            <AddNotesModal seekerId={dummySeekerId} toggleModal={toggleModal} display={setShowAdd} />
           </ModalBackground>
         ) : null}
       {notes.map((note) => (

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import JobResult from './JobResult.jsx';
+import schema from '../constants.jsx';
 
 const ResultsWrapper = styled.div`
   width: 95%;

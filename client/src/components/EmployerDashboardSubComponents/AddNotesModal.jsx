@@ -89,17 +89,17 @@ const AddNotesModal = (props) => {
   };
 
   const submitNote = () => {
-    const postData = {
+    let postData = {
       seekerId: props.seekerId,
       noteObj: {
         category: noteCategory,
         title: noteTitle,
-        body: note,
-      },
+        body: note
+      }
     };
     post('api/seekerdata/note', postData)
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
   };
 
   return ReactDOM.createPortal(
