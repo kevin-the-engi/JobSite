@@ -11,7 +11,7 @@ const RemindersWrapper = styled.div`
 `;
 
 const Reminders = (props) => {
-  // const { reminders } = props;
+  const { seekerId } = props;
   // replace once backend is hooked up
   const reminders = [
     {
@@ -29,6 +29,7 @@ const Reminders = (props) => {
     <RemindersWrapper>
       {reminders.map((reminder) => (
         <RemindersCard
+          seekerId={seekerId}
           reminder={reminder}
         />
       ))}

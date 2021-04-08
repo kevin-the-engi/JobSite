@@ -90,6 +90,7 @@ class JobPortal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      seekerId: '606d2039fa660c4ce0b471fd',
       isDesktop: false,
       search: '',
       location: '',

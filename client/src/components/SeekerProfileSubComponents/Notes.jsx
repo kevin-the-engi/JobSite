@@ -33,7 +33,7 @@ const Button = styled.button`
 `;
 
 const Notes = (props) => {
-  // const { notes, postNote } = props;
+  const { seekerId } = props;
   const notes = [
     { title: 'This is the title', text: 'this is the body', category: 'this is a category' },
   ];
@@ -44,7 +44,6 @@ const Notes = (props) => {
     event.preventDefault();
     setShowAdd(!showAdd);
   };
-  const dummySeekerId = '606d2039fa660c4ce0b471fd';
   // bring id from parent and replace
   return (
     <NotesWrapper>
@@ -55,7 +54,7 @@ const Notes = (props) => {
         ? (
           <ModalBackground onMouseDown={toggleModal}>
             <AddNotesModal
-              seekerId={dummySeekerId}
+              seekerId={seekerId}
               toggleModal={toggleModal}
               display={setShowAdd}
               // postNote={postNote}

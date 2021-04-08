@@ -65,8 +65,9 @@ const ModalBackground = styled.div`
 
 const RemindersCard = (props) => {
   const {
+    seekerId,
     reminder: {
-      startTime, endTime, category, title, appointmentNote, dateCreated
+      _id, startTime, endTime, category, title, appointmentNote, dateCreated
     },
   } = props;
 
@@ -118,11 +119,10 @@ const RemindersCard = (props) => {
       {!show
         ? (
           <ModalBackground onMouseDown={toggleModal}>
-            <DeleteModal toggleModal={toggleModal} />
+            <DeleteModal toggleModal={toggleModal} seekerId={seekerId} appointmentId={_id} />
           </ModalBackground>
         ) : null}
     </Wrapper>
-
   );
 };
 

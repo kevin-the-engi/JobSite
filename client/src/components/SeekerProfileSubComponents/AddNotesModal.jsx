@@ -65,7 +65,7 @@ const Button = styled.button`
 `;
 
 const AddNotesModal = (props) => {
-  const { display } = props;
+  const { display, seekerId } = props;
   const [note, setNote] = useState('');
   const [noteCategory, setNoteCategory] = useState('personal');
   const [noteTitle, setNoteTitle] = useState('');
@@ -89,17 +89,17 @@ const AddNotesModal = (props) => {
   };
 
   const submitNote = () => {
-    let postData = {
-      seekerId: props.seekerId,
+    const postData = {
+      seekerId,
       noteObj: {
         category: noteCategory,
         title: noteTitle,
-        body: note
-      }
+        body: note,
+      },
     };
     post('api/seekerdata/note', postData)
-      .then(result => console.log(result))
-      .catch(err => console.log(err));
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   };
 
   return ReactDOM.createPortal(

@@ -20,18 +20,18 @@ const AccountWrapper = styled.div`
 
 const Account = (props) => {
   const {
-    reminders, savedJobs, appliedJobs, notes, postNote,
+    reminders, savedJobs, appliedJobs, notes, seekerId,
   } = props;
 
   return (
     <AccountWrapper>
       <Profile />
       <Tabs
+        seekerId={seekerId}
         reminders={reminders}
         savedJobs={savedJobs}
         appliedJobs={appliedJobs}
         notes={notes}
-        postNote={postNote}
       />
     </AccountWrapper>
   );
