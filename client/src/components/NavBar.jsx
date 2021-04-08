@@ -5,7 +5,7 @@ import schema from './constants.jsx';
 const NavBarWrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: left;
   width: 100vw;
   height: 6vh;
   background: #fff;
@@ -32,7 +32,7 @@ const Logo = styled.h1`
 
 const Slogan = styled.p`
   display: none;
-  @media (min-width: 500px) {
+  @media (min-width: 870px) {
     display: inline;
     font-size: 1rem;
     margin: 0 0 7px 0;
