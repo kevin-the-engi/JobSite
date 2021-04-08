@@ -10,6 +10,7 @@ import DropDown from './EmployerDashboardSubComponents/DropDown.jsx';
 
 import ApplicantDetailDiv from './EmployerSearchSubComponents/ApplicantDetailDiv.jsx';
 import ApplicantDetailModal from './EmployerSearchSubComponents/ApplicantDetailModal.jsx';
+import schema from './constants.jsx';
 
 const PageWrapper = styled.div`
   margin: 0;
@@ -47,7 +48,7 @@ const NavButton = styled.a`
   width: auto;
   padding: .25vh 1.5vw;
   text-decoration: none;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;

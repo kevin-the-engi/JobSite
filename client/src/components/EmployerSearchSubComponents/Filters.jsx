@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import FiltersModal from './FiltersModal.jsx';
+import schema from '../constants.jsx';
 
 const Wrapper = styled.div`
   width: max(15vw, 250px);
@@ -28,10 +29,10 @@ const Button = styled.button`
   height: 5vh;
   padding: 0 1.25vw;
   background: #fff;
-  border: 2px solid #129490;
+  border: 2px solid ${schema.secondary};
   outline: none;
   border-radius: 25px;
-  color: #129490;
+  color: ${schema.secondary};
   &:hover {
     cursor: pointer;
   }
