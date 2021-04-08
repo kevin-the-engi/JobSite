@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -25,64 +26,36 @@ const Wrapper = styled.div`
 `;
 
 const Options = styled.div`
-  max-height: 95vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Form = styled.form`
+  height: 97%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 95vh;
-`;
-
-const Legend = styled.legend`
-  color: #424242;
-`;
-
-const FieldSet = styled.fieldset`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: space-evenly;
+  border: 1px solid #aeaeae;
   border-radius: 5px;
-  margin: 1vh 0;
-  width: 95%;
-
-  // @media (min-width: 768px) {
-  //   justify-content: space-between;
-  // }
 `;
 
-const Radio = styled.input`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  top: 2px;
-  border-radius: 50%;
-  background-color: #fff;
+const Section = styled.div`
+  display: flex;
+`;
 
-  position: relative;
-  content: '';
-  display: inline-block;
-  visibility: visible;
-  border: 1px solid #424242;
-  &:checked {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    position: relative;
-    top: 2px;
-    background-color: #5fa317;
-    background-clip: content-box;
-    padding: 1px;
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 1px solid #424242;
-  }
-  &:focus { outline: none; }
+const Label = styled.label`
+  display: flex;
+  height: 3vh;
+  
+`;
+
+const FieldTitle = styled.p`
+
 `;
 
 const Button = styled.button`
@@ -92,11 +65,12 @@ const Button = styled.button`
   letter-spacing: 2px;
   height: 5vh;
   padding: 0 1.25vw;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 class PostJobModal extends React.Component {
@@ -133,10 +107,12 @@ class PostJobModal extends React.Component {
       <Wrapper onMouseDown={(event) => event.stopPropagation()}>
         <Options>
           <Form onSubmit={this.handleSubmit}>
-            <label>
-              Job Title:
-              <input type="text" id="title" onChange={this.handleChange} />
-            </label>
+            {/* <Section> */}
+              <Label>
+                <FieldTitle>Job Title:</FieldTitle>
+                <input type="text" id="title" onChange={this.handleChange} />
+              </Label>
+            {/* </Section> */}
 
             <label>
               Industry:
@@ -155,7 +131,7 @@ class PostJobModal extends React.Component {
 
             <label>Experience Level:</label>
             <select id="experienceLevel" onChange={this.handleChange}>
-              <option selectde value="entry">Entry</option>
+              <option value="entry">Entry</option>
               <option value="mid">Mid</option>
               <option value="senior">Senior</option>
               <option value="executive">Executive</option>
@@ -197,7 +173,7 @@ class PostJobModal extends React.Component {
 
             <label>Location Type:</label>
             <select id="workLocationType" onChange={this.handleChange}>
-              <option selectde value="onsite">Onsite</option>
+              <option value="onsite">Onsite</option>
               <option value="remote">Remote</option>
               <option value="mixed">Mixed</option>
             </select>

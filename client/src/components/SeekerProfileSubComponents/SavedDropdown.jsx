@@ -22,7 +22,7 @@ const DropDownList = styled.ul`
 const ListItem = styled.li`
 `;
 
-const SavedDropdown = (props) => {
+const SavedDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState('extremelyInterested');
 

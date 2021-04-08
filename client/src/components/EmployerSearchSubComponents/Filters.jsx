@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import FiltersModal from './FiltersModal.jsx';
+import schema from '../constants.jsx';
 
 const Wrapper = styled.div`
   width: max(15vw, 250px);
@@ -16,7 +17,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 const Button = styled.button`
@@ -28,13 +29,11 @@ const Button = styled.button`
   height: 5vh;
   padding: 0 1.25vw;
   background: #fff;
-  border: 2px solid #129490;
+  border: 2px solid ${schema.secondary};
   outline: none;
   border-radius: 25px;
-  color: #129490;
-  &:hover {
-    cursor: pointer;
-  }
+  color: ${schema.secondary};
+  ${schema.hoverEffect}
 `;
 
 class Filters extends React.Component {

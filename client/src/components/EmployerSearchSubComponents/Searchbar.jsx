@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const Form = styled.form`
   width: 95%;
@@ -33,14 +34,12 @@ const Button = styled.button`
   letter-spacing: 2px;
   height: 5vh;
   padding: 0 1.25vw;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;
   color: #fff;
-  &:hover {
-    cursor: pointer;
-  }
+  ${schema.hoverEffect}
 `;
 
 class SearchBar extends React.Component {

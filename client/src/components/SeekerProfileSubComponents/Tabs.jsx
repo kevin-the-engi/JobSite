@@ -5,6 +5,7 @@ import Reminders from './Reminders.jsx';
 import SavedJobs from './SavedJobs.jsx';
 import AppliedJobs from './AppliedJobs.jsx';
 import Notes from './Notes.jsx';
+import schema from '../constants.jsx';
 
 const PersonalContentWrapper = styled.div`
   width: 100%;
@@ -36,15 +37,16 @@ const TabsWrapper = styled.div`
 `;
 
 const Tab = styled.div`
-  width: 24.75%;
-  background: ${props => props.selected ? '#F5F5F5' : '#129490'};
-  color: ${props => props.selected ? '#5fa317' : '#FFF'};
-  font-weight: ${props => props.selected ? 'bold' : 'normal'};
+  width: 24.7%;
+  background: ${(props) => (props.selected ? '#F5F5F5' : schema.secondary)};
+  color: ${(props) => (props.selected ? schema.primary : '#FFF')};
+  font-weight: ${(props) => (props.selected ? 'bold' : 'normal')};
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  ${schema.hoverEffect}
 `;
 
 const ContentWrapper = styled.div`
@@ -69,12 +71,15 @@ const ContentWrapper = styled.div`
 `;
 
 const Tabs = (props) => {
-  const [selectedTab, setSelectedTab] = useState('reminders')
+  const {
+    seekerId, reminders, savedJobs, appliedJobs, notes, postNote,
+  } = props;
+  const [selectedTab, setSelectedTab] = useState('reminders');
   const [tab, setTab] = useState('reminders');
 
   const toggleTab = (id) => {
     setTab(id);
-    setSelectedTab(id)
+    setSelectedTab(id);
   };
 
   const handleClick = (event) => {
@@ -93,10 +98,10 @@ const Tabs = (props) => {
         <Tab selected={selectedTab === 'notes'} id="notes" onClick={handleClick}>NOTES</Tab>
       </TabsWrapper>
       <ContentWrapper>
-        {tab === 'reminders' ? <Reminders /> : null}
-        {tab === 'savedJobs' ? <SavedJobs /> : null}
-        {tab === 'appliedJobs' ? <AppliedJobs /> : null}
-        {tab === 'notes' ? <Notes /> : null}
+        {tab === 'reminders' ? <Reminders seekerId={seekerId} reminders={reminders} /> : null}
+        {tab === 'savedJobs' ? <SavedJobs savedJobs={savedJobs} /> : null}
+        {tab === 'appliedJobs' ? <AppliedJobs appliedJobs={appliedJobs} /> : null}
+        {tab === 'notes' ? <Notes seekerId={seekerId} notes={notes} /> : null}
       </ContentWrapper>
     </PersonalContentWrapper>
   );

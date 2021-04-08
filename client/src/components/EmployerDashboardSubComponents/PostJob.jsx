@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import PostJobModal from './PostJobModal.jsx';
+import schema from '../constants.jsx';
 
 const UpperDashboardWrapper = styled.div`
   width: 100%;
@@ -24,21 +25,22 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 const Button = styled.button`
-  width: max(30vw, 300px);
+  width: max(20vw, 280px);
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 2px;
   height: 5vh;
   padding: 0 1.25vw;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 class PostJob extends React.Component {

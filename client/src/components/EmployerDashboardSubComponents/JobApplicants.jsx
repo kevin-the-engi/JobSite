@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Applicant from './Applicant.jsx';
 
 const ApplicantsWrapper = styled.div`
-  height: 72%;
+  height: 80%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -46,15 +46,16 @@ const List = styled.div`
   align-items: center;
 `;
 
-const JobApplicants = ({ toggleModal, jobApplicants, getResumeToDisplay }) => (
+const JobApplicants = ({
+  toggleModal, selectedJobPosting, jobApplicants, getResumeToDisplay,
+}) => (
   <ApplicantsWrapper>
-    <Header>Current Applicants: 2</Header>
+    <Header>Current Applicants: jobApplicants.length</Header>
     <ListWrapper>
+
       <List>
-
         {/* Delete the following once routed */}
-
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((applicant) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((applicant) => (
           <Applicant
             applicant={applicant}
             key={applicant}
@@ -62,7 +63,6 @@ const JobApplicants = ({ toggleModal, jobApplicants, getResumeToDisplay }) => (
             getResumeToDisplay={getResumeToDisplay}
           />
         ))}
-
         {/* Use the following once routed
 
         {jobApplicants.map((job) => (

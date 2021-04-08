@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import { patchField, deleteField } from '../../../http';
+import { post } from '../../../http';
 import schema from '../constants.jsx';
+import NotesDropDown from './NotesDropDown.jsx';
 
 const Wrapper = styled.div`
   height: 40vh;
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 500;
+  z-index: 5;
   max-width: 30vw;
   max-height: 95vh;
   overflow: hidden;
@@ -38,6 +39,9 @@ const Form = styled.form`
 
 `;
 
+const Input = styled.input`
+`;
+
 const TextArea = styled.textarea`
   padding: 2vh 1vw;
 `;
@@ -48,7 +52,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const Button = styled.button`
-  width: max(10vw, 150px);
+  width: max(10vw, 50px);
   align-items: center;
   font-size: 1rem;
   font-weight: bold;
@@ -61,53 +65,66 @@ const Button = styled.button`
   ${schema.hoverEffect}
 `;
 
-const NotesUpdateModal = ({ text }) => {
-  const [note, setNote] = useState(text);
-  // setDefault state to notes prop
+const AddNotesModal = (props) => {
+  const { display } = props;
+  const [note, setNote] = useState('');
+  const [noteCategory, setNoteCategory] = useState('personal');
+  const [noteTitle, setNoteTitle] = useState('');
 
   const handleChange = (event) => {
     const { value } = event.target;
 
     setNote(value);
   };
-
-  const handleUpdate = (event) => {
+  const handleTitleChange = (event) => {
+    setNoteTitle(event.target.value);
+  };
+  const handleSubmit = (event) => {
     event.preventDefault();
-    patchField('api/seekerdata/note', { seekerId, noteId, body: note })// call function to send note
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    // call function to send data
+    display(false);
   };
 
-  const handleDelete = (event) => {
-    event.preventDefault();
-    // call function to del
-    deleteField('api/seekerdata/note', { seekerId, noteId })
-      .then((res) => console.log(res))
+  const handleCategory = (category) => {
+    setNoteCategory(category);
+  };
+
+  const submitNote = () => {
+    const postData = {
+      seekerId: props.seekerId,
+      noteObj: {
+        category: noteCategory,
+        title: noteTitle,
+        body: note,
+      },
+    };
+    post('api/seekerdata/note', postData)
+      .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };
 
   return ReactDOM.createPortal(
-    <Wrapper onMouseDown={(event) => { event.stopPropagation(); console.log('mouseDown'); }}>
-      <Options onMouseDown={(event) => { event.stopPropagation(); console.log('options'); }}>
-        <Form onSubmit={handleUpdate}>
+    <Wrapper onMouseDown={(event) => event.stopPropagation()}>
+      <Options>
+        <Form onSubmit={handleSubmit}>
+          <Input onChange={handleTitleChange} type="input" placeholder="Title..." />
           <TextArea
-            id="updateText"
+            id="noteText"
             name="note"
             rows="10"
             cols="30"
             onChange={handleChange}
             value={note}
           />
+          <NotesDropDown select={handleCategory} />
           <ButtonWrapper>
-            <Button type="submit">Update</Button>
-            <Button onMouseDown={handleDelete}>Delete</Button>
+            <Button type="submit" onClick={submitNote} value="Submit">Submit</Button>
           </ButtonWrapper>
         </Form>
-
       </Options>
     </Wrapper>,
     document.getElementById('modal-root') || document.createElement('div'), // for testing purposes
   );
 };
 
-export default NotesUpdateModal;
+export default AddNotesModal;
