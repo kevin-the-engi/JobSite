@@ -33,7 +33,7 @@ const App = () => {
           <JobPortal />
         </Route>
         <Route path="/employer">
-          <EmployerDashboard />
+          <EmployerDashboard email={email} />
         </Route>
         <Route path="/employerSearch">
           <EmployerSearch />

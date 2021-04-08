@@ -49,7 +49,7 @@ const Button = styled.button`
 `;
 
 const TabModal = (props) => {
-  const { toggleModal } = props;
+  const { toggleModal, seekerId, appointmentId } = props;
 
   // NEED SEEKER ID & appointment id!!!!!!!!!!!
   const handleClick = (event) => {

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { get } from '../../http';
+import axios from 'axios';
+
 
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
 import Profile from './EmployerDashboardSubComponents/Profile.jsx';
@@ -123,6 +125,7 @@ class EmployerDashboard extends React.Component {
     super(props);
     this.state = {
       isDesktop: false,
+      employerId: null,
       resumeToDisplay: null,
       modalOpen: false,
       jobApplicants: null,
@@ -137,12 +140,36 @@ class EmployerDashboard extends React.Component {
   }
 
   componentDidMount() {
-    // Need all job postings
-
-    // NEED employerNoteId
-    get('api/employerdata/note/all', { employerNoteId: '606d288db9fe4c4ece49270c' })
-    // get('api/employerdata/note/all', { employerNoteId })
-      .then((data) => this.setState({ notes: data.notes }), () => console.log(this.state.notes))
+    axios({
+      url: 'http://localhost:3001/api/employerdata/id',
+      method: 'get',
+      params: {
+        email: this.props.email,
+      },
+    })
+      .then((result) => {
+        this.setState({ employerId: result.data.employerNoteId });
+        return axios({
+          url: 'http://localhost:3001/api/listing/employer',
+          method: 'get',
+          params: {
+            employerId: this.state.employerId,
+          },
+        });
+      })
+      .then((data) => {
+        this.setState({ allJobPosting: data.data });
+        return axios({
+          url: 'http://localhost:3001/api/employerdata/note/all',
+          method: 'get',
+          params: {
+            employerId: this.state.employerId,
+          },
+        });
+      })
+      .then((response) => {
+        this.setState({ notes: response.data.notes });
+      })
       .catch((err) => console.log(err));
 
     this.updateScreenSize();
