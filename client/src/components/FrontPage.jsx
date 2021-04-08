@@ -1,13 +1,6 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
-// const COLOR_1 = '#223B08';
-// const COLOR_2 = '#050802';
-// const COLOR_3 = '#BAFA75';
-// const COLOR_4 = '#5FA317';
-// const COLOR_5 = '#129490';
 
 const FlexDiv = styled.div`
   font-family: Arial;
@@ -107,7 +100,7 @@ const EMPLOYER_LOGIN_HEADER = 'Login to get access to your applicants!';
 const REGISTER_BOTTOM_TEXT = 'Already a user? ';
 const LOGIN_BOTTOM_TEXT = 'Don\'t have an account yet? ';
 
-const FrontPage = () => {
+const FrontPage = ({ setUserID, setAccountType, bubbleUpEmail, bubbleUpCompany }) => {
   const [user, setUser] = useState('Seeker');
   const [formType, setFormType] = useState('Register');
   const [firstName, setFirstName] = useState('');
@@ -148,35 +141,62 @@ const FrontPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user === 'Seeker') {
-      window.location.href = `${window.location.origin}/#/seeker`;
-    } else {
-      window.location.href = `${window.location.origin}/#/employer`;
-    }
+
     // TODO validate form data before post request
-    // if (formType === 'Register') {
-    //   if (user === 'Seeker') {
-    //     axios.post(`${URL}/users`, {
-    //       firstName,
-    //       lastName,
-    //       email,
-    //       password,
-    //     });
-    //   } else {
-    //     axios.post(`${URL}/employers`, {
-    //       company,
-    //       firstName,
-    //       lastName,
-    //       email,
-    //       password,
-    //     });
-    //   }
-    // } else {
-    //   axios.post(`${URL}/auth`, {
-    //     email,
-    //     password,
-    //   });
-    // }
+
+    if (formType === 'Register') {
+      if (user === 'Seeker') {
+        axios.post(`${URL}/users`, {
+          firstName,
+          lastName,
+          email,
+          password,
+        })
+          .then(({ data }) => {
+            const { accessToken, _id } = data.data;
+            setUserID(_id);
+            setAccountType('User');
+            bubbleUpEmail(email);
+            // Do something with accessToken
+            window.location.href = `${window.location.origin}/#/seeker`;
+          });
+      } else {
+        axios.post(`${URL}/employers`, {
+          company,
+          firstName,
+          lastName,
+          email,
+          password,
+        })
+          .then(({ data }) => {
+            const { accessToken, _id } = data.data;
+            setUserID(_id);
+            setAccountType('Employer');
+            bubbleUpEmail(email);
+            bubbleUpCompany(company);
+            // Do something with accessToken
+            window.location.href = `${window.location.origin}/#/employer`;
+          });
+      }
+    } else {
+      axios.post(`${URL}/auth`, {
+        email,
+        password,
+      })
+        .then(({ data }) => {
+          const { accessToken, _id, accountType } = data.data;
+          setUserID(_id);
+          setAccountType(accountType);
+          bubbleUpEmail(email);
+          // Do something with accessToken
+          if (user === 'Seeker') {
+            window.location.href = `${window.location.origin}/#/seeker`;
+          } else {
+            bubbleUpCompany(company);
+            window.location.href = `${window.location.origin}/#/employer`;
+          }
+        });
+    }
   };
 
   const handleUserToggle = (e) => {
