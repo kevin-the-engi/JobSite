@@ -118,11 +118,11 @@ class JobPortal extends React.Component {
   }
 
   getJobListings() {
-    const { filters:
-      { employment, experience, locationType, salary, datePosted, locationRange }
-    } = this.state;
+    // const { filters:
+    //   { employment, experience, locationType, salary, datePosted, locationRange }
+    // } = this.state;
 
-    const params = ``;
+    // const params = ``;
 
     get('api/listing/all')
     .then((data) => this.setState({ jobResults: data }))

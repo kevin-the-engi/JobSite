@@ -13,6 +13,7 @@ const SavedJobsWrapper = styled.div`
 `;
 
 const SavedJobs = (props) => {
+  // const { savedJobs } = props;
   const savedJobs = [
     { name: 'Software Developer', company: 'Facebook', description: 'description' },
     { name: 'Front-end', company: 'Google', description: 'description' },
