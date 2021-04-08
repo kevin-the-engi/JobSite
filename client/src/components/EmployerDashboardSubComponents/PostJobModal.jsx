@@ -106,14 +106,9 @@ class PostJobModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      yearsExperience: '',
+      experienceLevel: 'entry',
       workLocationType: 'onsite',
-      // range: {
-      //   min: 0,
-      //   max: 120000,
-      // },
-      educationLevel: '',
-      // desiredSalary: 0,
+      employmentType: 'fulltime',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
