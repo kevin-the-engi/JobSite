@@ -38,6 +38,9 @@ const Button = styled.button`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 class SearchBar extends React.Component {

@@ -72,6 +72,24 @@ class SeekerPortal extends React.Component {
   //   get('/api/seekerdata/savedjob/all'')
   // }
 
+  componentDidMount() {
+
+  }
+
+  getAppointments() {
+    const id = {
+      seekerId: '606d2039fa660c4ce0b471fd',
+    };
+    get('api/seekerdata/appointment/all', id)
+      .then((appointments) => {
+        this.setState({
+          reminders: appointments.body,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
     return (
@@ -80,7 +98,7 @@ class SeekerPortal extends React.Component {
           <NavButton href={`${window.location.origin}/#/seeker`}>MY PROFILE</NavButton>
           <NavButton href={`${window.location.origin}/#/jobs`}>FIND JOBS</NavButton>
         </NavButtonDiv>
-        <Account />
+        <Account reminders={this.state.reminders} />
       </SeekerPortalWrapper>
     );
   }

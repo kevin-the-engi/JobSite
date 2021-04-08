@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
+import { get } from '../../../http';
 
 import DummyData from '../../../../DummyData.js';
 
@@ -82,9 +82,11 @@ class FindJobSeekersPortal extends React.Component {
   componentDidMount() {
     // send GET Request for data and assign to jobSeekers in state
     // app.get('/api/resume/all', getAllResumes);
-    axios.get('/')
-    .then()
-    .catch();
+    // axios.get('http://localhost:3001/api/resume/all')
+    // axios.get('http://3.134.101.103/api/resume/all')
+    get('api/resume/all')
+      .then((data) => this.setState({ jobSeekers: data }))
+      .catch();
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
   }
