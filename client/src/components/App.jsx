@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 
 import {
   HashRouter,
   Switch,
   Route,
-  Link,
+  // Link,
 } from 'react-router-dom';
 
 import NavBar from './NavBar.jsx';
@@ -34,7 +33,7 @@ const App = () => {
           <JobPortal />
         </Route>
         <Route path="/employer">
-          <EmployerDashboard />
+          <EmployerDashboard email={email} />
         </Route>
         <Route path="/employerSearch">
           <EmployerSearch />

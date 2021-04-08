@@ -10,7 +10,7 @@ const RemindersWrapper = styled.div`
   align-items: center;
 `;
 
-const Reminders = (props) => {
+const Reminders = () => {
   // const { reminders } = props;
   // replace once backend is hooked up
   const reminders = [

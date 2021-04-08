@@ -42,6 +42,7 @@ const Text = styled.p`
 `;
 
 const Applicant = ({ applicant, toggleModal, getResumeToDisplay }) => (
+
   <ApplicantTile onClick={(event) => { event.preventDefault(); toggleModal(); getResumeToDisplay(applicant) }}>
     {/* Delete the following once routed */}
     <Text>{applicant}</Text>

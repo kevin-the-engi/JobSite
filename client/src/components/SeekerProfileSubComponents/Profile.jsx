@@ -21,13 +21,11 @@ const ProfileWrapper = styled.div`
   }
 `;
 
-const Profile = (props) => {
-  return(
-    <ProfileWrapper>
-      <ProfilePic />
-      <ProfileInfo />
-    </ProfileWrapper>
-  )
-};
+const Profile = () => (
+  <ProfileWrapper>
+    <ProfilePic />
+    <ProfileInfo />
+  </ProfileWrapper>
+);
 
 export default Profile;

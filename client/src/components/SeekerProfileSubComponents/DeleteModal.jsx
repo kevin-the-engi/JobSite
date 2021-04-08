@@ -61,7 +61,7 @@ const TabModal = (props) => {
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => event.stopPropagation()}>
       <Options>
-      <i className="fas fa-trash-alt fa-5x"></i>
+        <i className="fas fa-trash-alt fa-5x" />
         <Button onClick={handleClick}>Delete</Button>
       </Options>
     </Wrapper>,
