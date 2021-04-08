@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { get } from '../../http';
+import { get, post } from '../../http';
 import schema from './constants.jsx';
+
 import Account from './SeekerProfileSubComponents/Account.jsx';
 
 const SeekerPortalWrapper = styled.div`
@@ -52,20 +53,28 @@ class SeekerPortal extends React.Component {
     super(props);
 
     this.state = {
+      seekerId: '606d2039fa660c4ce0b471fd',
       reminders: [],
       savedJobs: [],
       appliedJobs: [],
       notes: [],
     };
+
+    this.postNote = this.postNote.bind(this);
   }
 
   // Dummy data
   componentDidMount() {
+<<<<<<< HEAD
     const id = {
       seekerId: '606d2039fa660c4ce0b471fd',
     };
     get('api/seekerdata/all', id)
       .then((data) => {
+=======
+    get('api/seekerdata/all', { seekerId: this.state.seekerId })
+      .then((data) =>
+>>>>>>> afcd508d717fa5150e0dcd67b5c09ad3606e6928
         this.setState({
           reminders: data.appointments,
           savedJobs: data.savedJobs,
@@ -78,14 +87,48 @@ class SeekerPortal extends React.Component {
       });
   }
 
+  postNote(note) {
+    const noteBody = {
+      seekerId: this.state.seekerId,
+      noteObj: note,
+    };
+
+    // hook up to the notes component somewhere
+    post('api/seekerdata/note', noteBody)
+      .then(() => {
+        get('api/seekerdata/note/all', { seekerId: this.state.seekerId })
+          .then((data) => {
+            this.setState({
+              notes: data.notes,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
+    const {
+      reminders, savedJobs, appliedJobs, notes,
+    } = this.state;
+
     return (
       <SeekerPortalWrapper>
         <NavButtonDiv>
           <NavButton href={`${window.location.origin}/#/seeker`}>MY PROFILE</NavButton>
           <NavButton href={`${window.location.origin}/#/jobs`}>FIND JOBS</NavButton>
         </NavButtonDiv>
-        <Account reminders={this.state.reminders} />
+        <Account
+          reminders={reminders}
+          savedJobs={savedJobs}
+          appliedJobs={appliedJobs}
+          notes={notes}
+          postNote={this.postNote}
+        />
       </SeekerPortalWrapper>
     );
   }

@@ -33,19 +33,20 @@ const Button = styled.button`
   color: #424242;
 `;
 
-const Notes = () => {
+const Notes = (props) => {
+//   const { notes, postNote } = props;
   const notes = [
     { title: 'title', text: 'I need to call the interviewer.' },
   ];
+
   const [showAdd, setShowAdd] = useState(false);
 
   const toggleModal = (event) => {
     event.preventDefault();
     setShowAdd(!showAdd);
-    // send new note back up
   };
   const dummySeekerId = '606d2039fa660c4ce0b471fd';
-
+  // bring id from parent and replace
   return (
     <NotesWrapper>
       <HeaderWrapper>
@@ -58,6 +59,7 @@ const Notes = () => {
               seekerId={dummySeekerId}
               toggleModal={toggleModal}
               display={setShowAdd}
+              postNote={postNote}
             />
           </ModalBackground>
         ) : null}
