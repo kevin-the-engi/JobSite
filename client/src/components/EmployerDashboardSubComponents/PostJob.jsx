@@ -67,7 +67,7 @@ class PostJob extends React.Component {
         { show
           ? (
             <ModalBackground onMouseDown={this.toggleModal}>
-              <PostJobModal toggleModal={this.toggleModal} />
+              <PostJobModal employerId={this.props.employerId} toggleModal={this.toggleModal} />
             </ModalBackground>
           ) : null}
       </UpperDashboardWrapper>
