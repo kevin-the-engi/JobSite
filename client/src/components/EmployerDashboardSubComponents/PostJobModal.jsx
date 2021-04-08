@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -74,7 +75,7 @@ const Radio = styled.input`
     border-radius: 50%;
     position: relative;
     top: 2px;
-    background-color: #5fa317;
+    background-color: ${schema.primary};
     background-clip: content-box;
     padding: 1px;
     content: '';
@@ -92,7 +93,7 @@ const Button = styled.button`
   letter-spacing: 2px;
   height: 5vh;
   padding: 0 1.25vw;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;

@@ -36,7 +36,7 @@ const AppliedJobsCard = (props) => {
     setShow(!show);
   };
 
-  return(
+  return (
     <Wrapper onClick={toggleModal}>
       {name} {company} {description}
       {!show

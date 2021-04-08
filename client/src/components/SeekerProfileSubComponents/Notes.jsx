@@ -33,7 +33,7 @@ const Button = styled.button`
   color: #424242;
 `;
 
-const Notes = (props) => {
+const Notes = () => {
   const notes = [
     { title: 'title', text: 'I need to call the interviewer.' },
   ];
@@ -54,7 +54,11 @@ const Notes = (props) => {
       {showAdd
         ? (
           <ModalBackground onMouseDown={toggleModal}>
-            <AddNotesModal seekerId={dummySeekerId} toggleModal={toggleModal} display={setShowAdd} />
+            <AddNotesModal
+              seekerId={dummySeekerId}
+              toggleModal={toggleModal}
+              display={setShowAdd}
+            />
           </ModalBackground>
         ) : null}
       {notes.map((note) => (

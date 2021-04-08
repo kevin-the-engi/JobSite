@@ -8,6 +8,7 @@ import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
 
 import ApplicantDetailDiv from './EmployerSearchSubComponents/ApplicantDetailDiv.jsx';
 import ApplicantDetailModal from './EmployerSearchSubComponents/ApplicantDetailModal.jsx';
+import schema from './constants.jsx';
 
 const PageWrapper = styled.div`
   margin: 0;
@@ -45,7 +46,7 @@ const NavButton = styled.a`
   width: auto;
   padding: .25vh 1.5vw;
   text-decoration: none;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;
@@ -131,9 +132,9 @@ class EmployerDashboard extends React.Component {
 
   componentDidMount() {
     // NEED employerNoteId
-    get('api/employerdata/note/all', { employerNoteId })
-      .then((data) => this.setState({ notes: data.notes }))
-      .catch((err) => console.log(err));
+    // get('api/employerdata/note/all', { employerNoteId })
+    //   .then((data) => this.setState({ notes: data.notes }))
+    //   .catch((err) => console.log(err));
     this.updateScreenSize();
     window.addEventListener('resize', this.updateScreenSize);
   }

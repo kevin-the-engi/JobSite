@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import schema from '../constants.jsx';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -92,7 +93,7 @@ const Radio = styled.input`
     border-radius: 50%;
     position: relative;
     top: 2px;
-    background-color: #5fa317;
+    background-color: ${schema.primary};
     background-clip: content-box;
     padding: 1px;
     content: '';
@@ -113,7 +114,7 @@ const Range = styled.input`
   ::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     height: 10px;
-    color: #5fa317;
+    color: ${schema.primary};
     margin-top: -1px;
   }
   ::-webkit-slider-thumb {
@@ -122,7 +123,7 @@ const Range = styled.input`
     height: 20px;
     cursor: ew-resize;
     background: #424242;
-    box-shadow: -600px 0 0 600px #5fa317;
+    box-shadow: -600px 0 0 600px ${schema.primary};
   }
 /** FF*/
   ::-moz-range-progress {
@@ -136,7 +137,7 @@ const Range = styled.input`
     background-color: #e0e0e0;
   }
   ::-ms-fill-upper {
-    background-color: #5fa317;
+    background-color: ${schema.primary};
   }
 }
 `;
@@ -148,7 +149,7 @@ const Button = styled.button`
   letter-spacing: 2px;
   height: 5vh;
   padding: 0 1.25vw;
-  background: #129490;
+  background: ${schema.secondary};
   border: none;
   outline: none;
   border-radius: 25px;

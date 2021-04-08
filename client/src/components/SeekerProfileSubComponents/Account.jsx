@@ -21,7 +21,7 @@ const AccountWrapper = styled.div`
 const Account = (props) => {
   const { reminders } = props;
 
-  return(
+  return (
     <AccountWrapper>
       <Profile />
       <Tabs reminders={reminders} />

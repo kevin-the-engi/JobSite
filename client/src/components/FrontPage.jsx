@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import schema from './constants.jsx';
 
 const FlexDiv = styled.div`
   font-family: Arial;
@@ -11,7 +12,7 @@ const FlexDiv = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   overflow-x: hidden;
-  background: linear-gradient(135deg, #BAFA75, #129490);
+  background: linear-gradient(135deg, ${schema.secondary}, ${schema.primary});
 `;
 const Div = styled.div`
   height: 12%;
