@@ -4,9 +4,11 @@ import { get } from '../../http';
 
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
 import Profile from './EmployerDashboardSubComponents/Profile.jsx';
+
 // import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
 
 import Notes from './EmployerDashboardSubComponents/Notes.jsx';
+
 
 import ApplicantDetailDiv from './EmployerSearchSubComponents/ApplicantDetailDiv.jsx';
 import ApplicantDetailModal from './EmployerSearchSubComponents/ApplicantDetailModal.jsx';
@@ -164,6 +166,7 @@ class EmployerDashboard extends React.Component {
     const {
       jobApplicants, resumeToDisplay, toggleModal, isDesktop, modalOpen,
     } = this.state;
+
     return (
       <PageWrapper>
         <NavButtonDiv>
