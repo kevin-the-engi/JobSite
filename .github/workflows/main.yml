@@ -51,5 +51,18 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        
+      - name: Deployment
+        run: |
+          aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 816674678256.dkr.ecr.us-east-2.amazonaws.com
+          docker -H $TARGET_HOST:$TARGET_PORT rm -f webapp
+          docker -H $TARGET_HOST:$TARGET_PORT pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker -H $TARGET_HOST:$TARGET_PORT run --name webapp -d -p 80:80 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+          TARGET_HOST: 18.220.13.101
+          TARGET_PORT: 2375
+          ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
+          ECR_REPOSITORY: blueocean-webapp
+          IMAGE_TAG: '1.0'
 
 
