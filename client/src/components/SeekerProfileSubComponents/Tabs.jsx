@@ -41,12 +41,18 @@ const Tab = styled.div`
   background: ${(props) => (props.selected ? '#F5F5F5' : schema.secondary)};
   color: ${(props) => (props.selected ? schema.primary : '#FFF')};
   font-weight: ${(props) => (props.selected ? 'bold' : 'normal')};
+  font-size: .8rem;
   display: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   ${schema.hoverEffect}
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const ContentWrapper = styled.div`
