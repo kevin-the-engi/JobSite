@@ -19,11 +19,16 @@ const Div = styled.div`
   width: 32%;
   min-width: 256px;
   max-width: 400px;
-  margin-top: 50vh;
-  margin-left: 20vw;
+  margin-top: 2vh;
+  margin-left: 4vw;
   float: left;
   color: white;
   text-shadow: 1px 1px 4px black;
+  transition-duration: 0.4s;
+  @media (min-width: 768px) {
+    margin-top: 50vh;
+    margin-left: 20vw;
+  }
 `;
 const Form = styled.form`
   height: 65%;
