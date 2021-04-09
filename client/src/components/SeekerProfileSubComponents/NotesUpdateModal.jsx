@@ -59,7 +59,7 @@ const Button = styled.button`
   color: #424242;
 `;
 
-const NotesUpdateModal = ({ text }) => {
+const NotesUpdateModal = ({ seekerId, noteId, text }) => {
   const [note, setNote] = useState(text);
   // setDefault state to notes prop
 
