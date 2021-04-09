@@ -69,7 +69,7 @@ class FindJobSeekersPortal extends React.Component {
       },
       isDesktop: false,
       modalOpen: false,
-      jobSeekers: DummyData.DummyData.data,
+      jobSeekers: null,
       resumeToDisplay: null,
     };
     this.updateScreenSize = this.updateScreenSize.bind(this);
