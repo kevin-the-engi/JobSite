@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { get } from '../../http';
 import axios from 'axios';
-
+import { get } from '../../http';
 
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
 import Profile from './EmployerDashboardSubComponents/Profile.jsx';
@@ -99,15 +98,12 @@ class EmployerDashboard extends React.Component {
       employerId: null,
       resumeToDisplay: null,
       modalOpen: false,
-      jobApplicants: null,
-      allJobPosting: null,
-      selectedJobPosting: null,
+      jobApplicants: [],
+      allJobPostings: [],
+      selectedJobPostingId: null,
       notes: [],
     };
-    this.updateScreenSize = this.updateScreenSize.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
     this.getSelectedItem = this.getSelectedItem.bind(this);
-    this.getResumeToDisplay = this.getResumeToDisplay.bind(this);
   }
 
   componentDidMount() {
@@ -129,7 +125,7 @@ class EmployerDashboard extends React.Component {
         });
       })
       .then((data) => {
-        this.setState({ allJobPosting: data.data });
+        this.setState({ allJobPostings: data.data });
         return axios({
           url: 'http://localhost:3001/api/employerdata/note/all',
           method: 'get',
@@ -142,42 +138,22 @@ class EmployerDashboard extends React.Component {
         this.setState({ notes: response.data.notes });
       })
       .catch((err) => console.log(err));
-
-    this.updateScreenSize();
-    window.addEventListener('resize', this.updateScreenSize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateScreenSize);
   }
 
   getResumeToDisplay(seeker) {
     this.setState({ resumeToDisplay: seeker });
   }
 
-  getSelectedItem(selectedJobPosting) {
-    this.setState({ selectedJobPosting });
-  }
-
-  toggleModal() {
-    this.setState((prevState) => ({
-      modalOpen: !prevState.modalOpen,
-    }));
-  }
-
-  updateScreenSize() {
-    this.setState({ isDesktop: window.innerWidth >= 768 });
+  getSelectedItem(selectedJobPostingId) {
+    this.setState({ selectedJobPostingId });
   }
 
   render() {
     const {
       jobApplicants,
-      selectedJobPosting,
-      getSelectedItem,
-      resumeToDisplay,
-      toggleModal,
-      isDesktop,
-      modalOpen,
+      selectedJobPostingId,
+      allJobPostings,
+      notes,
     } = this.state;
 
     return (
@@ -190,22 +166,14 @@ class EmployerDashboard extends React.Component {
         <LowerDashboardWrapper>
           <LeftSide>
             <Profile />
-            <Notes />
+            <Notes notes={notes} />
           </LeftSide>
           <RightSide>
-            <DropDown getSelectedItem={this.getSelectedItem} list={[{ title: 'job 1' }, { title: 'job 2' }, { title: 'job 3' }]} />
+            <DropDown getSelectedItem={this.getSelectedItem} list={allJobPostings} />
             <JobApplicants
               jobApplicants={jobApplicants}
-              toggleModal={this.toggleModal}
-              getResumeToDisplay={this.getResumeToDisplay}
-              selectedJobPosting={selectedJobPosting}
+              selectedJobPostingId={selectedJobPostingId}
             />
-            {/* { isDesktop && <ApplicantDetailDiv resumeToDisplay={resumeToDisplay} />}
-            { !isDesktop && modalOpen && (
-              <ModalBackground onMouseDown={toggleModal}>
-                <ApplicantDetailModal resumeToDisplay={resumeToDisplay} />
-              </ModalBackground>
-            )} */}
           </RightSide>
         </LowerDashboardWrapper>
       </PageWrapper>

@@ -22,7 +22,8 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 4%;
-  border-radius: 4px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 `;
 
 const ModalBackground = styled.div`
@@ -44,10 +45,10 @@ const Button = styled.button`
   ${schema.hoverEffect}
 `;
 
-const Notes = () => {
-  const notes = [
-    { title: 'title', text: 'I need to call the interviewer.' },
-  ];
+const Notes = ({ notes }) => {
+  // const notes = [
+  //   { title: 'title', text: 'I need to call the interviewer.' },
+  // ];
   const [showAdd, setShowAdd] = useState(false);
 
   const toggleModal = (event) => {
@@ -75,6 +76,7 @@ const Notes = () => {
         ) : null}
       {notes.map((note) => (
         <NotesCard
+          key={note.dateCreated}
           note={note}
         />
       ))}
