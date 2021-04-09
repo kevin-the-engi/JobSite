@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import SavedJobsCard from './SavedJobsCard.jsx';
@@ -15,19 +15,41 @@ const SavedJobsWrapper = styled.div`
 const SavedJobs = (props) => {
   // const { savedJobs } = props;
   const savedJobs = [
-    { name: 'Software Developer', company: 'Facebook', description: 'description' },
-    { name: 'Front-end', company: 'Google', description: 'description' },
-    { name: 'Systems Engineer', company: 'Twitter', description: 'description' },
-    { name: 'Burger-tasting Expert', company: 'McDonalds', description: 'description' },
+    {
+      name: 'Software Developer', company: 'Facebook', description: 'description', interestLevel: '3',
+    },
+    {
+      name: 'Front-end', company: 'Google', description: 'description', interestLevel: '1',
+    },
+    {
+      name: 'Systems Engineer', company: 'Twitter', description: 'description', interestLevel: '1',
+    },
+    {
+      name: 'Burger-tasting Expert', company: 'McDonalds', description: 'description', interestLevel: '2',
+    },
   ];
+  const [interestLevel, setInterestLevel] = useState('3');
+
+  const selectInterest = (interest) => {
+    const interests = {
+      exInterested: '3',
+      veryInterested: '2',
+      interested: '1',
+    };
+
+    setInterestLevel(interests[interest]);
+  };
 
   return (
     <SavedJobsWrapper>
-      <DropDown />
+      <DropDown selectInterest={selectInterest} />
       {savedJobs.map((job) => (
-        <SavedJobsCard
-          job={job}
-        />
+        (job.interestLevel === interestLevel
+          ? (
+            <SavedJobsCard
+              job={job}
+            />
+          ) : null)
       ))}
     </SavedJobsWrapper>
   );

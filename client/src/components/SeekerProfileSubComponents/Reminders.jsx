@@ -29,6 +29,7 @@ const Reminders = (props) => {
     <RemindersWrapper>
       {reminders.map((reminder) => (
         <RemindersCard
+          key={reminder._id}
           seekerId={seekerId}
           reminder={reminder}
         />
