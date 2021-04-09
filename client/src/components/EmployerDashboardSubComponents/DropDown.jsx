@@ -13,7 +13,7 @@ const DDWrapper = styled.div`
 const DDHeader = styled.button`
   font-size: 1rem;
   position: relative;
-  height: 7vh;
+  height: 5vh;
   width: 100%;
   padding: 0 1.25vw;
   display: flex;
@@ -78,7 +78,7 @@ class Dropdown extends React.Component {
     super(props);
     this.state = {
       isListOpen: false,
-      headerTitle: this.props.title,
+      headerTitle: 'Choose a Job Posting to Filter Applications',
     };
     this.toggleList = this.toggleList.bind(this);
     this.selectItem = this.selectItem.bind(this);

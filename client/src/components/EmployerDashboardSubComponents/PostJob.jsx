@@ -25,11 +25,11 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 const Button = styled.button`
-  width: max(30vw, 300px);
+  width: max(20vw, 280px);
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 2px;
@@ -40,6 +40,7 @@ const Button = styled.button`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 class PostJob extends React.Component {
@@ -66,7 +67,7 @@ class PostJob extends React.Component {
         { show
           ? (
             <ModalBackground onMouseDown={this.toggleModal}>
-              <PostJobModal toggleModal={this.toggleModal} />
+              <PostJobModal employerId={this.props.employerId} toggleModal={this.toggleModal} />
             </ModalBackground>
           ) : null}
       </UpperDashboardWrapper>

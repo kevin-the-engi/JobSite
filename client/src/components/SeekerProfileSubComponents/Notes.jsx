@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import schema from '../constants.jsx';
 import NotesCard from './NotesCard.jsx';
 import AddNotesModal from './AddNotesModal.jsx';
 
@@ -21,7 +21,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 const Button = styled.button`
@@ -30,6 +30,7 @@ const Button = styled.button`
   border: 1px solid #424242;
   border-radius: 5px;
   color: #424242;
+  ${schema.hoverEffect}
 `;
 
 const Notes = (props) => {

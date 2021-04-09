@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
+import {post} from '../../../http';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -26,64 +27,36 @@ const Wrapper = styled.div`
 `;
 
 const Options = styled.div`
-  max-height: 95vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Form = styled.form`
+  height: 97%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 95vh;
-`;
-
-const Legend = styled.legend`
-  color: #424242;
-`;
-
-const FieldSet = styled.fieldset`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: space-evenly;
+  border: 1px solid #aeaeae;
   border-radius: 5px;
-  margin: 1vh 0;
-  width: 95%;
-
-  // @media (min-width: 768px) {
-  //   justify-content: space-between;
-  // }
 `;
 
-const Radio = styled.input`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  top: 2px;
-  border-radius: 50%;
-  background-color: #fff;
+const Section = styled.div`
+  display: flex;
+`;
 
-  position: relative;
-  content: '';
-  display: inline-block;
-  visibility: visible;
-  border: 1px solid #424242;
-  &:checked {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    position: relative;
-    top: 2px;
-    background-color: ${schema.primary};
-    background-clip: content-box;
-    padding: 1px;
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 1px solid #424242;
-  }
-  &:focus { outline: none; }
+const Label = styled.label`
+  display: flex;
+  height: 3vh;
+  
+`;
+
+const FieldTitle = styled.p`
+
 `;
 
 const Button = styled.button`
@@ -98,19 +71,16 @@ const Button = styled.button`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${schema.hoverEffect}
 `;
 
 class PostJobModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      yearsExperience: '',
-      // range: {
-      //   min: 0,
-      //   max: 120000,
-      // },
-      educationLevel: '',
-      // desiredSalary: 0,
+      experienceLevel: 'entry',
+      workLocationType: 'onsite',
+      employmentType: 'fulltime',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -124,7 +94,30 @@ class PostJobModal extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.toggleModal();
+
+    const jobPost = {
+      employerId: this.props.employerId,
+      company: this.state.company,
+      industry: this.state.industry,
+      datePosted: new Date(),
+      title: this.state.title,
+      employmentType: this.state.employmentType,
+      workLocationType: this.state.workLocationType,
+      zipcode: this.state.zipcode,
+      city: this.state.city,
+      experienceLevel: this.state.experienceLevel,
+      requirements: [this.state.requirements],
+      benefits: [this.state.benefits],
+      salary: this.state.salary,
+      jobDescription: this.state.jobDescription,
+      companyDescription: this.state.companyDescription,
+    };
+    post('api/listing', jobPost)
+      .then((result) => {
+        console.log(result);
+        this.props.toggleModal();
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -135,10 +128,16 @@ class PostJobModal extends React.Component {
         <Options>
           <Form onSubmit={this.handleSubmit}>
             <label>
-              Job Title:
-              <input type="text" id="title" onChange={this.handleChange} />
+              Company:
+              <input type="text" id="company" onChange={this.handleChange} />
             </label>
 
+            {/* <Section> */}
+              <Label>
+                <FieldTitle>Job Title:</FieldTitle>
+                <input type="text" id="title" onChange={this.handleChange} />
+              </Label>
+            {/* </Section> */}
             <label>
               Industry:
               <input type="text" id="industry" onChange={this.handleChange} />

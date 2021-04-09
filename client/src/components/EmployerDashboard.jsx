@@ -10,8 +10,6 @@ import Notes from './EmployerDashboardSubComponents/Notes.jsx';
 import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
 import DropDown from './EmployerDashboardSubComponents/DropDown.jsx';
 
-import ApplicantDetailDiv from './EmployerSearchSubComponents/ApplicantDetailDiv.jsx';
-import ApplicantDetailModal from './EmployerSearchSubComponents/ApplicantDetailModal.jsx';
 import schema from './constants.jsx';
 
 const PageWrapper = styled.div`
@@ -28,34 +26,8 @@ const PageWrapper = styled.div`
   }
 `;
 
-const NavButtonDiv = styled.div`
-  height: 6vh;
-  width: auto;
-  position: absolute;
-  top: 0;
-  right: 5vw;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const NavButton = styled.a`
-  position: relative;
-  text-align: center;
-  height: 4vh;
-  margin: 0 1vw;
-  line-height: 4vh;
-  letter-spacing: 1px;
-  width: auto;
-  padding: .25vh 1.5vw;
-  text-decoration: none;
-  background: ${schema.secondary};
-  border: none;
-  outline: none;
-  border-radius: 25px;
-  color: #fff;
-`;
+const NavButtonDiv = schema.navButtonDiv;
+const NavButton = schema.navButton;
 
 const LowerDashboardWrapper = styled.div`
   width: 95%;
@@ -116,7 +88,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
+  ${schema.modalBackdrop}
 `;
 
 class EmployerDashboard extends React.Component {
@@ -214,7 +186,7 @@ class EmployerDashboard extends React.Component {
           <NavButton href={`${window.location.origin}/#/employer`}>DASHBOARD</NavButton>
           <NavButton href={`${window.location.origin}/#/employerSearch`}>HIRE</NavButton>
         </NavButtonDiv>
-        <PostJob />
+        <PostJob employerId={this.state.employerId} />
         <LowerDashboardWrapper>
           <LeftSide>
             <Profile />

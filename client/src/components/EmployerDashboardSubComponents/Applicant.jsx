@@ -15,6 +15,7 @@ const ApplicantTile = styled.div`
   padding: .5vh 1%;
   font-family: Arial, sans-serif;
   color: #424242;
+  ${schema.hoverEffect}
 `;
 
 const SpacedRowDiv = styled.div`

@@ -20,34 +20,8 @@ const PageWrapper = styled.div`
   justify-content: center;
 `;
 
-const NavButtonDiv = styled.div`
-  height: 6vh;
-  width: auto;
-  position: absolute;
-  top: 0;
-  right: 5vw;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const NavButton = styled.a`
-  position: relative;
-  text-align: center;
-  height: 4vh;
-  margin: 0 1vw;
-  line-height: 4vh;
-  letter-spacing: 1px;
-  width: auto;
-  padding: .25vh 1.5vw;
-  text-decoration: none;
-  background: ${schema.secondary};
-  border: none;
-  outline: none;
-  border-radius: 25px;
-  color: #fff;
-`;
+const NavButtonDiv = schema.navButtonDiv;
+const NavButton = schema.navButton;
 
 const SearchWrapper = styled.div`
   width: 100%;
@@ -84,8 +58,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background-color: #42424275;
-  backdrop-filter: blur(12px);
+  ${schema.modalBackdrop}
 `;
 
 class JobPortal extends React.Component {
@@ -128,8 +101,8 @@ class JobPortal extends React.Component {
     // const params = ``;
 
     get('api/listing/all')
-    .then((data) => this.setState({ jobResults: data }))
-    .catch((e) => console.log(e));
+      .then((data) => this.setState({ jobResults: data }))
+      .catch((e) => console.log(e));
   }
 
   getJobToDisplay(job) {
@@ -172,8 +145,8 @@ class JobPortal extends React.Component {
     return (
       <PageWrapper>
         <NavButtonDiv>
-          <NavButton href={`${window.location.origin}/#/seeker`}>MY PROFILE</NavButton>
-          <NavButton href={`${window.location.origin}/#/jobs`}>FIND JOBS</NavButton>
+          <NavButton href={`${window.location.origin}/#/seeker`}>PROFILE</NavButton>
+          <NavButton href={`${window.location.origin}/#/jobs`}>JOBS</NavButton>
         </NavButtonDiv>
         <SearchWrapper>
           <SearchBar setSearch={this.setSearch} />
@@ -186,10 +159,17 @@ class JobPortal extends React.Component {
             toggleModal={this.toggleModal}
             getJobToDisplay={this.getJobToDisplay}
           />
-          { isDesktop && <ListingDetailDiv seekerId={seekerId} jobToDisplay={jobToDisplay} /> }
+          { isDesktop
+          && (
+          <ListingDetailDiv
+            toggleModal={this.toggleModal}
+            seekerId={seekerId}
+            jobToDisplay={jobToDisplay}
+          />
+          ) }
           { !isDesktop && modalOpen && (
             <ModalBackground onMouseDown={this.toggleModal}>
-              <ListingDetailModal jobToDisplay={jobToDisplay} />
+              <ListingDetailModal toggleModal={this.toggleModal} jobToDisplay={jobToDisplay} />
             </ModalBackground>
           )}
         </JobResultsPortalWrapper>
