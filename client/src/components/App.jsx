@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import {
   HashRouter,
   Switch,
@@ -13,6 +12,7 @@ import SeekerPortal from './SeekerPortal.jsx';
 import JobPortal from './JobPortal.jsx';
 import EmployerDashboard from './EmployerDashboard.jsx';
 import EmployerSearch from './EmployerSearch.jsx';
+import schema from './constants.jsx';
 
 const App = () => {
   const [userID, setUserID] = useState('');
@@ -22,6 +22,7 @@ const App = () => {
   const [seekerData, setSeekerData] = useState(null);
   return (
     <HashRouter>
+      <schema.GlobalStyle />
       <NavBar />
       {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
