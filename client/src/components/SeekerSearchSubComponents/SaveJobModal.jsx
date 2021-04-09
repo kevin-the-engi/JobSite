@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
 
+import { post } from '../../../http';
+
 const Wrapper = styled.div`
   height: 40vh;
   position: fixed;
@@ -119,7 +121,8 @@ const Button = styled.button`
 `;
 
 const SaveJobModal = (props) => {
-  const[interest, setInterest] = useState('');
+  const { seekerId, jobListingId } = props;
+  const [interestLevel, setInterest] = useState('');
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -130,7 +133,16 @@ const SaveJobModal = (props) => {
   const handleSave = (event) => {
     event.preventDefault();
 
-    // call to pass interest
+    const postData = {
+      seekerId,
+      savedJobsObj: {
+        jobListingId,
+        interestLevel,
+      },
+    };
+    post('api/seekerdata/savedjob', postData)
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   };
 
   return ReactDOM.createPortal(
@@ -141,15 +153,15 @@ const SaveJobModal = (props) => {
             <Legend>Interest Level</Legend>
             <label htmlFor="interest">
               <i className="far fa-grin-stars fa-3x"></i>
-              <Radio type="radio" name="interest" value="exInterested" />
+              <Radio type="radio" name="interest" value="3" />
             </label>
             <label htmlFor="interest">
               <i className="far fa-grin fa-3x"></i>
-              <Radio type="radio" name="interest" value="veryInterested" />
+              <Radio type="radio" name="interest" value="2" />
             </label>
             <label htmlFor="interest">
               <i className="far fa-smile fa-3x"></i>
-              <Radio type="radio" name="interest" value="interested" />
+              <Radio type="radio" name="interest" value="1" />
             </label>
           </FieldSet>
 

@@ -47,9 +47,20 @@ const Button = styled.button`
 `;
 
 const TabModal = (props) => {
-  const { toggleModal, updateJob, tabName } = props;
+  const { toggleModal, tabName } = props;
 
-  const handleClick = (event) => {
+  const handleTransfer = (event) => {
+    event.preventDefault();
+    toggleModal();
+
+    if (tabName === 'saved') {
+      // post to applied jobs
+    } else {
+      // do something that doesn't exist yet
+    }
+  };
+
+  const handleDelete = (event) => {
     event.preventDefault();
     toggleModal();
     // call delete function in future
@@ -58,8 +69,8 @@ const TabModal = (props) => {
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => event.stopPropagation()}>
       <Options>
-        <Button>{ tabName === 'saved' ? 'Apply' : 'Interview' }</Button>
-        <Button onClick={handleClick}>Delete</Button>
+        <Button onClick={handleTransfer}>{ tabName === 'saved' ? 'Apply' : 'Interview' }</Button>
+        <Button onClick={handleDelete}>Delete</Button>
       </Options>
     </Wrapper>,
     document.getElementById('modal-root') || document.createElement('div'), // for testing purposes

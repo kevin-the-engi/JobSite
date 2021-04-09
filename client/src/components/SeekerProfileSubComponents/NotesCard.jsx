@@ -36,7 +36,7 @@ const ButtonWrapper = styled.div`
 const Button = styled.div``;
 
 const NotesCard = (props) => {
-  const { note: { title, text, category } } = props;
+  const { seekerId, note: { _id, title, text, category } } = props;
   const [show, setShow] = useState(false);
   const [update, setUpdate] = useState(false);
 
@@ -68,7 +68,7 @@ const NotesCard = (props) => {
       {show
         ? (
           <ModalBackground>
-            <NotesUpdateModal text={text} />
+            <NotesUpdateModal seekerId={seekerId} noteId={_id} text={text} />
           </ModalBackground>
         ) : null}
     </Wrapper>

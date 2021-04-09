@@ -61,7 +61,7 @@ const Button = styled.button`
   ${schema.hoverEffect}
 `;
 
-const NotesUpdateModal = ({ text }) => {
+const NotesUpdateModal = ({ seekerId, noteId, text }) => {
   const [note, setNote] = useState(text);
   // setDefault state to notes prop
 
