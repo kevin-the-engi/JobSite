@@ -19,7 +19,7 @@ const App = () => {
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [accountType, setAccountType] = useState('');
-
+  const [seekerData, setSeekerData] = useState(null);
   return (
     <HashRouter>
       <schema.GlobalStyle />
@@ -28,10 +28,10 @@ const App = () => {
             renders the first one that matches the current URL. */}
       <Switch>
         <Route path="/seeker">
-          <SeekerPortal />
+          <SeekerPortal email={email} setSeekerData={setSeekerData} />
         </Route>
         <Route path="/jobs">
-          <JobPortal />
+          <JobPortal seekerData={seekerData} />
         </Route>
         <Route path="/employer">
           <EmployerDashboard email={email} />

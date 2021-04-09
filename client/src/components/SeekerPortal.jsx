@@ -27,24 +27,34 @@ class SeekerPortal extends React.Component {
     super(props);
 
     this.state = {
-      seekerId: '606d2039fa660c4ce0b471fd',
+      seekerId: null,
       reminders: [],
       savedJobs: [],
       appliedJobs: [],
       notes: [],
+      resume: null,
     };
     this.postNote = this.postNote.bind(this);
   }
 
   // Dummy data
   componentDidMount() {
-    get('api/seekerdata/all', { seekerId: this.state.seekerId })
+    get('api/seekerdata/id', { params: { email: this.props.email } })
+      .then((res) => {
+        this.setState({
+          seekerId: res.seekerId,
+        });
+        return get('api/seekerdata/all', { params: { seekerId: this.state.seekerId } });
+      })
       .then((data) => {
         this.setState({
-          reminders: data.appointments,
-          savedJobs: data.savedJobs,
-          appliedJobs: data.applications,
-          notes: data.notes,
+          reminders: data.data.appointments,
+          savedJobs: data.data.savedJobs,
+          appliedJobs: data.data.applications,
+          notes: data.data.notes,
+          resume: data.resume,
+        }, () => {
+          this.props.setSeekerData(this.state);
         });
       })
       .catch((err) => {
@@ -78,7 +88,7 @@ class SeekerPortal extends React.Component {
 
   render() {
     const {
-      seekerId, reminders, savedJobs, appliedJobs, notes,
+      seekerId, reminders, savedJobs, appliedJobs, notes, resume
     } = this.state;
 
     return (
@@ -93,6 +103,7 @@ class SeekerPortal extends React.Component {
           savedJobs={savedJobs}
           appliedJobs={appliedJobs}
           notes={notes}
+          resume={resume}
           postNote={this.postNote}
         />
       </SeekerPortalWrapper>
