@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
+import { get } from '../../../http';
 
 const Form = styled.form`
   width: 90%;
@@ -41,6 +42,11 @@ class SearchBar extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    if (this.state.search === '') { return; }
+    get('api/resume/search', { params: this.state })
+      .then((data) => console.log('This data needs to be called back to someplace: \n\n', data))
+      .then(() => this.setState({ search: '' }))
+      .catch((e) => console.log(e));
   }
 
   render() {
