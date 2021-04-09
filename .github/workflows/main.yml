@@ -23,8 +23,12 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Package install
-        run: yarn install --frozen-lockfile
+      - name: Package install and build
+        run: |
+          yarn install --frozen-lockfile
+          yarn react-dev
+        env:
+          NODE_ENV: development
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
