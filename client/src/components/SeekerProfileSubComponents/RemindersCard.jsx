@@ -58,7 +58,7 @@ const RemindersCard = (props) => {
       _id, startTime, endTime, category, title, appointmentNote, dateCreated
     },
   } = props;
-
+  console.log(props.reminder)
   const [show, setShow] = useState('false');
 
   const toggleModal = (event) => {
