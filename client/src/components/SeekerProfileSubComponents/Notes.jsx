@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
+
 import NotesCard from './NotesCard.jsx';
 import AddNotesModal from './AddNotesModal.jsx';
 
