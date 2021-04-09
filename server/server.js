@@ -7,5 +7,5 @@ app.use(express.static('client/dist'));
 app.use(express.json());
 
 app.listen(process.env.PORT, () => {
-  console.log('Client server listening on 3000');
+  console.log(`Client server listening on ${process.env.PORT}`);
 });
