@@ -82,7 +82,6 @@ const Tabs = (props) => {
   } = props;
   const [selectedTab, setSelectedTab] = useState('reminders');
   const [tab, setTab] = useState('reminders');
-
   const toggleTab = (id) => {
     setTab(id);
     setSelectedTab(id);
