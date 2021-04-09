@@ -45,5 +45,8 @@ const deleteField = (endpoint, params) => (
 );
 
 export {
-  get, post, patchField, deleteField,
+  get,
+  post,
+  patchField,
+  deleteField,
 };
