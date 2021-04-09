@@ -2,7 +2,7 @@ name: WebApp CI
 
 on:
   push:
-    branches: [main, feat/cicd]
+    branches: [main, cicd/deploy]
 
 jobs:
   build:
