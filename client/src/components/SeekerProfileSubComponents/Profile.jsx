@@ -21,10 +21,10 @@ const ProfileWrapper = styled.div`
   }
 `;
 
-const Profile = () => (
+const Profile = ({ resume }) => (
   <ProfileWrapper>
     <ProfilePic />
-    <ProfileInfo />
+    <ProfileInfo resume={resume} />
   </ProfileWrapper>
 );
 

@@ -66,7 +66,6 @@ const Link = styled.a`
   color: inherit;
   font-size: 1rem;
   text-decoration: none;
-
 `;
 
 const SectionTitle = styled.h2`

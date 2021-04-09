@@ -10,7 +10,7 @@ const Image = styled.img`
 
 const ProfilePic = () => (
   <div>
-    <Image src="test.jpeg" alt="profilePic" width="150px" height="150px" />
+    <Image src="test.jpeg" alt="profilePic" width="125px" height="125px" />
   </div>
 );
 

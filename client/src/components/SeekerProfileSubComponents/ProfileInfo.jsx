@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
+import Education from './Education.jsx';
 
 const ProfileInfoWrapper = styled.div`
   border: 1px solid #e0e0e0;
-  width: 80%;
+  width: 95%;
   height: 50vh;
   display: flex;
   flex-direction: column;
@@ -32,6 +33,7 @@ const ItalicText = styled.p`
 const ContactInfo = styled.div`
   width: 95%;
   margin-top: 1vh;
+  line-height: 1.5rem;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -44,25 +46,64 @@ const Link = styled.a`
   text-decoration: none;
 `;
 
+const SpacedRowDiv = styled.div`
+  margin: 0 1vw 0 2vw;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Section = styled.div`
+  width: 95%;
+  margin-top: .5vh;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-evenly;
+`;
+
 const SectionTitle = styled.h2`
   font-size: 1rem;
   font-weight: bold;
   color: ${schema.secondary};
 `;
 
-const ProfileInfo = () => {
-  const tempLink = 'linkedin.com/in/jacobwpeterson';
+const ProfileInfo = ({ resume }) => {
+  console.log('edu', resume.education);
   return (
     <ProfileInfoWrapper>
-      <Name>John Smith</Name>
-      <ItalicText>Javascript | React | Node</ItalicText>
-      <Text>555-867-5309</Text>
-      <Link href={tempLink}>{tempLink}</Link>
-      <SectionTitle>Experience</SectionTitle>
-      <SectionTitle>Education</SectionTitle>
-      <SectionTitle>Certifications</SectionTitle>
+      <Name>{`${resume.firstName} ${resume.lastName}`}</Name>
+      <Text>{resume.city}</Text>
+      <Text>{resume.phone}</Text>
+      <ContactInfo>
+        <Link href={resume.email}>{resume.email}</Link>
+        {Object.entries(resume.links).map(([key, value]) => (
+          <Link key={key} href={value}>{value}</Link>
+        ))}
+      </ContactInfo>
+      <Section>
+        <SectionTitle>Experience</SectionTitle>
+        {resume.workExperience.reverse().map((job) => (
+          <SpacedRowDiv>
+            <Text>{`${job.title} @ ${job.employer}`}</Text>
+            <ItalicText>{`${job.startDate.slice(0, 4)} – ${job.endDate.slice(0, 4)}`}</ItalicText>
+          </SpacedRowDiv>
+        ))}
+      </Section>
+      <Section>
+        <SectionTitle>Education</SectionTitle>
+        {resume.education.reverse().map((degree) => (
+          <Education key={degree.yearGraduated} degree={degree} />
+        ))}
+      </Section>
+      <Section>
+        <SectionTitle>Certifications</SectionTitle>
+        {resume.certificates.map((certificate) => (
+          <SpacedRowDiv>
+            <Text>License: #</Text>
+            <ItalicText>{`${certificate.licenseNum}`}</ItalicText>
+          </SpacedRowDiv>
+        ))}
+      </Section>
     </ProfileInfoWrapper>
   );
 };
-
 export default ProfileInfo;
