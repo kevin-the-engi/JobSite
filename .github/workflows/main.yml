@@ -58,7 +58,7 @@ jobs:
           docker -H $TARGET_HOST:$TARGET_PORT rm -f webapp
           docker -H $TARGET_HOST:$TARGET_PORT pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker -H $TARGET_HOST:$TARGET_PORT run --name webapp -d -p 80:80 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
+        env:
           TARGET_HOST: 18.220.13.101
           TARGET_PORT: 2375
           ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
