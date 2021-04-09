@@ -80,7 +80,7 @@ const ProfileInfo = ({ resume }) => (
     <Section>
       <SectionTitle>Experience</SectionTitle>
       {resume.workExperience.reverse().map((job) => (
-        <SpacedRowDiv>
+        <SpacedRowDiv key={job.endDate}>
           <Text>{`${job.title} @ ${job.employer}`}</Text>
           <ItalicText>{`${job.startDate.slice(0, 4)} – ${job.endDate.slice(0, 4)}`}</ItalicText>
         </SpacedRowDiv>
@@ -95,7 +95,7 @@ const ProfileInfo = ({ resume }) => (
     <Section>
       <SectionTitle>Certifications</SectionTitle>
       {resume.certificates.map((certificate) => (
-        <SpacedRowDiv>
+        <SpacedRowDiv key={certificate.licenseNum}>
           <Text>License: #</Text>
           <ItalicText>{`${certificate.licenseNum}`}</ItalicText>
         </SpacedRowDiv>
