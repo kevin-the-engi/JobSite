@@ -35,11 +35,18 @@ const Category = styled.div``;
 const TimeWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: right;
 `;
 
-const Start = styled.div``;
+const Start = styled.div`
+  display: flex;
+  justify-content: end;
+`;
 
-const End = styled.div``;
+const End = styled.div`
+  display: flex;
+  justify-content: end;
+`;
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -67,14 +74,14 @@ const RemindersCard = (props) => {
   };
 
   const formatDate = (times) => {
-    let date = times.slice(0, 10).split('-');
-    const year = Number(date[0]);
-    const month = Number(date[1]) - 1;
-    const day = Number(date[2]) - 1;
-    date = new Date(year, month, day);
+    let date = new Date(times);
+    date = date.toString()
+      .split(' ')
+      .slice(0, 5)
+      .join(' ')
+      .trim();
 
-    const formattedDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: '2-digit' }).format(date);
-    return formattedDate;
+    return date;
   };
   const start = (formatDate(startTime));
   const end = (formatDate(endTime));
