@@ -115,7 +115,7 @@ const SectionTitle = styled.h2`
   color: ${schema.secondary};
 `;
 
-const ListingDetailDiv = ({ jobToDisplay }) => {
+const ListingDetailDiv = ({ seekerId, jobToDisplay }) => {
   const [show, setShow] = useState(false);
 
   const toggleModal = (event) => {
@@ -165,7 +165,11 @@ const ListingDetailDiv = ({ jobToDisplay }) => {
           {show
             ? (
               <ModalBackground onMouseDown={toggleModal}>
-                <SaveJobModal toggleModal={toggleModal} />
+                <SaveJobModal
+                  toggleModal={toggleModal}
+                  seekerId={seekerId}
+                  jobListingId={jobToDisplay._id}
+                />
               </ModalBackground>
             ) : null}
         </Wrapper>

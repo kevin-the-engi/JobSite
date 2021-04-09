@@ -7,25 +7,21 @@ const Select = styled.select`
 const Option = styled.option`
 `;
 
-const DropDown = () => {
-  const [selected, setSelected] = useState('extremelyInterested');
+const DropDown = ({ selectInterest }) => {
+  const [selected, setSelected] = useState('exInterested');
 
   const handleSelect = (event) => {
-    const { id } = event.target;
+    const { value } = event.target;
 
-    setSelected(id);
+    setSelected(value);
+    selectInterest(value);
   };
 
-  useEffect(() => {
-    // console.log(selected);
-    // call back selected from here
-  });
-
   return (
-    <Select id="interest-select" onChange={handleSelect}>
-      <Option id="exInterested" value={selected}>Extremely Interested</Option>
-      <Option id="veryInterested" value={selected}>Very Interested</Option>
-      <Option id="interested" value={selected}>Interested</Option>
+    <Select id="interest-select" value={selected} onChange={handleSelect}>
+      <Option value="exInterested">Extremely Interested</Option>
+      <Option value="veryInterested">Very Interested</Option>
+      <Option value="interested">Interested</Option>
     </Select>
   );
 };
