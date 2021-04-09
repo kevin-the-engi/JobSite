@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
+import { get } from '../../../http';
 
 const Form = styled.form`
   width: 95%;
@@ -23,12 +24,15 @@ const SearchBar = (props) => {
 
   const handleChange = (event) => {
     const { value } = event.target;
-
     setSearch(value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    get('api/listing/search', { params: { search } })
+      .then((data) => console.log('Need to put this data somewhere \n\n', data))
+      .then(setSearch(''))
+      .catch((e) => console.log(e));
     props.setSearch(search);
   };
 

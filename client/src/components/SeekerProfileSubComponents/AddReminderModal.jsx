@@ -73,6 +73,7 @@ const AddReminderModal = (props) => {
   const [reminderTitle, setReminderTitle] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
+  const [maxTime, setMaxTime] = useState('');
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -82,11 +83,6 @@ const AddReminderModal = (props) => {
   const handleTitleChange = (event) => {
     setReminderTitle(event.target.value);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // call function to send data
-    display(false);
-  };
 
   const handleCategory = (category) => {
     setReminderCategory(category);
@@ -94,33 +90,35 @@ const AddReminderModal = (props) => {
 
   const handleStart = (event) => {
     const { value } = event.target;
-
     setStartTime(value);
   };
 
   const handleEnd = (event) => {
     const { value } = event.target;
-
     setEndTime(value);
-  }
+  };
 
   useEffect(() => {
     let today = new Date();
     today = today.toISOString();
-
     setStartTime(today.slice(0, today.length - 5));
     setEndTime(today.slice(0, today.length - 5));
   }, []);
 
-  const submitReminder = () => {
+  const submitReminder = (event) => {
+    event.preventDefault();
+    display(false);
     const postData = {
       seekerId,
-      noteObj: {
+      appointment: {
+        startTime: `${startTime}Z`,
+        endTime: `${endTime}Z`,
         category: reminderCategory,
         title: reminderTitle,
         appointmentNote: note,
       },
     };
+
     post('api/seekerdata/appointment', postData)
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
@@ -129,8 +127,8 @@ const AddReminderModal = (props) => {
   return ReactDOM.createPortal(
     <Wrapper onMouseDown={(event) => event.stopPropagation()}>
       <Options>
-        <Form onSubmit={handleSubmit}>
-          <Input onChange={handleTitleChange} type="input" placeholder="Title..." />
+        <Form onSubmit={submitReminder}>
+          <Input onChange={handleTitleChange} type="input" placeholder="Title..." required />
           <label htmlFor="starttime">
             Start
             <Input
@@ -162,6 +160,7 @@ const AddReminderModal = (props) => {
             cols="30"
             onChange={handleChange}
             value={note}
+            required
           />
           <NotesDropDown select={handleCategory} />
           <ButtonWrapper>

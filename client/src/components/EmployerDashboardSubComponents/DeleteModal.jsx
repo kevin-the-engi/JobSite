@@ -55,7 +55,7 @@ const TabModal = (props) => {
   const handleClick = (event) => {
     event.preventDefault();
     toggleModal();
-    deleteField('api/seekerdata/appointment', { seekerId, appointmentId })
+    deleteField('api/employerdata/appointment', { seekerId, appointmentId })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };

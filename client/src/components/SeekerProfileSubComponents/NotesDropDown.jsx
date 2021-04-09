@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Select = styled.select`
@@ -11,22 +11,18 @@ const NotesDropDown = ({ select }) => {
   const [selected, setSelected] = useState('personal');
 
   const handleSelect = (event) => {
-    const { id } = event.target;
-
-    setSelected(id);
+    const { value } = event.target;
+    setSelected(value);
+    select(value);
   };
 
-  useEffect(() => {
-    select(selected);
-  });
-
   return (
-    <Select id="category" onChange={handleSelect}>
-      <Option id="personal" value={selected}>Personal</Option>
-      <Option id="listing" value={selected}>Listings</Option>
-      <Option id="interview" value={selected}>Interviews</Option>
-      <Option id="application" value={selected}>Application</Option>
-      <Option id="company" value={selected}>Company</Option>
+    <Select onChange={handleSelect}>
+      <Option id="personal" value="personal">Personal</Option>
+      <Option id="listing" value="listing">Listings</Option>
+      <Option id="interview" value="interview">Interviews</Option>
+      <Option id="application" value="application">Application</Option>
+      <Option id="company" value="company">Company</Option>
     </Select>
   );
 };

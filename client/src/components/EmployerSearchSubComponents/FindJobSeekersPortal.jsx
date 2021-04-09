@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { get } from '../../../http';
 
-import DummyData from '../../../../DummyData.js';
 import schema from '../constants.jsx';
 import SearchBar from './Searchbar.jsx';
 import Filters from './Filters.jsx';
@@ -64,17 +63,18 @@ class FindJobSeekersPortal extends React.Component {
     super(props);
     this.state = {
       search: '',
-      filters: {
-
-      },
       isDesktop: false,
       modalOpen: false,
-      jobSeekers: DummyData.DummyData.data,
+      jobSeekers: null,
+      filteredSeekers: null,
+      searchedSeekers: null,
       resumeToDisplay: null,
     };
     this.updateScreenSize = this.updateScreenSize.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.getFilters = this.getFilters.bind(this);
     this.getResumeToDisplay = this.getResumeToDisplay.bind(this);
+    this.getSearchedSeekers = this.getSearchedSeekers.bind(this);
     this.setSearch = this.setSearch.bind(this);
     this.setLocation = this.setLocation.bind(this);
   }
@@ -95,8 +95,28 @@ class FindJobSeekersPortal extends React.Component {
     window.removeEventListener('resize', this.updateScreenSize);
   }
 
+  getFilters(filters) {
+    //this filter needs to be promisified otherwise the following setState fires too soon
+    const filteredSeekers = this.state.jobSeekers.filter((seeker) => {
+      if (filters.educationLevel && seeker.education[seeker.education.length - 1].degreeType !== filters.educationLevel) {
+        return false;
+      }
+      // this part might need to be improved, but it should at least work, although with suboptimal results
+      if (filters.yearsExperience && seeker.education[seeker.education.length - 1].degreeType !== filters.educationLevel) {
+        return false;
+      }
+      return true;
+    });
+    this.setState({ filteredSeekers });
+  }
+
   getResumeToDisplay(seeker) {
     this.setState({ resumeToDisplay: seeker });
+  }
+
+  getSearchedSeekers(searchedSeekers) {
+    console.log(searchedSeekers);
+    this.setState({ searchedSeekers });
   }
 
   setSearch(term) {
@@ -119,22 +139,38 @@ class FindJobSeekersPortal extends React.Component {
 
   render() {
     const {
-      jobSeekers, isDesktop, modalOpen, resumeToDisplay,
+      jobSeekers, filteredSeekers, searchedSeekers, isDesktop, modalOpen, resumeToDisplay,
     } = this.state;
 
     return (
       <PageWrapper>
         <SearchWrapper>
-          <SearchBar />
-          <Filters />
+          <SearchBar getSearchedSeekers={this.getSearchedSeekers} />
+          <Filters getFilters={this.getFilters} />
         </SearchWrapper>
         {jobSeekers && (
           <SeekerResultsPortalWrapper>
+            {searchedSeekers && !filteredSeekers && (
+            <ListSeekerResults
+              toggleModal={this.toggleModal}
+              jobSeekers={searchedSeekers}
+              getResumeToDisplay={this.getResumeToDisplay}
+            />
+            )}
+            {filteredSeekers && !searchedSeekers && (
+              <ListSeekerResults
+                toggleModal={this.toggleModal}
+                jobSeekers={filteredSeekers}
+                getResumeToDisplay={this.getResumeToDisplay}
+              />
+            )}
+            {!filteredSeekers && !searchedSeekers && (
             <ListSeekerResults
               toggleModal={this.toggleModal}
               jobSeekers={jobSeekers}
               getResumeToDisplay={this.getResumeToDisplay}
             />
+            )}
             { isDesktop && <ApplicantDetailDiv resumeToDisplay={resumeToDisplay} />}
             { !isDesktop && modalOpen && (
               <ModalBackground onMouseDown={this.toggleModal}>

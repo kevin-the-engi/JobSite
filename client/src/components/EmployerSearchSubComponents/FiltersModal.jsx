@@ -35,13 +35,6 @@ const Form = styled.form`
   max-height: 95vh;
 `;
 
-// const RangeLabel = styled.label`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 100%;
-// `;
-
 const Legend = styled.legend`
   color: #424242;
 `;
@@ -59,18 +52,6 @@ const FieldSet = styled.fieldset`
   //   justify-content: space-between;
   // }
 `;
-
-// const Figures = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   width: 100%;
-// `;
-
-// const Figure = styled.div`
-//   flex-basis: 1;
-//   text-align: center;
-//   width: 2.5vw;
-// `;
 
 const Radio = styled.input`
   -webkit-appearance: none;
@@ -104,44 +85,6 @@ const Radio = styled.input`
   &:focus { outline: none; }
 `;
 
-// const Range = styled.input`
-// /*Chrome*/
-//   -webkit-appearance: none;
-//   overflow: hidden;
-//   width: 100%;
-//   background-color: #e0e0e0;
-
-//   ::-webkit-slider-runnable-track {
-//     -webkit-appearance: none;
-//     height: 10px;
-//     color: #5fa317;
-//     margin-top: -1px;
-//   }
-//   ::-webkit-slider-thumb {
-//     width: 10px;
-//     -webkit-appearance: none;
-//     height: 20px;
-//     cursor: ew-resize;
-//     background: #424242;
-//     box-shadow: -600px 0 0 600px #5fa317;
-//   }
-// /** FF*/
-//   ::-moz-range-progress {
-//     background-color: #424242;
-//   }
-//   ::-moz-range-track {
-//     background-color: #e0e0e0;
-//   }
-// /* IE*/
-//   ::-ms-fill-lower {
-//     background-color: #e0e0e0;
-//   }
-//   ::-ms-fill-upper {
-//     background-color: #5fa317;
-//   }
-// }
-// `;
-
 const Button = styled.button`
   width: max(10vw, 150px);
   font-size: 1rem;
@@ -162,12 +105,7 @@ class FiltersModal extends React.Component {
     super(props);
     this.state = {
       yearsExperience: '',
-      // range: {
-      //   min: 0,
-      //   max: 120000,
-      // },
       educationLevel: '',
-      // desiredSalary: 0,
     };
     this.expanded = React.createRef();
     this.handleChange = this.handleChange.bind(this);
@@ -185,6 +123,7 @@ class FiltersModal extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.props.getFilters(this.state);
     this.props.toggleModal();
   }
 
@@ -198,46 +137,46 @@ class FiltersModal extends React.Component {
             <FieldSet onChange={this.handleChange}>
               <Legend>Years of Experience</Legend>
               <label htmlFor="yearsExperience">
-                <Radio type="radio" name="yearsExperience" id="0–2" />
+                <Radio type="radio" name="yearsExperience" id="yearsExperience" value="0–2" />
                 0–2
               </label>
               <label htmlFor="yearsExperience">
-                <Radio type="radio" name="yearsExperience" id="3–5" />
+                <Radio type="radio" name="yearsExperience" id="yearsExperience" value="3–5" />
                 3–5
               </label>
               <label htmlFor="yearsExperience">
-                <Radio type="radio" name="yearsExperience" id="6–9" />
+                <Radio type="radio" name="yearsExperience" id="yearsExperience" value="6–9" />
                 6–9
               </label>
               <label htmlFor="yearsExperience">
-                <Radio type="radio" name="yearsExperience" id="10+" />
+                <Radio type="radio" name="yearsExperience" id="yearsExperience" value="10" />
                 10+
               </label>
             </FieldSet>
             <FieldSet onChange={this.handleChange}>
               <Legend>Level of Education</Legend>
               <label htmlFor="educationLevel">
-                <Radio type="radio" name="educationLevel" id="diploma" />
+                <Radio type="radio" name="educationLevel" id="educationLevel" value="diploma" />
                 Diploma
               </label>
               <label htmlFor="educationLevel">
-                <Radio type="radio" name="educationLevel" id="associates" />
+                <Radio type="radio" name="educationLevel" id="educationLevel" value="associates" />
                 Associates
               </label>
               <label htmlFor="educationLevel">
-                <Radio type="radio" name="educationLevel" id="bachelors" />
+                <Radio type="radio" name="educationLevel" id="educationLevel" value="bachelors" />
                 Bachelors
               </label>
               <label htmlFor="educationLevel">
-                <Radio type="radio" name="educationLevel" id="masters" />
+                <Radio type="radio" name="educationLevel" id="educationLevel" value="masters" />
                 Masters
               </label>
               <label htmlFor="educationLevel">
-                <Radio type="radio" name="educationLevel" id="phd" />
+                <Radio type="radio" name="educationLevel" id="educationLevel" value="phd" />
                 PhD
               </label>
               <label htmlFor="educationLevel">
-                <Radio type="radio" name="educationLevel" id="other" />
+                <Radio type="radio" name="educationLevel" id="educationLevel" value="other" />
                 other
               </label>
             </FieldSet>

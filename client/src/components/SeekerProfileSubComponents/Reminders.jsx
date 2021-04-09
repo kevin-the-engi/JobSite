@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
+import { get } from '../../../http';
 
 import RemindersCard from './RemindersCard.jsx';
 import AddReminderModal from './AddReminderModal.jsx';
@@ -36,6 +37,7 @@ const Button = styled.button`
 
 const Reminders = (props) => {
   const { seekerId } = props;
+
   // replace once backend is hooked up
   const reminders = [
     {
@@ -66,7 +68,6 @@ const Reminders = (props) => {
           <ModalBackground onMouseDown={toggleModal}>
             <AddReminderModal
               seekerId={seekerId}
-              toggleModal={toggleModal}
               display={setDisplay}
             />
           </ModalBackground>

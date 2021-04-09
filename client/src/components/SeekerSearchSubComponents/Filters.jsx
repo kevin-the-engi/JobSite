@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-
 const ModalBackground = styled.div`
   position: fixed;
   top: 0;
@@ -19,31 +18,14 @@ const ModalBackground = styled.div`
   z-index: 4;
   ${schema.modalBackdrop}
 `;
-
-const Button = styled.button`
-  width: max(10vw, 150px);
-  align-items: center;
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  height: 5vh;
-  padding: 0 1.25vw;
-  background: #fff;
-  border: 2px solid ${schema.secondary};
-  outline: none;
-  border-radius: 25px;
-  color: ${schema.secondary};
-  ${schema.hoverEffect}
-`;
+const Button = schema.outlinedButton;
 
 class Filters extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       show: false,
     };
-
     this.toggleModal = this.toggleModal.bind(this);
   }
 

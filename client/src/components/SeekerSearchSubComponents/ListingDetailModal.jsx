@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -119,7 +121,7 @@ const Button = styled.button`
   padding: 10px;
 `;
 
-const ListingDetailModal = ({ jobToDisplay }) => {
+const ListingDetailModal = ({ jobToDisplay, seekerId }) => {
   const [show, setShow] = useState(false);
 
   const toggleModal = (event) => {
@@ -169,7 +171,7 @@ const ListingDetailModal = ({ jobToDisplay }) => {
           {show
             ? (
               <ModalBackground onMouseDown={toggleModal}>
-                <SaveJobModal toggleModal={toggleModal} />
+                <SaveJobModal seekerId={seekerId} jobListingId={jobToDisplay._id} toggleModal={toggleModal} />
               </ModalBackground>
             ) : null}
         </Wrapper>
