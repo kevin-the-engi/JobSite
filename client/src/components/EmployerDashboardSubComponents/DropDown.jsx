@@ -78,7 +78,7 @@ class Dropdown extends React.Component {
     super(props);
     this.state = {
       isListOpen: false,
-      headerTitle: 'Choose a Job Posting to Filter Applications',
+      headerTitle: 'Filter Applications by Job Listing',
     };
     this.toggleList = this.toggleList.bind(this);
     this.selectItem = this.selectItem.bind(this);
@@ -107,7 +107,7 @@ class Dropdown extends React.Component {
     this.setState({
       headerTitle: item.title,
       isListOpen: false,
-    }, () => getSelectedItem(item));
+    }, () => getSelectedItem(item._id));
   }
 
   close() {
@@ -133,7 +133,7 @@ class Dropdown extends React.Component {
         {isListOpen && (
           <DDList role="list">
             {list.map((item) => (
-              <DDListItem type="button" onClick={() => this.selectItem(item)}>
+              <DDListItem type="button" key={item._id} onClick={() => this.selectItem(item)}>
                 {item.title}
               </DDListItem>
             ))}

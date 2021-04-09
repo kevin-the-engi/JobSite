@@ -42,7 +42,7 @@ class Filters extends React.Component {
         {show
           ? (
             <ModalBackground onMouseDown={this.toggleModal}>
-              <FiltersModal toggleModal={this.toggleModal} />
+              <FiltersModal getFilters={this.props.getFilters} toggleModal={this.toggleModal} />
             </ModalBackground>
           ) : null}
       </Wrapper>

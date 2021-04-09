@@ -47,10 +47,10 @@ const List = styled.div`
 `;
 
 const JobApplicants = ({
-  toggleModal, selectedJobPosting, jobApplicants, getResumeToDisplay,
+  selectedJobPostingId, jobApplicants,
 }) => (
   <ApplicantsWrapper>
-    <Header>Current Applicants: jobApplicants.length</Header>
+    <Header>{`Current Applicants: ${jobApplicants.length}`}</Header>
     <ListWrapper>
 
       <List>
@@ -59,13 +59,12 @@ const JobApplicants = ({
           <Applicant
             applicant={applicant}
             key={applicant}
-            toggleModal={toggleModal}
-            getResumeToDisplay={getResumeToDisplay}
           />
         ))}
-        {/* Use the following once routed
 
-        {jobApplicants.map((job) => (
+        {/* Use the following once routed having an initial conditional check for if 'selectedJobPostingId' is defined, then filter based on it */}
+
+        {/* {jobApplicants.map((applicant) => (
           <Applicant
             applicant={applicant}
             key={applicant._id}
