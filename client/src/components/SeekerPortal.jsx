@@ -33,10 +33,6 @@ class SeekerPortal extends React.Component {
       appliedJobs: [],
       notes: [],
     };
-<<<<<<< HEAD
-=======
-    // this.deleteAppointment = this.deleteAppointment.bind(this);
->>>>>>> bc38859730467fc17cc6447fa911feef42cd60cf
     this.postNote = this.postNote.bind(this);
   }
 
