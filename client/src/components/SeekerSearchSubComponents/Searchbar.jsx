@@ -15,32 +15,8 @@ const Form = styled.form`
   }
 `;
 
-const Input = styled.input`
-  width: max(20vw, 250px);
-  font-size: 1rem;
-  font-weight: bold;
-  height: 4.8vh;
-  padding: 0 1.25vw;
-  background: #fff;
-  border: 1px solid #aeaeae;
-  border-radius: 25px;
-  color: #424242;
-`;
-
-const Button = styled.button`
-  width: max(10vw, 150px);
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  height: 5vh;
-  padding: 0 1.25vw;
-  background: ${schema.secondary};
-  border: none;
-  outline: none;
-  border-radius: 25px;
-  color: #fff;
-  ${schema.hoverEffect}
-`;
+const Input = schema.searchField;
+const Button = schema.searchButton;
 
 const SearchBar = (props) => {
   const [search, setSearch] = useState('');

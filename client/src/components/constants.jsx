@@ -63,6 +63,33 @@ const navButton = styled.a`
   ${hoverEffect}
 `;
 
+const searchButton = styled.button`
+  width: max(10vw, 150px);
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  height: 5vh;
+  padding: 0 1.25vw;
+  background: ${secondary};
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  color: #fff;
+  ${hoverEffect}
+`;
+
+const searchField = styled.input`
+  width: max(21vw, 250px);
+  font-size: 1rem;
+  font-weight: bold;
+  height: 4.8vh;
+  padding: 0 1.25vw;
+  background: #fff;
+  border: 1px solid #aeaeae;
+  border-radius: 25px;
+  color: #424242;
+`;
+
 const listCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -93,4 +120,6 @@ export default {
   hoverEffect,
   navButton,
   navButtonDiv,
+  searchButton,
+  searchField,
 };
