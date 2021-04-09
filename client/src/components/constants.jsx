@@ -74,6 +74,22 @@ const navButton = styled.a`
   ${hoverEffect}
 `;
 
+const outlinedButton = styled.button`
+  width: max(10vw, 150px);
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  height: 5vh;
+  padding: 0 1.25vw;
+  background: #fff;
+  border: 2px solid ${secondary};
+  outline: none;
+  border-radius: 25px;
+  color: ${secondary};
+  ${hoverEffect}
+`;
+
 const searchButton = styled.button`
   width: max(10vw, 150px);
   font-size: 1rem;
@@ -134,5 +150,6 @@ export default {
   navButtonDiv,
   searchButton,
   searchField,
+  outlinedButton,
   GlobalStyle,
 };
