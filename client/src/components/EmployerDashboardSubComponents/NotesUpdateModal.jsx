@@ -73,7 +73,7 @@ const NotesUpdateModal = ({ text }) => {
 
   const handleUpdate = (event) => {
     event.preventDefault();
-    patchField('api/seekerdata/note', { seekerId, noteId, body: note })// call function to send note
+    patchField('api/employerdata/note', { seekerId, noteId, body: note })// call function to send note
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -81,7 +81,7 @@ const NotesUpdateModal = ({ text }) => {
   const handleDelete = (event) => {
     event.preventDefault();
     // call function to del
-    deleteField('api/seekerdata/note', { seekerId, noteId })
+    deleteField('api/employerdata/note', { seekerId, noteId })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
