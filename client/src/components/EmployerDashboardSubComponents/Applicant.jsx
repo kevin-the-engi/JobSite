@@ -28,9 +28,9 @@ const Text = styled.p`
   font-weight: lighter;
 `;
 
-const Applicant = ({ applicant, toggleModal, getResumeToDisplay }) => (
+const Applicant = ({ applicant, getResumeToDisplay }) => (
 
-  <ApplicantTile onClick={(event) => { event.preventDefault(); toggleModal(); getResumeToDisplay(applicant) }}>
+  <ApplicantTile onClick={(event) => { event.preventDefault(); getResumeToDisplay(applicant) }}>
     {/* Delete the following once routed */}
     <Text>{applicant}</Text>
 
