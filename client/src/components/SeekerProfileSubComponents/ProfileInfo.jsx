@@ -66,44 +66,41 @@ const SectionTitle = styled.h2`
   color: ${schema.secondary};
 `;
 
-const ProfileInfo = ({ resume }) => {
-  console.log('edu', resume.education);
-  return (
-    <ProfileInfoWrapper>
-      <Name>{`${resume.firstName} ${resume.lastName}`}</Name>
-      <Text>{resume.city}</Text>
-      <Text>{resume.phone}</Text>
-      <ContactInfo>
-        <Link href={resume.email}>{resume.email}</Link>
-        {Object.entries(resume.links).map(([key, value]) => (
-          <Link key={key} href={value}>{value}</Link>
-        ))}
-      </ContactInfo>
-      <Section>
-        <SectionTitle>Experience</SectionTitle>
-        {resume.workExperience.reverse().map((job) => (
-          <SpacedRowDiv>
-            <Text>{`${job.title} @ ${job.employer}`}</Text>
-            <ItalicText>{`${job.startDate.slice(0, 4)} – ${job.endDate.slice(0, 4)}`}</ItalicText>
-          </SpacedRowDiv>
-        ))}
-      </Section>
-      <Section>
-        <SectionTitle>Education</SectionTitle>
-        {resume.education.reverse().map((degree) => (
-          <Education key={degree.yearGraduated} degree={degree} />
-        ))}
-      </Section>
-      <Section>
-        <SectionTitle>Certifications</SectionTitle>
-        {resume.certificates.map((certificate) => (
-          <SpacedRowDiv>
-            <Text>License: #</Text>
-            <ItalicText>{`${certificate.licenseNum}`}</ItalicText>
-          </SpacedRowDiv>
-        ))}
-      </Section>
-    </ProfileInfoWrapper>
-  );
-};
+const ProfileInfo = ({ resume }) => (
+  <ProfileInfoWrapper>
+    <Name>{`${resume.firstName} ${resume.lastName}`}</Name>
+    <Text>{resume.city}</Text>
+    <Text>{resume.phone}</Text>
+    <ContactInfo>
+      <Link href={resume.email}>{resume.email}</Link>
+      {Object.entries(resume.links).map(([key, value]) => (
+        <Link key={key} href={value}>{value}</Link>
+      ))}
+    </ContactInfo>
+    <Section>
+      <SectionTitle>Experience</SectionTitle>
+      {resume.workExperience.reverse().map((job) => (
+        <SpacedRowDiv>
+          <Text>{`${job.title} @ ${job.employer}`}</Text>
+          <ItalicText>{`${job.startDate.slice(0, 4)} – ${job.endDate.slice(0, 4)}`}</ItalicText>
+        </SpacedRowDiv>
+      ))}
+    </Section>
+    <Section>
+      <SectionTitle>Education</SectionTitle>
+      {resume.education.reverse().map((degree) => (
+        <Education key={degree.yearGraduated} degree={degree} />
+      ))}
+    </Section>
+    <Section>
+      <SectionTitle>Certifications</SectionTitle>
+      {resume.certificates.map((certificate) => (
+        <SpacedRowDiv>
+          <Text>License: #</Text>
+          <ItalicText>{`${certificate.licenseNum}`}</ItalicText>
+        </SpacedRowDiv>
+      ))}
+    </Section>
+  </ProfileInfoWrapper>
+);
 export default ProfileInfo;
