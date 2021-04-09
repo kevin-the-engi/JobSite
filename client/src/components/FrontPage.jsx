@@ -19,11 +19,16 @@ const Div = styled.div`
   width: 32%;
   min-width: 256px;
   max-width: 400px;
-  margin-top: 50vh;
-  margin-left: 20vw;
+  margin-top: 2vh;
+  margin-left: 4vw;
   float: left;
   color: white;
   text-shadow: 1px 1px 4px black;
+  transition-duration: 0.4s;
+  @media (min-width: 768px) {
+    margin-top: 50vh;
+    margin-left: 20vw;
+  }
 `;
 const Form = styled.form`
   height: 65%;
@@ -78,20 +83,7 @@ const ToggleButtonDiv = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
-const Toggle = styled.button`
-  position: relative;
-  text-align: center;
-  height: 4vh;
-  line-height: 4vh;
-  width: 9vw;
-  border: 1px solid ${schema.secondary};
-  border-radius: 25px;
-  text-decoration: none;
-  color: ${schema.secondary};
-  background: rgba(255,255,255,0.4);
-  ${schema.hoverEffect}
-`;
+const Toggle = schema.outlinedButton;
 
 const SEEKER_REGISTER_HEADER = 'Looking for a job? Sign up now!';
 const EMPLOYER_REGISTER_HEADER = 'Looking for applicants? Sign up now!';
