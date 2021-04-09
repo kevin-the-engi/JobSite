@@ -1,6 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
+import {post} from '../../../http';
 import SavedJobsCard from './SavedJobsCard.jsx';
 import DropDown from './DropDown.jsx';
 
@@ -13,6 +14,8 @@ const SavedJobsWrapper = styled.div`
 
 const SavedJobs = (props) => {
   // const { savedJobs } = props;
+  const [jobData, setJobData] = useState(null);
+
   const savedJobs = [
     {
       name: 'Software Developer', company: 'Facebook', description: 'description', interestLevel: '3',
@@ -28,6 +31,24 @@ const SavedJobs = (props) => {
     },
   ];
   const [interestLevel, setInterestLevel] = useState('3');
+
+  useEffect(() => {
+    const jobIdArray = [];
+    if (props.savedJobs.length !== 0) {
+      for (const job of props.savedJobs) {
+        jobIdArray.push(job['jobListingId']);
+      }
+    }
+    const searchBody = {
+      data: jobIdArray,
+    };
+    post('api/listing/savedlistings', searchBody)
+      .then((result) => {
+        console.log(result);
+        setJobData(result);
+      })
+      .catch((err) => console.log(err));
+  }, [props.savedJobs]);
 
   const selectInterest = (interest) => {
     const interests = {
