@@ -27,7 +27,7 @@ class SeekerPortal extends React.Component {
     super(props);
 
     this.state = {
-      seekerId: '606d2039fa660c4ce0b471fd',
+      seekerId: null,
       reminders: [],
       savedJobs: [],
       appliedJobs: [],
@@ -39,14 +39,19 @@ class SeekerPortal extends React.Component {
 
   // Dummy data
   componentDidMount() {
-    get('api/seekerdata/all', { params: { seekerId: this.state.seekerId } })
-      .then((data) => {
-        console.log(data);
+    get('api/seekerdata/id', { params: { email: this.props.email } })
+      .then((res) => {
         this.setState({
-          reminders: data.appointments,
-          savedJobs: data.savedJobs,
-          appliedJobs: data.applications,
-          notes: data.notes,
+          seekerId: res.seekerId,
+        });
+        return get('api/seekerdata/all', { params: { seekerId: this.state.seekerId } });
+      })
+      .then((data) => {
+        this.setState({
+          reminders: data.data.appointments,
+          savedJobs: data.data.savedJobs,
+          appliedJobs: data.data.applications,
+          notes: data.data.notes,
           resume: data.resume,
         });
       })

@@ -27,7 +27,7 @@ const App = () => {
             renders the first one that matches the current URL. */}
       <Switch>
         <Route path="/seeker">
-          <SeekerPortal />
+          <SeekerPortal email={email} />
         </Route>
         <Route path="/jobs">
           <JobPortal />
