@@ -71,24 +71,6 @@ const AddNotesModal = (props) => {
   const [noteCategory, setNoteCategory] = useState('personal');
   const [noteTitle, setNoteTitle] = useState('');
 
-  const handleChange = (event) => {
-    const { value } = event.target;
-
-    setNote(value);
-  };
-  const handleTitleChange = (event) => {
-    setNoteTitle(event.target.value);
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // call function to send data
-    display(false);
-  };
-
-  const handleCategory = (category) => {
-    setNoteCategory(category);
-  };
-
   const submitNote = () => {
     const postData = {
       seekerId: props.seekerId,
@@ -98,9 +80,28 @@ const AddNotesModal = (props) => {
         body: note,
       },
     };
-    post('api/seekerdata/note', postData)
+    post('api/employerdata/note', postData)
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
+  };
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setNote(value);
+  };
+
+  const handleTitleChange = (event) => {
+    setNoteTitle(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    submitNote();
+    display(false);
+  };
+
+  const handleCategory = (category) => {
+    setNoteCategory(category);
   };
 
   return ReactDOM.createPortal(
