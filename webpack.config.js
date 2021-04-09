@@ -7,7 +7,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.join(__dirname, 'client/dist'),
   },
-  watch: true,
+  watch: false,
   module: {
     rules: [
       {
