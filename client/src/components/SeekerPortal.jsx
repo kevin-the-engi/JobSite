@@ -88,15 +88,16 @@ class SeekerPortal extends React.Component {
 
   render() {
     const {
-      seekerId, reminders, savedJobs, appliedJobs, notes, resume
+      seekerId, reminders, savedJobs, appliedJobs, notes, resume,
     } = this.state;
-
+    // console.log(resume);
     return (
       <SeekerPortalWrapper>
         <NavButtonDiv>
           <NavButton href={`${window.location.origin}/#/seeker`}>PROFILE</NavButton>
           <NavButton href={`${window.location.origin}/#/jobs`}>JOBS</NavButton>
         </NavButtonDiv>
+        {resume && (
         <Account
           seekerId={seekerId}
           reminders={reminders}
@@ -106,6 +107,7 @@ class SeekerPortal extends React.Component {
           resume={resume}
           postNote={this.postNote}
         />
+        )}
       </SeekerPortalWrapper>
     );
   }

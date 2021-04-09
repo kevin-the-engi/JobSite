@@ -16,36 +16,27 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
-const Body = styled.div`
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Title = styled.h1`
+  margin: 0.5vh 1vw;
+  color: ${schema.primary};
+  font-size: 1rem;
+  font-weight: bold;
 `;
 
-const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+const Category = styled.div`
+  margin: 0.25vh 1vw 0 2vw;
+  font-style: italic;
 `;
 
-const Title = styled.div``;
-
-const Category = styled.div``;
-
-const TimeWrapper = styled.div`
+const SpacedRowDiv = styled.div`
+  margin: .25vh 1vw;
   display: flex;
-  flex-direction: column;
-  justify-content: right;
+  justify-content: space-between;
 `;
 
-const Start = styled.div`
-  display: flex;
-  justify-content: end;
-`;
-
-const End = styled.div`
-  display: flex;
-  justify-content: end;
+const Text = styled.p`
+  margin: 0.5vh 1vw 0 2vw;
+  font-weight: lighter;
 `;
 
 const ModalBackground = styled.div`
@@ -62,10 +53,10 @@ const RemindersCard = (props) => {
   const {
     seekerId,
     reminder: {
-      _id, startTime, endTime, category, title, appointmentNote, dateCreated
+      _id, startTime, endTime, category, title, appointmentNote, dateCreated,
     },
   } = props;
-
+  console.log(props.reminder);
   const [show, setShow] = useState('false');
 
   const toggleModal = (event) => {
@@ -89,27 +80,20 @@ const RemindersCard = (props) => {
   return (
     <Wrapper onClick={toggleModal}>
       <ReminderWrapper>
-        <Header>
-          <TitleWrapper>
-            <Title>
-              {title}
-            </Title>
-            <Category>
-              {category}
-            </Category>
-          </TitleWrapper>
-          <TimeWrapper>
-            <Start>
-              {start}
-            </Start>
-            <End>
-              {end}
-            </End>
-          </TimeWrapper>
-        </Header>
-        <Body>
+        <SpacedRowDiv>
+          <Title>
+            {`Title: ${title}`}
+          </Title>
+          <Category>
+            {`Category: ${category}`}
+          </Category>
+        </SpacedRowDiv>
+        <Text>
+          {`From: ${start}, To: ${end}`}
+        </Text>
+        <Text>
           {appointmentNote}
-        </Body>
+        </Text>
       </ReminderWrapper>
       {!show
         ? (

@@ -126,7 +126,6 @@ const SaveJobModal = (props) => {
 
   const handleChange = (event) => {
     const { value } = event.target;
-
     setInterest(value);
   };
 

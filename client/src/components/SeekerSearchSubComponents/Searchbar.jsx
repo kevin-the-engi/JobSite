@@ -29,8 +29,9 @@ const SearchBar = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (search === '') { return; }
     get('api/listing/search', { params: { search } })
-      .then((data) => console.log('Need to put this data somewhere \n\n', data))
+      .then((data) => props.getSearchedJobs(data))
       .then(setSearch(''))
       .catch((e) => console.log(e));
     props.setSearch(search);

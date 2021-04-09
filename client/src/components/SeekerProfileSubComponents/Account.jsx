@@ -20,12 +20,12 @@ const AccountWrapper = styled.div`
 
 const Account = (props) => {
   const {
-    reminders, savedJobs, appliedJobs, notes, seekerId,
+    reminders, savedJobs, appliedJobs, notes, seekerId, resume,
   } = props;
 
   return (
     <AccountWrapper>
-      <Profile />
+      <Profile resume={resume} />
       <Tabs
         seekerId={seekerId}
         reminders={reminders}

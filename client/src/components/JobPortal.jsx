@@ -72,11 +72,13 @@ class JobPortal extends React.Component {
       filters: {},
       jobResults: [],
       jobToDisplay: null,
+      searchedJobs: null,
     };
     this.updateScreenSize = this.updateScreenSize.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.getJobToDisplay = this.getJobToDisplay.bind(this);
     this.getJobListings = this.getJobListings.bind(this);
+    this.getSearchedJobs = this.getSearchedJobs.bind(this);
     this.setSearch = this.setSearch.bind(this);
     this.setLocation = this.setLocation.bind(this);
     this.setFilters = this.setFilters.bind(this);
@@ -109,22 +111,20 @@ class JobPortal extends React.Component {
     this.setState({ jobToDisplay: job });
   }
 
+  getSearchedJobs(searchedJobs) {
+    this.setState({ searchedJobs });
+  }
+
   setSearch(term) {
-    this.setState = {
-      search: term,
-    };
+    this.setState({search: term});
   }
 
   setLocation(term) {
-    this.setState = {
-      location: term,
-    };
+    this.setState({ location: term });
   }
 
   setFilters(filters) {
-    this.setState = {
-      filters,
-    };
+    this.setState({ filters });
   }
 
   toggleModal() {
@@ -139,9 +139,9 @@ class JobPortal extends React.Component {
 
   render() {
     const {
-      seekerId, isDesktop, modalOpen, jobResults, jobToDisplay,
+      seekerId, isDesktop, modalOpen, jobResults, jobToDisplay, searchedJobs,
     } = this.state;
-    const {seekerData} = this.props;
+    const { seekerData } = this.props;
 
     return (
       <PageWrapper>
@@ -150,16 +150,25 @@ class JobPortal extends React.Component {
           <NavButton href={`${window.location.origin}/#/jobs`}>JOBS</NavButton>
         </NavButtonDiv>
         <SearchWrapper>
-          <SearchBar setSearch={this.setSearch} />
+          <SearchBar getSearchedJobs={this.getSearchedJobs} setSearch={this.setSearch} />
           <Location setLocation={this.setLocation} />
           <Filters setFilters={this.setFilters} />
         </SearchWrapper>
         <JobResultsPortalWrapper>
+          {searchedJobs && (
+          <ListJobResults
+            jobResults={searchedJobs}
+            toggleModal={this.toggleModal}
+            getJobToDisplay={this.getJobToDisplay}
+          />
+          )}
+          {!searchedJobs && (
           <ListJobResults
             jobResults={jobResults}
             toggleModal={this.toggleModal}
             getJobToDisplay={this.getJobToDisplay}
           />
+          )}
           { isDesktop
           && (
           <ListingDetailDiv
@@ -170,7 +179,8 @@ class JobPortal extends React.Component {
           ) }
           { !isDesktop && modalOpen && (
             <ModalBackground onMouseDown={this.toggleModal}>
-              <ListingDetailModal toggleModal={this.toggleModal}
+              <ListingDetailModal
+                toggleModal={this.toggleModal}
                 jobToDisplay={jobToDisplay}
                 seekerId={seekerData.seekerId}
               />
