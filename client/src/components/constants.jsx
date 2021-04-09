@@ -1,12 +1,22 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
-const primary = '#68B25D';
+const primary = '#58B05D';
 const secondary = '#00AAAA';
 const tertiary = '#050802';
 
 const title = 'JobSite';
 const slogan = 'Connecting people with jobs and jobs with people';
 const url = 'http://3.134.101.103:4000/api';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    scroll-behavior: smooth;
+    font-family: Arial;
+    ::-webkit-scrollbar { display: none }
+    margin-left: 0px;
+    overflow-y: hidden;
+  }
+`;
 
 const modalBackdrop = `
   background-color: #02020280;
@@ -51,7 +61,8 @@ const navButton = styled.a`
   height: 4vh;
   margin: 0 1vw;
   line-height: 4vh;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  font-weight: bold;
   width: auto;
   padding: .25vh 1.5vw;
   text-decoration: none;
@@ -60,6 +71,22 @@ const navButton = styled.a`
   outline: none;
   border-radius: 25px;
   color: #fff;
+  ${hoverEffect}
+`;
+
+const outlinedButton = styled.button`
+  width: max(10vw, 150px);
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  height: 5vh;
+  padding: 0 1.25vw;
+  background: #fff;
+  border: 2px solid ${secondary};
+  outline: none;
+  border-radius: 25px;
+  color: ${secondary};
   ${hoverEffect}
 `;
 
@@ -102,6 +129,7 @@ const listCard = styled.div`
   padding: .5vh 1%;
   font-family: Arial, sans-serif;
   color: #424242;
+  transition-duration: 0.2s;
   &:hover {
     cursor: pointer;
     border-color: ${secondary};
@@ -122,4 +150,6 @@ export default {
   navButtonDiv,
   searchButton,
   searchField,
+  outlinedButton,
+  GlobalStyle,
 };

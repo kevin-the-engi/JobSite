@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import SavedJobsCard from './SavedJobsCard.jsx';
@@ -42,7 +42,7 @@ const SavedJobs = (props) => {
   return (
     <SavedJobsWrapper>
       <DropDown selectInterest={selectInterest} />
-      {savedJobs.map((job) => (
+      {props.savedJobs.map((job) => (
         (job.interestLevel === interestLevel
           ? (
             <SavedJobsCard

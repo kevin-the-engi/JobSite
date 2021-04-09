@@ -122,7 +122,7 @@ const Button = styled.button`
 
 const SaveJobModal = (props) => {
   const { seekerId, jobListingId } = props;
-  const [interestLevel, setInterest] = useState('');
+  const [interestLevel, setInterest] = useState('3');
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -148,7 +148,7 @@ const SaveJobModal = (props) => {
     <Wrapper onMouseDown={(event) => { event.stopPropagation(); }}>
       <Options>
         <Form id="interest-form" onSubmit={handleSave}>
-          <FieldSet id="interest" onChange={handleChange}>
+          <FieldSet required id="interest" onChange={handleChange}>
             <Legend>Interest Level</Legend>
             <label htmlFor="interest">
               <i className="far fa-grin-stars fa-3x"></i>

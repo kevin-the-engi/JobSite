@@ -141,6 +141,7 @@ class JobPortal extends React.Component {
     const {
       seekerId, isDesktop, modalOpen, jobResults, jobToDisplay,
     } = this.state;
+    const {seekerData} = this.props;
 
     return (
       <PageWrapper>
@@ -163,13 +164,16 @@ class JobPortal extends React.Component {
           && (
           <ListingDetailDiv
             toggleModal={this.toggleModal}
-            seekerId={seekerId}
+            seekerId={seekerData.seekerId}
             jobToDisplay={jobToDisplay}
           />
           ) }
           { !isDesktop && modalOpen && (
             <ModalBackground onMouseDown={this.toggleModal}>
-              <ListingDetailModal toggleModal={this.toggleModal} jobToDisplay={jobToDisplay} />
+              <ListingDetailModal toggleModal={this.toggleModal}
+                jobToDisplay={jobToDisplay}
+                seekerId={seekerData.seekerId}
+              />
             </ModalBackground>
           )}
         </JobResultsPortalWrapper>
