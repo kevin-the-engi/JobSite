@@ -71,13 +71,12 @@ const BottomDiv = styled.div`
   margin: auto auto 32px auto;
   text-align: center;
 `;
-
 const ToggleButtonDiv = styled.div`
   height: 6vh;
   width: 10vw;
   position: absolute;
   top: 0;
-  right: 5vw;
+  right: 8vw;
   z-index: 1;
   display: flex;
   justify-content: space-between;
@@ -96,7 +95,7 @@ const FrontPage = ({
   setUserID, setAccountType, bubbleUpEmail, bubbleUpCompany,
 }) => {
   const [user, setUser] = useState('Seeker');
-  const [formType, setFormType] = useState('Register');
+  const [formType, setFormType] = useState('Login');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [company, setCompany] = useState('');
