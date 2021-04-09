@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { get } from '../../../http';
 
 import RemindersCard from './RemindersCard.jsx';
 
@@ -12,6 +13,7 @@ const RemindersWrapper = styled.div`
 
 const Reminders = (props) => {
   const { seekerId } = props;
+
   // replace once backend is hooked up
   const reminders = [
     {
