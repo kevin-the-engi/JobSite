@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import SavedJobsCard from './SavedJobsCard.jsx';
-// import SavedDropdown from './SavedDropdown.jsx';
 import DropDown from './DropDown.jsx';
 
 const SavedJobsWrapper = styled.div`
