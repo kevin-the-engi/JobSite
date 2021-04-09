@@ -2,21 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
 
-const ApplicantTile = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 8.5vh;
-  width: 95%;
-  background-color: #fff;
-  border: solid 1px #e0e0e0;
-  border-radius: 5px;
-  margin: .2vh 0;
-  padding: .5vh 1%;
-  font-family: Arial, sans-serif;
-  color: #424242;
-  ${schema.hoverEffect}
-`;
+const ApplicantTile = schema.listCard;
 
 const SpacedRowDiv = styled.div`
   margin: .25vh .25vw;
