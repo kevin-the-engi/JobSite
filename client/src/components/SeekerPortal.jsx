@@ -53,6 +53,8 @@ class SeekerPortal extends React.Component {
           appliedJobs: data.data.applications,
           notes: data.data.notes,
           resume: data.resume,
+        }, () => {
+          this.props.setSeekerData(this.state);
         });
       })
       .catch((err) => {
