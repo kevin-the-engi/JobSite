@@ -29,6 +29,10 @@ const SavedJobs = (props) => {
   ];
   const [interestLevel, setInterestLevel] = useState('3');
 
+  // useEffect(() => {
+
+  // }, [props.savedJobs])
+
   const selectInterest = (interest) => {
     const interests = {
       exInterested: '3',
