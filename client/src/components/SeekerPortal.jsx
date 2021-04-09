@@ -32,19 +32,22 @@ class SeekerPortal extends React.Component {
       savedJobs: [],
       appliedJobs: [],
       notes: [],
+      resume: null,
     };
     this.postNote = this.postNote.bind(this);
   }
 
   // Dummy data
   componentDidMount() {
-    get('api/seekerdata/all', { seekerId: this.state.seekerId })
+    get('api/seekerdata/all', { params: { seekerId: this.state.seekerId } })
       .then((data) => {
+        console.log(data);
         this.setState({
           reminders: data.appointments,
           savedJobs: data.savedJobs,
           appliedJobs: data.applications,
           notes: data.notes,
+          resume: data.resume,
         });
       })
       .catch((err) => {
@@ -78,7 +81,7 @@ class SeekerPortal extends React.Component {
 
   render() {
     const {
-      seekerId, reminders, savedJobs, appliedJobs, notes,
+      seekerId, reminders, savedJobs, appliedJobs, notes, resume
     } = this.state;
 
     return (
@@ -93,6 +96,7 @@ class SeekerPortal extends React.Component {
           savedJobs={savedJobs}
           appliedJobs={appliedJobs}
           notes={notes}
+          resume={resume}
           postNote={this.postNote}
         />
       </SeekerPortalWrapper>
