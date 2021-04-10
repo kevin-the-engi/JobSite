@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import {post} from '../../../http';
+import { post } from '../../../http';
 import SavedJobsCard from './SavedJobsCard.jsx';
 import DropDown from './DropDown.jsx';
 
@@ -57,7 +57,6 @@ const SavedJobs = (props) => {
   const selectInterest = (interest) => {
     setInterestLevel(interest);
   };
-
   return (
     <SavedJobsWrapper>
       <DropDown selectInterest={selectInterest} />
@@ -66,6 +65,19 @@ const SavedJobs = (props) => {
         : props.savedJobs
           .filter((job) => job.interestLevel === interestLevel)
           .map((job) => (<SavedJobsCard job={job} />))}
+      {/* {jobData && jobData.map((job) => (
+        <SavedJobsCard
+          job={job}
+        />
+      ))}
+      {jobData && jobData.map((job) => (
+        (job.interestLevel === interestLevel
+          ? (
+            <SavedJobsCard
+              job={job}
+            />
+          ) : null)
+      ))} */}
     </SavedJobsWrapper>
   );
 };

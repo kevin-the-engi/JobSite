@@ -38,18 +38,6 @@ const Button = styled.button`
 const Reminders = (props) => {
   const { seekerId } = props;
 
-  // replace once backend is hooked up
-  const reminders = [
-    {
-      _id: '606d211bfa660c4ce0b471fe',
-      startTime: '2021-04-09T10:15:00.000Z',
-      endTime: '2021-04-10T10:45:00.000Z',
-      category: 'personal',
-      title: 'garbage',
-      appointmentNote: 'shred all sensitive data before meeting',
-      dateCreated: '2021-04-07T03:03:55.742Z',
-    },
-  ];
   const [display, setDisplay] = useState(false);
 
   const toggleModal = (event) => {
@@ -72,7 +60,7 @@ const Reminders = (props) => {
             />
           </ModalBackground>
         ) : null}
-      {reminders.map((reminder) => (
+      {props.reminders.map((reminder) => (
         <RemindersCard
           key={reminder._id}
           seekerId={seekerId}

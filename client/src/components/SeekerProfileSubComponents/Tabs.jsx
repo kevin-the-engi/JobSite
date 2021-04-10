@@ -78,11 +78,10 @@ const ContentWrapper = styled.div`
 
 const Tabs = (props) => {
   const {
-    seekerId, reminders, savedJobs, appliedJobs, notes, postNote,
+    seekerId, reminders, savedJobs, appliedJobs, notes,
   } = props;
   const [selectedTab, setSelectedTab] = useState('reminders');
   const [tab, setTab] = useState('reminders');
-
   const toggleTab = (id) => {
     setTab(id);
     setSelectedTab(id);
