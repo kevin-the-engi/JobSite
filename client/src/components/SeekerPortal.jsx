@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { get, post } from '../../http';
 import schema from './constants.jsx';
-
 import Account from './SeekerProfileSubComponents/Account.jsx';
 
 const SeekerPortalWrapper = styled.div`

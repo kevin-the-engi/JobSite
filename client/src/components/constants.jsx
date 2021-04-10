@@ -6,6 +6,7 @@ const tertiary = '#050802';
 
 const title = 'JobSite';
 const slogan = 'Connecting people with jobs and jobs with people';
+// const url = 'http://18.220.13.101/api';
 const url = 'http://3.134.101.103:4000/api';
 
 const GlobalStyle = createGlobalStyle`
@@ -35,6 +36,16 @@ const modalBackdrop = `
       backdrop-filter: blur(5px);
     }
   }`;
+
+const modalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  ${modalBackdrop}
+`;
 
 const hoverEffect = `
   transition-duration: 0.25s;
@@ -145,6 +156,7 @@ export default {
   url,
   listCard,
   modalBackdrop,
+  modalBackground,
   hoverEffect,
   navButton,
   navButtonDiv,

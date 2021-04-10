@@ -78,11 +78,10 @@ const ContentWrapper = styled.div`
 
 const Tabs = (props) => {
   const {
-    seekerId, reminders, savedJobs, appliedJobs, notes, postNote,
+    seekerId, reminders, savedJobs, appliedJobs, notes,
   } = props;
   const [selectedTab, setSelectedTab] = useState('reminders');
   const [tab, setTab] = useState('reminders');
-
   const toggleTab = (id) => {
     setTab(id);
     setSelectedTab(id);
@@ -105,7 +104,7 @@ const Tabs = (props) => {
       </TabsWrapper>
       <ContentWrapper>
         {tab === 'reminders' ? <Reminders seekerId={seekerId} reminders={reminders} /> : null}
-        {tab === 'savedJobs' ? <SavedJobs savedJobs={savedJobs} /> : null}
+        {tab === 'savedJobs' ? <SavedJobs seekerId={seekerId} savedJobs={savedJobs} /> : null}
         {tab === 'appliedJobs' ? <AppliedJobs appliedJobs={appliedJobs} /> : null}
         {tab === 'notes' ? <Notes seekerId={seekerId} notes={notes} /> : null}
       </ContentWrapper>

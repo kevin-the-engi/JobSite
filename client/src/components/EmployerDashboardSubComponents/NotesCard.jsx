@@ -4,16 +4,7 @@ import schema from '../constants.jsx';
 import NotesUpdateModal from './NotesUpdateModal.jsx';
 
 const Wrapper = schema.listCard;
-
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  ${schema.modalBackdrop}
-`;
+const ModalBackground = schema.modalBackground;
 
 const Body = styled.div`
 `;
@@ -21,7 +12,7 @@ const Body = styled.div`
 const ButtonWrapper = styled.div`
 `;
 
-const Button = styled.div``;
+const Button = schema.navButton;
 
 const NotesCard = (props) => {
   const { note: { title, text } } = props;

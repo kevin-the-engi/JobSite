@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
+import {patchField} from '../../../http';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -32,29 +33,27 @@ const Options = styled.div`
   align-items: center;
 `;
 
-const Button = styled.button`
-  width: max(10vw, 50px);
-  align-items: center;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 5vh;
-  padding: 0 1.25vw;
-  background: none;
-  border: 1px solid #424242;
-  border-radius: 5px;
-  color: #424242;
-  ${schema.hoverEffect}
-`;
+const Button = schema.navButton;
 
 const TabModal = (props) => {
   const { toggleModal, tabName } = props;
 
   const handleTransfer = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     toggleModal();
 
     if (tabName === 'saved') {
-      // post to applied jobs
+      patchField('api/listing/apply', {
+        seekerId: props.seekerId,
+        applicationObj: {
+          status: 'submitted',
+          jobListingId: props.jobListingId,
+        },
+      })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => console.log(err));
     } else {
       // do something that doesn't exist yet
     }

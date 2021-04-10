@@ -2,23 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
 
-const Tile = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 9.5vh;
-  width: 95%;
-  background-color: #fff;
-  border: solid 1px #e0e0e0;
-  border-radius: 5px;
-  margin: .25vh 0;
-  padding: .5vh 1%;
-  font-family: Arial, sans-serif;
-  color: #424242;
-  &:hover {
-    cursor: pointer;
-    border-color: ${schema.secondary};
-  }
-`;
+const Tile = schema.listCard;
 
 const Name = styled.h1`
   margin: .5vh 0 .25vh .5vw;

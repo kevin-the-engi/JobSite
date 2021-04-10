@@ -2,7 +2,6 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
 import SaveJobModal from './SaveJobModal.jsx';
 import schema from '../constants.jsx';
 
@@ -103,23 +102,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const Button = styled.button`
-  margin: auto;
-  width: 30vw;
-  min-height: 3vh;
-  font: inherit;
-  font-size: 14px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #fff;
-  background: ${schema.primary};
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-  outline: none;
-  position: relative;
-  padding: 10px;
-`;
+const Button = schema.navButton;
 
 const ListingDetailModal = ({ jobToDisplay, seekerId }) => {
   const [show, setShow] = useState(false);
