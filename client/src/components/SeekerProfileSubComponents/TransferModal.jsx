@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
+import {post} from '../../../http';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -50,11 +51,23 @@ const TabModal = (props) => {
   const { toggleModal, tabName } = props;
 
   const handleTransfer = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     toggleModal();
 
     if (tabName === 'saved') {
-      // post to applied jobs
+      // post('api/seekerdata/application', {
+      //   data: {
+      //     seekerId: props.seekerId,
+      //     applicationObj: {
+      //       status: 'submitted',
+      //       jobListingId: props.jobListingId,
+      //     }
+      //   }
+      // })
+      //   .then((result) => {
+      //     console.log(result);
+      //   })
+      //   .catch((err) => console.log(err));
     } else {
       // do something that doesn't exist yet
     }

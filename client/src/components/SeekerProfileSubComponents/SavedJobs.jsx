@@ -71,6 +71,7 @@ const SavedJobs = (props) => {
           ? (
             <SavedJobsCard
               job={job}
+              seekerId={props.seekerId}
             />
           ) : null)
       ))}
