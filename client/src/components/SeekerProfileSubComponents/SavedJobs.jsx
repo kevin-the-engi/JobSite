@@ -61,15 +61,18 @@ const SavedJobs = (props) => {
   return (
     <SavedJobsWrapper>
       <DropDown selectInterest={selectInterest} />
-      {jobData && jobData.map((job) => (
+      {jobData && jobData.map((job, index) => (
         <SavedJobsCard
+          key={job._id + `/${index}`}
           job={job}
+          seekerId={props.seekerId}
         />
       ))}
-      {jobData && jobData.map((job) => (
+      {jobData && jobData.map((job, index) => (
         (job.interestLevel === interestLevel
           ? (
             <SavedJobsCard
+              key={job._id + `/${index}`}
               job={job}
               seekerId={props.seekerId}
             />

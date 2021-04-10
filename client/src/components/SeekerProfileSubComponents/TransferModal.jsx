@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
-import {post} from '../../../http';
+import {patchField} from '../../../http';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -43,19 +43,17 @@ const TabModal = (props) => {
     toggleModal();
 
     if (tabName === 'saved') {
-      // post('api/seekerdata/application', {
-      //   data: {
-      //     seekerId: props.seekerId,
-      //     applicationObj: {
-      //       status: 'submitted',
-      //       jobListingId: props.jobListingId,
-      //     }
-      //   }
-      // })
-      //   .then((result) => {
-      //     console.log(result);
-      //   })
-      //   .catch((err) => console.log(err));
+      patchField('api/listing/apply', {
+        seekerId: props.seekerId,
+        applicationObj: {
+          status: 'submitted',
+          jobListingId: props.jobListingId,
+        },
+      })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => console.log(err));
     } else {
       // do something that doesn't exist yet
     }
