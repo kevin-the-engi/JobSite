@@ -26,15 +26,7 @@ const HeaderWrapper = styled.div`
   border-top-right-radius: 6px;
 `;
 
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  ${schema.modalBackdrop}
-`;
+const ModalBackground = schema.modalBackground;
 
 const Button = styled.button`
   padding: 0 1.25vw;

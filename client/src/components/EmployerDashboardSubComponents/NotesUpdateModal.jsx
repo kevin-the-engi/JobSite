@@ -47,19 +47,7 @@ const ButtonWrapper = styled.div`
   justify-content: space-around;
 `;
 
-const Button = styled.button`
-  width: max(10vw, 150px);
-  align-items: center;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 5vh;
-  padding: 0 1.25vw;
-  background: none;
-  border: 1px solid #424242;
-  border-radius: 5px;
-  color: #424242;
-  ${schema.hoverEffect}
-`;
+const Button = schema.navButton;
 
 const NotesUpdateModal = ({ text }) => {
   const [note, setNote] = useState(text);

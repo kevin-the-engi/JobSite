@@ -39,15 +39,7 @@ const Text = styled.p`
   font-weight: lighter;
 `;
 
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  ${schema.modalBackdrop}
-`;
+const ModalBackground = schema.modalBackground;
 
 const RemindersCard = (props) => {
   const {

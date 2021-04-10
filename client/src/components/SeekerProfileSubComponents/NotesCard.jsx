@@ -33,7 +33,7 @@ const Body = styled.div`
 const ButtonWrapper = styled.div`
 `;
 
-const Button = styled.div``;
+const Button = schema.navButton;
 
 const NotesCard = (props) => {
   const { seekerId, note: { _id, title, text, category } } = props;

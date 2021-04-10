@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
 import SaveJobModal from './SaveJobModal.jsx';
 import schema from '../constants.jsx';
 
@@ -46,35 +45,8 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  ${schema.modalBackdrop}
-`;
-
-const Button = styled.button`
-  margin: auto;
-  width: min(15vw, 200px);
-  min-height: 3vh;
-  font: inherit;
-  font-size: 1rem;
-  letter-spacing: 1.3px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #fff;
-  background: ${schema.primary};
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-  outline: none;
-  position: relative;
-  padding: 10px;
-  ${schema.hoverEffect}
-`;
+const ModalBackground = schema.modalBackground;
+const Button = schema.navButton;
 
 const SpacedRowDiv = styled.div`
   margin: 2vh 1vw .5vh 1vw;

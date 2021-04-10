@@ -50,16 +50,7 @@ const JobResultsPortalWrapper = styled.div`
     height: 80vh;
   }
 `;
-
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  ${schema.modalBackdrop}
-`;
+const ModalBackground = schema.modalBackground;
 
 class JobPortal extends React.Component {
   constructor(props) {

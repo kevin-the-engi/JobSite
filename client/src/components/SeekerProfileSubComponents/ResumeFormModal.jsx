@@ -23,44 +23,26 @@ const Wrapper = styled.div`
     width: 50vw;
   }
 `;
-
 const Options = styled.div`
   height: 80vh;
   max-height: 95vh;
 `;
-
 const Input = styled.input`
 `;
-
 const Form = styled.form`
   height: 78vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 `;
-
 const TextArea = styled.textarea`
   padding: 2vh 1vw;
 `;
-
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-around;
 `;
-
-const Button = styled.button`
-  width: max(10vw, 150px);
-  align-items: center;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 5vh;
-  padding: 0 1.25vw;
-  background: none;
-  border: 1px solid #424242;
-  border-radius: 5px;
-  color: #424242;
-  ${schema.hoverEffect}
-`;
+const Button = schema.navButton;
 
 const ResumeFormModal = ({ seekerId }) => {
   // const [email, setEmail] = useState('');
