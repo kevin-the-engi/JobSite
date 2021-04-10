@@ -60,7 +60,7 @@ const AddReminderModal = (props) => {
   const [reminderTitle, setReminderTitle] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
-  const [maxTime, setMaxTime] = useState('');
+  // const [maxDate, setMaxDate] = useState('');
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -88,6 +88,20 @@ const AddReminderModal = (props) => {
   useEffect(() => {
     let today = new Date();
     today = today.toISOString();
+
+    // add in once maxDate initial state is fixed
+
+    // let endDate = today.split('-');
+    // let month = Number(endDate[1]) + 3;
+
+    // if (month > 12) {
+    //   month -= 12;
+    //   endDate[1] = month.toString();
+    // }
+
+    // endDate = endDate.join('-');
+    // setMaxDate(endDate.slice(0, today.length - 5));
+
     setStartTime(today.slice(0, today.length - 5));
     setEndTime(today.slice(0, today.length - 5));
   }, []);
@@ -124,7 +138,7 @@ const AddReminderModal = (props) => {
               name="starttime"
               value={startTime}
               min={startTime}
-              max="2021-06-14T00:00"
+              max="2050-12-31T00:00:00"
               onChange={handleStart}
             />
           </label>
@@ -136,7 +150,7 @@ const AddReminderModal = (props) => {
               name="endtime"
               value={endTime}
               min={startTime}
-              max="2021-06-14T00:00"
+              max="2050-12-31T00:00:00"
               onChange={handleEnd}
             />
           </label>
