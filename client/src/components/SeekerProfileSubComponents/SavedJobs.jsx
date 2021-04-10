@@ -42,7 +42,7 @@ const SavedJobs = (props) => {
       return (interestLevel === '0'
         ? jobData.map((job, index) => (
           <SavedJobsCard
-            key={job._id + `/${index}`}
+            key={`${job._id}/${index}`}
             job={job}
             seekerId={props.seekerId}
           />
@@ -51,7 +51,7 @@ const SavedJobs = (props) => {
           .filter((job) => job.interestLevel === interestLevel)
           .map((job, index) => (
             <SavedJobsCard
-              key={job._id + `/${index}`}
+              key={`${job._id}/${index}`}
               job={job}
               seekerId={props.seekerId}
             />
