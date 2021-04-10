@@ -34,7 +34,15 @@ const Text = styled.p`
 const SavedJobsCard = (props) => {
   const {
     job: {
-      _id, city, company, employmentType, experienceLevel, jobDescription, salary, title, workLocationType,
+      city,
+      company,
+      employmentType,
+      experienceLevel,
+      jobDescription,
+      salary,
+      title,
+      workLocationType,
+      _id,
     },
   } = props;
   const [show, setShow] = useState('false');
@@ -44,10 +52,10 @@ const SavedJobsCard = (props) => {
     setShow(!show);
   };
 
-  return (
+  const savedJobsMaker = () => (
     <Wrapper onClick={toggleModal}>
       <SpacedRowDiv>
-        <Title>{title}</Title>
+        <Title>{props.job ? title : null}</Title>
         <Text>{`$${salary.slice(0, salary.length - 3)},${salary.slice(salary.length - 3)}`}</Text>
       </SpacedRowDiv>
       <Company>{`${company} (${city})`}</Company>
@@ -60,6 +68,13 @@ const SavedJobsCard = (props) => {
           </ModalBackground>
         ) : null}
     </Wrapper>
+  );
+
+  // console.log(props)
+  return (
+    <>
+      {props.job ? savedJobsMaker() : null}
+    </>
   );
 };
 

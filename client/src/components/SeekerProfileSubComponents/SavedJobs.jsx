@@ -13,71 +13,61 @@ const SavedJobsWrapper = styled.div`
 `;
 
 const SavedJobs = (props) => {
-  // const { savedJobs } = props;
-  const [jobData, setJobData] = useState(null);
-
-  // const savedJobs = [
-  //   {
-  //     name: 'Software Developer', company: 'Facebook', description: 'description', interestLevel: '3',
-  //   },
-  //   {
-  //     name: 'Front-end', company: 'Google', description: 'description', interestLevel: '1',
-  //   },
-  //   {
-  //     name: 'Systems Engineer', company: 'Twitter', description: 'description', interestLevel: '1',
-  //   },
-  //   {
-  //     name: 'Burger-tasting Expert', company: 'McDonalds', description: 'description', interestLevel: '2',
-  //   },
-  // ];
-  const [interestLevel, setInterestLevel] = useState('3');
+  const [jobData, setJobData] = useState([]);
+  const [interestLevel, setInterestLevel] = useState('0');
+  const [display, setDisplay] = useState(null);
 
   useEffect(() => {
     const jobIdArray = [];
+    const interestLevelsMap = {};
     if (props.savedJobs.length !== 0) {
-      for (const job of props.savedJobs) {
+      props.savedJobs.forEach((job) => {
         jobIdArray.push(job.jobListingId);
-      }
+        interestLevelsMap[job.jobListingId] = job.interestLevel;
+      });
     }
-    const searchBody = {
-      data: jobIdArray,
-    };
+    const searchBody = { data: jobIdArray };
     post('api/listing/savedlistings', searchBody)
       .then((result) => {
+        result.forEach((jobObj) => {
+          jobObj.interestLevel = interestLevelsMap[jobObj._id];
+        });
         setJobData(result);
       })
       .catch((err) => console.log(err));
   }, [props.savedJobs]);
 
-  const selectInterest = (interest) => {
-    const interests = {
-      exInterested: '3',
-      veryInterested: '2',
-      interested: '1',
-    };
-
-    setInterestLevel(interests[interest]);
-  };
-  return (
-    <SavedJobsWrapper>
-      <DropDown selectInterest={selectInterest} />
-      {jobData && jobData.map((job, index) => (
-        <SavedJobsCard
-          key={job._id + `/${index}`}
-          job={job}
-          seekerId={props.seekerId}
-        />
-      ))}
-      {jobData && jobData.map((job, index) => (
-        (job.interestLevel === interestLevel
-          ? (
+  const savedJobsMapper = () => {
+    if (jobData.length) {
+      return (interestLevel === '0'
+        ? jobData.map((job, index) => (
+          <SavedJobsCard
+            key={job._id + `/${index}`}
+            job={job}
+            seekerId={props.seekerId}
+          />
+        ))
+        : jobData
+          .filter((job) => job.interestLevel === interestLevel)
+          .map((job, index) => (
             <SavedJobsCard
               key={job._id + `/${index}`}
               job={job}
               seekerId={props.seekerId}
             />
-          ) : null)
-      ))}
+          )));
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    setDisplay(savedJobsMapper());
+  }, [interestLevel, jobData]);
+
+  return (
+    <SavedJobsWrapper>
+      <DropDown setInterestLevel={setInterestLevel} />
+      {display}
     </SavedJobsWrapper>
   );
 };
