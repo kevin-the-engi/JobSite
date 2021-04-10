@@ -85,20 +85,7 @@ const Radio = styled.input`
   &:focus { outline: none; }
 `;
 
-const Button = styled.button`
-  width: max(10vw, 150px);
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  height: 5vh;
-  padding: 0 1.25vw;
-  background: ${schema.secondary};
-  border: none;
-  outline: none;
-  border-radius: 25px;
-  color: #fff;
-  ${schema.hoverEffect}
-`;
+const Button = schema.navButton;
 
 class FiltersModal extends React.Component {
   constructor(props) {

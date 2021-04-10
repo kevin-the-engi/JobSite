@@ -37,7 +37,6 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
 `;
 
 const Input = styled.input`
@@ -52,19 +51,7 @@ const ButtonWrapper = styled.div`
   justify-content: space-around;
 `;
 
-const Button = styled.button`
-  width: max(10vw, 50px);
-  align-items: center;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 5vh;
-  padding: 0 1.25vw;
-  background: none;
-  border: 1px solid #424242;
-  border-radius: 5px;
-  color: #424242;
-  ${schema.hoverEffect}
-`;
+const Button = schema.navButton;
 
 const AddReminderModal = (props) => {
   const { display, seekerId } = props;
