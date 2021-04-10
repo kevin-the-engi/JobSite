@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
@@ -41,12 +42,13 @@ const SavedJobsCard = (props) => {
       salary,
       title,
       workLocationType,
+      _id,
     },
   } = props;
   const [show, setShow] = useState('false');
 
   const toggleModal = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     setShow(!show);
   };
 
@@ -54,15 +56,15 @@ const SavedJobsCard = (props) => {
     <Wrapper onClick={toggleModal}>
       <SpacedRowDiv>
         <Title>{props.job ? title : null}</Title>
-        {/* <Text>{`$${salary.slice(0, salary.length - 3)},${salary.slice(salary.length - 3)}`}</Text> */}
+        <Text>{`$${salary.slice(0, salary.length - 3)},${salary.slice(salary.length - 3)}`}</Text>
       </SpacedRowDiv>
       <Company>{`${company} (${city})`}</Company>
-      {/* <Text>{`${employmentType.charAt(0).toUpperCase()}${employmentType.slice(1)} / ${experienceLevel.charAt(0).toUpperCase()}${experienceLevel.slice(1)}-level / ${workLocationType.charAt(0).toUpperCase()}${workLocationType.slice(1)}`}</Text> */}
+      <Text>{`${employmentType.charAt(0).toUpperCase()}${employmentType.slice(1)} / ${experienceLevel.charAt(0).toUpperCase()}${experienceLevel.slice(1)}-level / ${workLocationType.charAt(0).toUpperCase()}${workLocationType.slice(1)}`}</Text>
       <Text>{jobDescription}</Text>
       {!show
         ? (
           <ModalBackground onMouseDown={toggleModal}>
-            <TransferModal toggleModal={toggleModal} tabName="saved" />
+            <TransferModal jobListingId={_id} seekerId={props.seekerId ? props.seekerId : '606d2039fa660c4ce0b471fd'} toggleModal={toggleModal} tabName="saved" />
           </ModalBackground>
         ) : null}
     </Wrapper>
