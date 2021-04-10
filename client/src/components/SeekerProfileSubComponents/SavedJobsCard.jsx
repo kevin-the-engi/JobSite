@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
@@ -33,13 +34,13 @@ const Text = styled.p`
 const SavedJobsCard = (props) => {
   const {
     job: {
-      city, company, employmentType, experienceLevel, jobDescription, salary, title, workLocationType,
+      _id, city, company, employmentType, experienceLevel, jobDescription, salary, title, workLocationType,
     },
   } = props;
   const [show, setShow] = useState('false');
 
   const toggleModal = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     setShow(!show);
   };
 
@@ -55,7 +56,7 @@ const SavedJobsCard = (props) => {
       {!show
         ? (
           <ModalBackground onMouseDown={toggleModal}>
-            <TransferModal toggleModal={toggleModal} tabName="saved" />
+            <TransferModal jobListingId={_id} seekerId={props.seekerId ? props.seekerId : '606d2039fa660c4ce0b471fd'} toggleModal={toggleModal} tabName="saved" />
           </ModalBackground>
         ) : null}
     </Wrapper>

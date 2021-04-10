@@ -104,7 +104,7 @@ const Tabs = (props) => {
       </TabsWrapper>
       <ContentWrapper>
         {tab === 'reminders' ? <Reminders seekerId={seekerId} reminders={reminders} /> : null}
-        {tab === 'savedJobs' ? <SavedJobs savedJobs={savedJobs} /> : null}
+        {tab === 'savedJobs' ? <SavedJobs seekerId={seekerId} savedJobs={savedJobs} /> : null}
         {tab === 'appliedJobs' ? <AppliedJobs appliedJobs={appliedJobs} /> : null}
         {tab === 'notes' ? <Notes seekerId={seekerId} notes={notes} /> : null}
       </ContentWrapper>
