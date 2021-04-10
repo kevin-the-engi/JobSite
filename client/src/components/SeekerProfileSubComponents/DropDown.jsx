@@ -12,7 +12,6 @@ const DropDown = ({ selectInterest }) => {
 
   const handleSelect = (event) => {
     const { value } = event.target;
-
     setSelected(value);
     selectInterest(value);
   };

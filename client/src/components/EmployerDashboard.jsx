@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { get } from '../../http';
-
 import PostJob from './EmployerDashboardSubComponents/PostJob.jsx';
 import Profile from './EmployerDashboardSubComponents/Profile.jsx';
 import Notes from './EmployerDashboardSubComponents/Notes.jsx';
 import JobApplicants from './EmployerDashboardSubComponents/JobApplicants.jsx';
 import DropDown from './EmployerDashboardSubComponents/DropDown.jsx';
-
 import schema from './constants.jsx';
 
 const PageWrapper = styled.div`
@@ -27,7 +25,6 @@ const PageWrapper = styled.div`
 
 const NavButtonDiv = schema.navButtonDiv;
 const NavButton = schema.navButton;
-
 const LowerDashboardWrapper = styled.div`
   width: 95%;
   height: auto;
@@ -80,15 +77,7 @@ const RightSide = styled.div`
   }
 `;
 
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  ${schema.modalBackdrop}
-`;
+const ModalBackground = schema.modalBackground;
 
 class EmployerDashboard extends React.Component {
   constructor(props) {

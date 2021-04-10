@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import FindJobSeekersPortal from './EmployerSearchSubComponents/FindJobSeekersPortal.jsx';
 import schema from './constants.jsx';
 
@@ -14,7 +13,6 @@ const EmployerSearchWrapper = styled.div`
   height: 94vh;
   max-width: 100vw;
 `;
-
 const NavButtonDiv = schema.navButtonDiv;
 const NavButton = schema.navButton;
 
