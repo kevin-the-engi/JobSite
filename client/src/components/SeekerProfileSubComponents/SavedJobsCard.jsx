@@ -33,7 +33,14 @@ const Text = styled.p`
 const SavedJobsCard = (props) => {
   const {
     job: {
-      city, company, employmentType, experienceLevel, jobDescription, salary, title, workLocationType,
+      city,
+      company,
+      employmentType,
+      experienceLevel,
+      jobDescription,
+      salary,
+      title,
+      workLocationType,
     },
   } = props;
   const [show, setShow] = useState('false');
@@ -43,14 +50,14 @@ const SavedJobsCard = (props) => {
     setShow(!show);
   };
 
-  return (
+  const savedJobsMaker = () => (
     <Wrapper onClick={toggleModal}>
       <SpacedRowDiv>
-        <Title>{title}</Title>
-        <Text>{`$${salary.slice(0, salary.length - 3)},${salary.slice(salary.length - 3)}`}</Text>
+        <Title>{props.job ? title : null}</Title>
+        {/* <Text>{`$${salary.slice(0, salary.length - 3)},${salary.slice(salary.length - 3)}`}</Text> */}
       </SpacedRowDiv>
       <Company>{`${company} (${city})`}</Company>
-      <Text>{`${employmentType.charAt(0).toUpperCase()}${employmentType.slice(1)} / ${experienceLevel.charAt(0).toUpperCase()}${experienceLevel.slice(1)}-level / ${workLocationType.charAt(0).toUpperCase()}${workLocationType.slice(1)}`}</Text>
+      {/* <Text>{`${employmentType.charAt(0).toUpperCase()}${employmentType.slice(1)} / ${experienceLevel.charAt(0).toUpperCase()}${experienceLevel.slice(1)}-level / ${workLocationType.charAt(0).toUpperCase()}${workLocationType.slice(1)}`}</Text> */}
       <Text>{jobDescription}</Text>
       {!show
         ? (
@@ -59,6 +66,13 @@ const SavedJobsCard = (props) => {
           </ModalBackground>
         ) : null}
     </Wrapper>
+  );
+
+  // console.log(props)
+  return (
+    <>
+      {props.job ? savedJobsMaker() : null}
+    </>
   );
 };
 
