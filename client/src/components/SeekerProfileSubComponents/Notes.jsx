@@ -17,15 +17,7 @@ const ModalBackground = schema.modalBackground;
 const Button = schema.navButton;
 
 const Notes = (props) => {
-  const { seekerId } = props;
-  const notes = [
-    {
-      title: 'This is the title',
-      text: 'this is the body',
-      category: 'this is a category',
-      _id: '12345',
-    },
-  ];
+  const { seekerId, notes } = props;
 
   const [showAdd, setShowAdd] = useState(false);
 
