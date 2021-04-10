@@ -16,48 +16,39 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
-const Body = styled.div`
-  height: 100%;
+const Title = styled.h1`
+  margin: 0.5vh 1vw;
+  color: ${schema.primary};
+  font-size: 1rem;
+  font-weight: bold;
+`;
+
+const Category = styled.div`
+  margin: 0.25vh 1vw 0 2vw;
+  font-style: italic;
+`;
+
+const SpacedRowDiv = styled.div`
+  margin: .25vh 1vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
 `;
 
-const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+const Text = styled.p`
+  margin: 0.5vh 1vw 0 2vw;
+  font-weight: lighter;
 `;
 
-const Title = styled.div``;
-
-const Category = styled.div``;
-
-const TimeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Start = styled.div``;
-
-const End = styled.div``;
-
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  ${schema.modalBackdrop}
-`;
+const ModalBackground = schema.modalBackground;
 
 const RemindersCard = (props) => {
   const {
     seekerId,
     reminder: {
-      _id, startTime, endTime, category, title, appointmentNote, dateCreated
+      _id, startTime, endTime, category, title, appointmentNote, dateCreated,
     },
   } = props;
+
   const [show, setShow] = useState('false');
 
   const toggleModal = (event) => {
@@ -66,14 +57,14 @@ const RemindersCard = (props) => {
   };
 
   const formatDate = (times) => {
-    let date = times.slice(0, 10).split('-');
-    const year = Number(date[0]);
-    const month = Number(date[1]) - 1;
-    const day = Number(date[2]) - 1;
-    date = new Date(year, month, day);
+    let date = new Date(times);
+    date = date.toString()
+      .split(' ')
+      .slice(0, 5)
+      .join(' ')
+      .trim();
 
-    const formattedDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: '2-digit' }).format(date);
-    return formattedDate;
+    return date;
   };
   const start = (formatDate(startTime));
   const end = (formatDate(endTime));
@@ -81,27 +72,20 @@ const RemindersCard = (props) => {
   return (
     <Wrapper onClick={toggleModal}>
       <ReminderWrapper>
-        <Header>
-          <TitleWrapper>
-            <Title>
-              {title}
-            </Title>
-            <Category>
-              {category}
-            </Category>
-          </TitleWrapper>
-          <TimeWrapper>
-            <Start>
-              {start}
-            </Start>
-            <End>
-              {end}
-            </End>
-          </TimeWrapper>
-        </Header>
-        <Body>
+        <SpacedRowDiv>
+          <Title>
+            {`Title: ${title}`}
+          </Title>
+          <Category>
+            {`Category: ${category}`}
+          </Category>
+        </SpacedRowDiv>
+        <Text>
+          {`From: ${start}, To: ${end}`}
+        </Text>
+        <Text>
           {appointmentNote}
-        </Body>
+        </Text>
       </ReminderWrapper>
       {!show
         ? (

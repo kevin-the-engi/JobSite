@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import FiltersModal from './FiltersModal.jsx';
 import schema from '../constants.jsx';
 
@@ -9,15 +8,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  ${schema.modalBackdrop}
-`;
+const ModalBackground = schema.modalBackground;
 const Button = schema.outlinedButton;
 
 class Filters extends React.Component {

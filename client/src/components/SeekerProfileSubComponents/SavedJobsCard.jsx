@@ -2,20 +2,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import schema from '../constants.jsx';
-
 import TransferModal from './TransferModal.jsx';
 
 const Wrapper = schema.listCard;
-
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 4;
-  ${schema.modalBackdrop}
-`;
+const ModalBackground = schema.modalBackground;
 
 const SpacedRowDiv = styled.div`
   margin: .25vh .25vw;
