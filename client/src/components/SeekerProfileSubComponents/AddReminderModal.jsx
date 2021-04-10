@@ -54,7 +54,7 @@ const ButtonWrapper = styled.div`
 const Button = schema.navButton;
 
 const AddReminderModal = (props) => {
-  const { display, seekerId, endDate } = props;
+  const { display, seekerId } = props;
   const [note, setNote] = useState('');
   const [reminderCategory, setReminderCategory] = useState('personal');
   const [reminderTitle, setReminderTitle] = useState('');
@@ -138,7 +138,7 @@ const AddReminderModal = (props) => {
               name="starttime"
               value={startTime}
               min={startTime}
-              max="2030-12-31T00:00:00"
+              max="2050-12-31T00:00:00"
               onChange={handleStart}
             />
           </label>
@@ -150,7 +150,7 @@ const AddReminderModal = (props) => {
               name="endtime"
               value={endTime}
               min={startTime}
-              max="2030-12-31T00:00:00"
+              max="2050-12-31T00:00:00"
               onChange={handleEnd}
             />
           </label>
