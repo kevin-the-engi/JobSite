@@ -6,8 +6,8 @@ const tertiary = '#050802';
 
 const title = 'JobSite';
 const slogan = 'Connecting people with jobs and jobs with people';
-// const url = 'http://localhost:4000/api';
-const url = 'http://18.220.13.101/api';
+const url = 'http://localhost:4000/api';
+// const url = 'http://18.220.13.101/api';
 // deprecated const url = 'http://3.134.101.103:4000/api';
 
 const GlobalStyle = createGlobalStyle`
