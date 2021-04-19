@@ -14,6 +14,11 @@
 [Ricky Zhao](https://github.com/rickBucket)
 ---
 
+<p align="center">
+  <img src="https://github.com/kevin-the-engi/JobSite/blob/main/jobsite.gif" align="center" width="800">
+</p>
+
+
 ## Introduction
 This project was a brief 1-week sprint where our team tried to complete an MVP for an external user Greg Horne.
 
